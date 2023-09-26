@@ -8,7 +8,7 @@ require('./Mock')
 import {parseTime} from './utils'
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css'	//样式
-// import  "nes.css/css/nes.min.css";
+import  "nes.css/css/nes.min.css";
 // import Antd from 'ant-design-vue';
 // import 'ant-design-vue/dist/antd.css';
 Vue.directive('highlight',function (el) {
