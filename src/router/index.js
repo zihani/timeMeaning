@@ -23,18 +23,6 @@ const routes = [
         component: () => import('../views/Home.vue'),
         meta: { title: '搜索', params: 'words'}
     },
-    // {
-    //     path: '/about',
-    //     name: 'about',
-    //     component: () => import('../views/About.vue'),
-    //     meta: { title: '关于'}
-    // },
-    // {
-    //     path: '/friend',
-    //     name: 'friend',
-    //     component: () => import('../views/Friend.vue'),
-    //     meta: { title: '友链'}
-    // },
     {
         path: '/articlehome',
         name: 'article',
@@ -46,7 +34,13 @@ const routes = [
         name: 'article',
         component: () => import('../views/Articles.vue'),
         meta: { title: '文章'}
-    }
+    },
+    {
+        path: '/gallery',
+        name: 'gallery',
+        component: () => import('../views/gallery.vue'),
+        meta: { title: '画廊'}
+    },
 ]
 
 const router = new VueRouter({

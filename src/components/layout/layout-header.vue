@@ -22,6 +22,9 @@
             <div class="menu-item hasChild">
                 <a href="#" @click="openArticle">文章</a>
             </div>
+            <div class="menu-item hasChild">
+                <a href="#" @click="openGallery">画廊</a>
+            </div>
             <!-- <div class="menu-item"><router-link to="/friend">友链</router-link></div>
             <div class="menu-item"><router-link to="/about">关于</router-link></div> -->
         </div>
@@ -64,6 +67,9 @@
             window.removeEventListener("scroll", this.watchScroll)
         },
         methods: {
+            openGallery(){
+               this.$router.push({ path:"/gallery"})
+            },
             openArticle(){
                this.$router.push({ path: "/articlehome" });
             },

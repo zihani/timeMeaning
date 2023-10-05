@@ -4,7 +4,8 @@
         <div class="site-content animate">
             <!-- 文章目录 -->
             <div id="article-menus">
-                <menu-tree :menus="menus" child-label="child"></menu-tree>
+                {{ $route.params.id }}
+                <menu-tree :menus="menusList" childLabel="1"></menu-tree>
             </div>
             <main class="site-main">
                 <article class="hentry">
@@ -75,7 +76,7 @@
           return{
               showDonate: false,
               comments: [],
-              menus: []
+              menusList: [{id:"1",title:"目录1"}]
           }
         },
         components: {
