@@ -1,23 +1,26 @@
 
 // 基于 indexedDB 封装的库
 // https://github.com/xmoyking/localForage-cn
-
 import localforage from 'localforage'
 //创建一个 indexedDB
 const myIndexedDB = localforage.createInstance({
     name: 'myIndexedDB',
 })
-debugger
+export function setStorage(key,value) {
+     myIndexedDB.setItem(key, value)
+}
+export async function getStorage(key) {
+    try {
+    const value = await myIndexedDB.getItem(key);
+    return value
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 /**
  * set value
  */
-export function setStage(key,value) {
-    debugger
-    key
-    value
-    return 
-    // myIndexedDB.setItem(key, value)
-}
 
 /**
  * 取值
@@ -29,7 +32,7 @@ export function setStage(key,value) {
 // }).catch(function (err) {
 // // we got an error
 // });
-// OR async /await 获取
+// // OR async /await 获取
 // try {
 //     const value = await myIndexedDB.getItem('somekey');
 //     // This code runs once the value has been loaded
@@ -39,13 +42,3 @@ export function setStage(key,value) {
 //     // This code runs if there were any errors.
 //     console.log(err);
 // }
-
-// /**
-//  *删除某项
-//  */
-// myIndexedDB.removeItem('somekey')
-
-// /**
-//  * 重置数据库
-//  */
-// myIndexedDB.clear()
