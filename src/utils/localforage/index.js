@@ -7,37 +7,45 @@ import localforage from 'localforage'
 const myIndexedDB = localforage.createInstance({
     name: 'myIndexedDB',
 })
+debugger
 /**
  * set value
  */
-myIndexedDB.setItem(key, value)
+export function setStage(key,value) {
+    debugger
+    key
+    value
+    return 
+    // myIndexedDB.setItem(key, value)
+}
+
 /**
  * 取值
    由于是异步的 建议使用promise.then() 或 async/await 去读值
  */
 
-myIndexedDB.getItem('somekey').then(function (value) {
-    // we got our value
-}).catch(function (err) {
-// we got an error
-});
+// myIndexedDB.getItem('somekey').then(function (value) {
+//     // we got our value
+// }).catch(function (err) {
+// // we got an error
+// });
 // OR async /await 获取
-try {
-    const value = await myIndexedDB.getItem('somekey');
-    // This code runs once the value has been loaded
-    // from the offline store.
-    console.log(value);
-} catch (err) {
-    // This code runs if there were any errors.
-    console.log(err);
-}
+// try {
+//     const value = await myIndexedDB.getItem('somekey');
+//     // This code runs once the value has been loaded
+//     // from the offline store.
+//     console.log(value);
+// } catch (err) {
+//     // This code runs if there were any errors.
+//     console.log(err);
+// }
 
-/**
- *删除某项
- */
-myIndexedDB.removeItem('somekey')
+// /**
+//  *删除某项
+//  */
+// myIndexedDB.removeItem('somekey')
 
-/**
- * 重置数据库
- */
-myIndexedDB.clear()
+// /**
+//  * 重置数据库
+//  */
+// myIndexedDB.clear()
