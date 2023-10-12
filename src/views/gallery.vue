@@ -1,7 +1,9 @@
 <template>
     <div class="photo-main">
         <div class="containner">
-        <button @click="setdb">  addIndexDB</button>
+        <button @click="setdbStorage"> add</button>
+        <button @click="getdbStorage"> all</button>
+
             <!--焦点图-->
             <div class="top-feature" v-if="!hideSlogan">
                 <section-title>
@@ -27,7 +29,7 @@
 </template>
 <script>
 import Feature from '@/components/feature'
-import setStage from '@/utils/localforage'
+import {getStorage,setStorage} from '@/utils/localforage'
 export default {
     metaInfo: {
         meta: [{
@@ -64,6 +66,16 @@ export default {
         this.getPhotoList()
     },
     methods: {
+        setdbStorage(){
+            setStorage("add","啦啦啦啦")
+
+        },
+        getdbStorage(){
+            getStorage("add").then(res =>{
+                res
+                debugger
+            })
+        },
         setdb(){
             debugger
             setStage("add",{name:"name"})

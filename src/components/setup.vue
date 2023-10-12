@@ -37,7 +37,7 @@
 .setup {
     position: fixed;
     width: 520px;
-    height: 200px;
+    height: 500px;
     right: -5rem;
     bottom: -3rem;
     border-radius: 25px;
@@ -58,14 +58,14 @@
         position: fixed;
         width: 100%;
         height: 100px;
-        background-color: rgb(158, 154, 154);
+        background-color: rgb(0, 0, 0);
         color: #1f0404;
         opacity:0.9;
     }
     .frame{
         width:440px;
-        height: 100px;
-        background-color: rgb(158, 154, 154);
+        height: 500px;
+        background-color: rgb(6, 6, 6);
         border-radius: 10px;
         position: fixed;
         opacity:0.8;
