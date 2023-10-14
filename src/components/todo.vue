@@ -3,8 +3,11 @@
         <div class="frame"  v-if="show" >
             <div style="width:440px; height: 400px; overflow-x:hidden;">
                 <div style="padding:2px;" v-for="item in todolist" :key="item.id">
-                    <input style="float: left;margin-top: 6px;margin-left: 10px;" type="checkbox" name="name" value="1" @change="ontodoChange">
-                    <div style="width: 100%; border-bottom: 1px solid; color:#ffff;"><span style="text-decoration: line-through;"> {{ item.text }} </span> </div> 
+                    <input style="float: left;margin-top: 6px;margin-left: 10px;" type="checkbox" name="name" value="1" @change="ontodoChange(item)">
+                    <div style="width: 100%; border-bottom: 1px solid; color:#ffff;">
+                        <span v-if="item.status == 0"  style="text-decoration: line-through;"> {{ item.text }} </span> 
+                        <span v-if="item.status == 1" > {{ item.text }} </span> 
+                    </div> 
                     <div style="width:50px" @click="deltodo"><span>删除</span></div>
                 </div>
             </div>
@@ -45,11 +48,16 @@ import { setStorage,getStorage } from "@/utils/localforage"
                 if(!this.todotext){
                     return
                 }
+                debugger
+                this.todotext
                 let id = 1
+                this.todolist = this.todolist ?? []
                 if(this.todolist.length > 0){
                     id = this.todolist[this.todolist.length - 1].id + 1
                 }
+  
                 this.todolist.push({id:id,text:this.todotext,status:1})
+                debugger
                 setStorage("todoList",this.todolist)
                 this.todotext = ""
             },
@@ -58,9 +66,15 @@ import { setStorage,getStorage } from "@/utils/localforage"
                 alert(1)
                 debugger
             },
-            ontodoChange(e){
-                e.target.checked
-               debugger
+            ontodoChange(item){
+                console.log(item.id)
+                // let todolist =  this.todolist.filter((item) => item.id === item.id);
+                for (const row of this.todolist) {
+                    if(row.id === item.id){
+                        item.status = item.status == 0?1:0
+                    }
+                }
+                // this.$set(this.todolist,item.id -1,todolist[0])
             },
             setup(){
                 this.show = !this.show

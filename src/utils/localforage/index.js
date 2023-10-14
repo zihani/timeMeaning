@@ -7,6 +7,7 @@ const myIndexedDB = localforage.createInstance({
     name: 'myIndexedDB',
 })
 export function setStorage(key,value) {
+    debugger
      myIndexedDB.setItem(key, value)
 }
 export async function getStorage(key) {
