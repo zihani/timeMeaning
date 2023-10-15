@@ -6,16 +6,15 @@
             </div>
             <div style="width:440px; height: 360px; overflow-x:hidden;">
                 <div style="padding:2px;" v-for="item in todolist" :key="item.id">
-                    <input ref="todoinput" v-if='!removeshow' style="float: right;margin-top: 6px;margin-left: 10px;" type="checkbox" name="name" value="1" @change="ontodoChange(item)">
+                    <input ref="todoinput" v-if='!removeshow' style="float: right; margin-top: 5px; margin-right: 10px;" type="checkbox" :value="item.id" v-model="checkboxList" @change="ontodoChange(item)">
                     <div v-if='removeshow' style="float: right;" @click="deltodo(item)"><span>remove</span></div>
                     <div style="width: 100%; border-bottom: 1px solid; color:#ffff;">
-                        <span v-if="item.status == 0"  style="text-decoration: line-through;"> {{ item.text }} </span> 
+                        <span v-if="item.status == 0"  style="text-decoration: line-through;color:rgb(111, 111, 111);"> {{ item.text }} </span> 
                         <span v-if="item.status == 1" > {{ item.text }} </span> 
                     </div>
                 </div>
             </div>
-            
-            <div style="width:420px; height: 50px;  border-top: 1px solid;">
+            <div style="width:420px; height: 50px;  border-top: 0.1px solid;">
                 <input style=" width: 430px;
                 height: 30px;
                 background-color:rgb(6, 6, 6);
@@ -30,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <div style="position: fixed; bottom: 0.7rem; right: 1.7rem; width: 55px; height: 25px;" @click="setup">
+        <div style="position: fixed; bottom: 0.7rem; right: 1.7rem; width: 55px; height: 25px;" @click="todoshow">
              <strong>  To Do </strong>
         </div>
     </div>
@@ -46,57 +45,56 @@ import { setStorage,getStorage } from "@/utils/localforage"
                 imgPath: require("../assets/img/setup.svg"),
                 show:false,
                 todolist:[], //status 0 删除 1 正常
-                todotext:''
+                todotext:'',
+                checkboxList:[]
             }
         },
         methods:{
             removeAll(){
                this.todolist = []
+               setStorage("todoList",this.todolist)
             },
             todoedit(){
                 this.removeshow = !this.removeshow
             },
             inittodolist(){
                 getStorage("todoList").then(res =>{
-                   this.todolist = res
-                    debugger
+                    this.todolist = res
+                    this.checkboxList = res.filter(
+                        (row) => row.status === 0
+                    ).map(item =>{
+                        return item.id;
+                    });
                 })
             },
             addtodo(){
                 if(!this.todotext){
                     return
                 }
-                debugger
-                this.todotext
                 let id = 1
                 this.todolist = this.todolist ?? []
                 if(this.todolist.length > 0){
                     id = this.todolist[this.todolist.length - 1].id + 1
                 }
                 this.todolist.push({id:id,text:this.todotext,status:1})
-                debugger
                 setStorage("todoList",this.todolist)
                 this.todotext = ""
             },
             deltodo(item){
-                item.id
-                debugger
                 this.todolist = this.todolist.filter(
                 (row) => row.id != item.id
                 );
-                console.log( this.todolist)
+                setStorage("todoList",this.todolist)
             },
             ontodoChange(item){
-                console.log(item.id)
-                // let todolist =  this.todolist.filter((item) => item.id === item.id);
                 for (const row of this.todolist) {
                     if(row.id === item.id){
                         item.status = item.status == 0?1:0
                     }
                 }
-                // this.$set(this.todolist,item.id -1,todolist[0])
+                setStorage("todoList",this.todolist)
             },
-            setup(){
+            todoshow(){
                 this.show = !this.show
                 this.$refs.todoinput.focus();
             }
