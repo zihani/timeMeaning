@@ -1,22 +1,33 @@
 <template>
-    <div  class="setup" >
-        <div class="frame"  v-if="show" >
-            <div style="width:440px; height: 400px; overflow-x:hidden;">
+    <div  class="setup"  >
+        <div class="frame" v-if="show">
+            <div style="width: 440px;height: 40px;border-bottom: 1px solid;padding-top: 8px;float: left;padding-right: 360px;"> 
+               <span @click='todoedit'> edit </span>
+            </div>
+            <div style="width:440px; height: 360px; overflow-x:hidden;">
                 <div style="padding:2px;" v-for="item in todolist" :key="item.id">
-                    <input style="float: left;margin-top: 6px;margin-left: 10px;" type="checkbox" name="name" value="1" @change="ontodoChange(item)">
+                    <input ref="todoinput" v-if='!removeshow' style="float: right;margin-top: 6px;margin-left: 10px;" type="checkbox" name="name" value="1" @change="ontodoChange(item)">
+                    <div v-if='removeshow' style="float: right;" @click="deltodo(item)"><span>remove</span></div>
                     <div style="width: 100%; border-bottom: 1px solid; color:#ffff;">
                         <span v-if="item.status == 0"  style="text-decoration: line-through;"> {{ item.text }} </span> 
                         <span v-if="item.status == 1" > {{ item.text }} </span> 
-                    </div> 
-                    <div style="width:50px" @click="deltodo"><span>删除</span></div>
+                    </div>
                 </div>
             </div>
-            <div style="width:420px; height: 30px;">
-                <input style=" width: 440px;
+            
+            <div style="width:420px; height: 50px;  border-top: 1px solid;">
+                <input style=" width: 430px;
                 height: 30px;
-                background-color: #faf4f4;
-                border-radius: 10px;" type="text" v-model="todotext">
-                <div style="width: 440px;" @click="addtodo"> 确定 </div>
+                background-color:rgb(6, 6, 6);
+                color:#ffff;
+                border:1px solid rgb(6, 6, 6);
+                outline:none;
+                margin-left: 20px;
+                " type="text" placeholder="insertToDo" v-model="todotext" @keyup.enter="addtodo">
+                <div v-if='!removeshow' style="width: 440px;" @click="addtodo"> 确定 </div>
+                <div v-if='removeshow' style="width: 440px;" @click="removeAll" >
+                     removeALL
+                </div>
             </div>
         </div>
         <div style="position: fixed; bottom: 0.7rem; right: 1.7rem; width: 55px; height: 25px;" @click="setup">
@@ -31,6 +42,7 @@ import { setStorage,getStorage } from "@/utils/localforage"
         components: {},
         data() {
             return{
+                removeshow:false,
                 imgPath: require("../assets/img/setup.svg"),
                 show:false,
                 todolist:[], //status 0 删除 1 正常
@@ -38,6 +50,12 @@ import { setStorage,getStorage } from "@/utils/localforage"
             }
         },
         methods:{
+            removeAll(){
+               this.todolist = []
+            },
+            todoedit(){
+                this.removeshow = !this.removeshow
+            },
             inittodolist(){
                 getStorage("todoList").then(res =>{
                    this.todolist = res
@@ -55,16 +73,18 @@ import { setStorage,getStorage } from "@/utils/localforage"
                 if(this.todolist.length > 0){
                     id = this.todolist[this.todolist.length - 1].id + 1
                 }
-  
                 this.todolist.push({id:id,text:this.todotext,status:1})
                 debugger
                 setStorage("todoList",this.todolist)
                 this.todotext = ""
             },
-            deltodo(e){
-                e 
-                alert(1)
+            deltodo(item){
+                item.id
                 debugger
+                this.todolist = this.todolist.filter(
+                (row) => row.id != item.id
+                );
+                console.log( this.todolist)
             },
             ontodoChange(item){
                 console.log(item.id)
@@ -78,6 +98,7 @@ import { setStorage,getStorage } from "@/utils/localforage"
             },
             setup(){
                 this.show = !this.show
+                this.$refs.todoinput.focus();
             }
         },
         mounted(){
@@ -115,6 +136,7 @@ import { setStorage,getStorage } from "@/utils/localforage"
         background-color: rgb(0, 0, 0);
         color: #1f0404;
         opacity:0.9;
+        
     }
     .frame{
         width:440px;
