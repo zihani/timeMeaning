@@ -11,7 +11,8 @@ const state = {
     loading: false,
     runTimeInterval: '',
     socials: '',
-    websiteInfo: ''
+    websiteInfo: '',
+    todoshow:false
 }
 const mutations = {
     SET_LOADING: (state, v) => {
@@ -30,6 +31,10 @@ const mutations = {
                 state.runTimeInterval = getTimeInterval(runAt);
             }, 1000);
         }
+    },
+    SET_UPDATE_TODOSHOW:(state,v) =>{
+        debugger;
+        state.todoshow = !state.todoshow
     }
 }
 const actions = {
@@ -68,12 +73,19 @@ const actions = {
                 })
             }
         }))
+    },
+    updateToDoShow:({commit,state}) =>{
+        return new Promise((resolve => {
+            commit('SET_UPDATE_TODOSHOW');
+            resolve();
+        }))
     }
 }
 const getters = {
     loading: state => state.loading,
     runTimeInterval: state => state.runTimeInterval,
-    notice: state => state.websiteInfo?state.websiteInfo.notice:''
+    notice: state => state.websiteInfo?state.websiteInfo.notice:'',
+    todoshow: state => state.todoshow
 }
 export default new Vuex.Store({
     state,

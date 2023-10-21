@@ -11,13 +11,17 @@ import 'highlight.js/styles/atom-one-dark.css'	//样式
 import  "nes.css/css/nes.min.css";
 // import Antd from 'ant-design-vue';
 // import 'ant-design-vue/dist/antd.css';
+import Element from "element-ui";
+import 'element-ui/lib/theme-chalk/index.css';
+import VueShortkey from 'vue-shortkey'
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block)=>{
     hljs.highlightBlock(block)
   })
 })
-// App.use(Antd);
+Vue.use(Element);
+Vue.use(VueShortkey);
 Vue.config.productionTip = false
 Vue.filter('parseTime', (v) => parseTime(v,'{y}-{m}-{d}'))
 new Vue({

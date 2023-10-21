@@ -1,5 +1,5 @@
 <template>
-    <div id="app" v-cloak>
+    <div id="app" v-shortkey="['ctrl', 'alt', 't']" @shortkey="theAction()" v-cloak>
         <loading></loading>
         <layout-header></layout-header>
         <layout-body></layout-body>
@@ -18,6 +18,11 @@
             layoutBody,
             layoutFooter,
             Loading
+        },
+        methods:{
+            theAction(){
+                this.$store.dispatch('updateToDoShow')
+            }
         }
     }
 </script>

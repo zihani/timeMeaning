@@ -2,6 +2,25 @@
     <div class="home">
         <banner isHome="true"></banner>
         <div class="site-content animate">
+              <div style="margin-bottom: 20px;">
+                <el-button
+                  size="small"
+                  @click="addTab(editableTabsValue)"
+                >
+                  add tab
+                </el-button>
+              </div>
+              <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
+                <el-tab-pane
+                  v-for="(item, index) in editableTabs"
+                  :key="item.name"
+                  :label="item.title"
+                  :name="item.name"
+                >
+                </el-tab-pane>
+              </el-tabs>
+        </div>
+        <div class="site-content animate">
             <!--通知栏-->
             <div class="notify">
                 <div class="search-result" v-if="hideSlogan">
@@ -10,7 +29,6 @@
                 </div>
                 <quote v-else>{{notice}}</quote>
             </div>
-
             <!--焦点图-->
             <div class="top-feature" v-if="!hideSlogan">
                 <section-title>
@@ -55,7 +73,18 @@
                 features: [],
                 postList: [],
                 currPage: 1,
-                hasNextPage: false
+                hasNextPage: false,
+                editableTabsValue: '2',
+                editableTabs: [{
+                    title: 'Tab 1',
+                    name: '1',
+                    content: 'Tab 1 content'
+                }, {
+                    title: 'Tab 2',
+                    name: '2',
+                    content: 'Tab 2 content'
+                }],
+                tabIndex: 2
             }
         },
         components: {
@@ -81,6 +110,32 @@
             }
         },
         methods: {
+            addTab(targetName) {
+                let newTabName = ++this.tabIndex + '';
+                this.editableTabs.push({
+                    title: 'New Tab',
+                    name: newTabName,
+                    content: 'New Tab content'
+                });
+                this.editableTabsValue = newTabName;
+            },
+            removeTab(targetName) {
+                let tabs = this.editableTabs;
+                let activeName = this.editableTabsValue;
+                if (activeName === targetName) {
+                tabs.forEach((tab, index) => {
+                    if (tab.name === targetName) {
+                    let nextTab = tabs[index + 1] || tabs[index - 1];
+                    if (nextTab) {
+                        activeName = nextTab.name;
+                    }
+                    }
+                });
+                }
+                
+                this.editableTabsValue = activeName;
+                this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+            },
             fetchFocus() {
                 fetchFocus().then(res => {  
                     debugger
@@ -115,7 +170,9 @@
     }
 </script>
 <style scoped lang="less">
-
+    .el-tabs__item .is-top .is-closable {
+        
+    }
     .site-content {
         .notify {
             margin: 60px 0;

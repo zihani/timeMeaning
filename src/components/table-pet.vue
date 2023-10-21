@@ -28,7 +28,6 @@
         },
         methods: {
             newdatetime(){
-             
                 // let date = new Date()
                 // let datetime =  date.toLocaleString('zh-CN',{hour12: false}).split(" ")
                 // let time = datetime[1]

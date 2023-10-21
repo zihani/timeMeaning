@@ -1,42 +1,51 @@
 <template>
-    <div  class="setup"  >
-        <div class="frame" v-if="show">
-            <div style="width: 440px;height: 40px;border-bottom: 1px solid;padding-top: 8px;float: left;padding-right: 360px;"> 
-               <span @click='todoedit'> edit </span>
-            </div>
-            <div style="width:440px; height: 360px; overflow-x:hidden;">
-                <div style="padding:2px;" v-for="item in todolist" :key="item.id">
-                    <input ref="todoinput" v-if='!removeshow' style="float: right; margin-top: 5px; margin-right: 10px;" type="checkbox" :value="item.id" v-model="checkboxList" @change="ontodoChange(item)">
-                    <div v-if='removeshow' style="float: right;" @click="deltodo(item)"><span>remove</span></div>
-                    <div style="width: 100%; border-bottom: 1px solid; color:#ffff;">
-                        <span v-if="item.status == 0"  style="text-decoration: line-through;color:rgb(111, 111, 111);"> {{ item.text }} </span> 
-                        <span v-if="item.status == 1" > {{ item.text }} </span> 
+    <div>
+        <div  class="setup" v-if="$store.getters.todoshow">
+            <div class="frame">
+                <div style="width: 440px;height: 40px;border-bottom: 1px solid;padding-top: 8px;float: left;padding-right: 360px;"> 
+                   <span @click='todoedit' style="color:#ffff;"> edit </span>
+                </div>
+                <div style="width:440px; height: 360px; overflow-x:hidden;">
+                    <div style="padding:2px;" v-for="item in todolist" :key="item.id">
+                        <input ref="todoinput" v-if='!removeshow' style="float: right; margin-top: 5px; margin-right: 10px;" type="checkbox" :value="item.id" v-model="checkboxList" @change="ontodoChange(item)">
+                        <div v-if='removeshow' style="float: right;color:#ffff;" @click="deltodo(item)"><span>remove</span></div>
+                        <div style="width: 100%; border-bottom: 1px solid; color:#ffff;">
+                            <span v-if="item.status == 0"  style="text-decoration: line-through;color:rgb(111, 111, 111);"> {{ item.text }} </span> 
+                            <span v-if="item.status == 1" > {{ item.text }} </span> 
+                        </div>
+                    </div>
+                </div>
+                <div style="width:420px; height: 50px;  border-top: 0.1px solid;">
+                    <input style=" width: 430px;
+                    height: 30px;
+                    background-color:rgb(6, 6, 6);
+                    color:#ffff;
+                    border:1px solid rgb(6, 6, 6);
+                    outline:none;
+                    margin-left: 20px;
+                    " type="text" placeholder="insertToDo Enter" v-model="todotext" @keyup.enter="addtodo">
+                    <div v-if='!removeshow' style="width: 440px; color:#ffff;" @click="addtodo"> 确定 </div>
+                    <div v-if='removeshow' style="width: 440px; color:#ffff;" @click="removeAll" >
+                         removeALL
                     </div>
                 </div>
             </div>
-            <div style="width:420px; height: 50px;  border-top: 0.1px solid;">
-                <input style=" width: 430px;
-                height: 30px;
-                background-color:rgb(6, 6, 6);
-                color:#ffff;
-                border:1px solid rgb(6, 6, 6);
-                outline:none;
-                margin-left: 20px;
-                " type="text" placeholder="insertToDo" v-model="todotext" @keyup.enter="addtodo">
-                <div v-if='!removeshow' style="width: 440px;" @click="addtodo"> 确定 </div>
-                <div v-if='removeshow' style="width: 440px;" @click="removeAll" >
-                     removeALL
-                </div>
+            <div class="btn-todo"  @click="todoshow">
+                 <strong style="color:#ffff;"> To Do </strong>
             </div>
         </div>
-        <div style="position: fixed; bottom: 0.7rem; right: 1.7rem; width: 55px; height: 25px;" @click="todoshow">
-             <strong>  To Do </strong>
-        </div>
+        <div v-show="tooltiptextshow" class="tooltiptext">
+            Ctrl + Alt + T
+       </div>
+       <div class="btn-todo" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" @click="todoshow">
+            <strong>  To Do </strong>
+       </div>
     </div>
 </template>
 <script>
 import { setStorage,getStorage } from "@/utils/localforage"
-    export default {
+import anime from 'animejs'
+export default {
         name: "todo",
         components: {},
         data() {
@@ -46,10 +55,27 @@ import { setStorage,getStorage } from "@/utils/localforage"
                 show:false,
                 todolist:[], //status 0 删除 1 正常
                 todotext:'',
-                checkboxList:[]
+                checkboxList:[],
+                tooltiptextshow:false
             }
         },
         methods:{
+            handleMouseLeave(){
+              this.tooltiptextshow = false
+              anime({
+                targets:'.tooltiptext',
+                translateX:0,
+                delay: anime.stagger(100)
+              })
+            },
+            handleMouseEnter(){
+              this.tooltiptextshow = true
+              anime({
+                targets:'.tooltiptext',
+                translateX:-20,
+                delay: anime.stagger(100)
+              })
+            },
             removeAll(){
                this.todolist = []
                setStorage("todoList",this.todolist)
@@ -95,7 +121,7 @@ import { setStorage,getStorage } from "@/utils/localforage"
                 setStorage("todoList",this.todolist)
             },
             todoshow(){
-                this.show = !this.show
+                this.$store.dispatch('updateToDoShow')
                 this.$refs.todoinput.focus();
             }
         },
@@ -106,7 +132,28 @@ import { setStorage,getStorage } from "@/utils/localforage"
     }
 </script>
 <style scoped lang="less">
-
+.btn-todo{
+    position: fixed; 
+    bottom: 0.7rem; 
+    right: 1.7rem; 
+    width: 55px; 
+    height: 25px;
+}
+.tooltiptext{
+    position: fixed; 
+    width: 150px;
+    bottom:0.7rem; 
+    right: 3.7rem; 
+    height: 25px;
+}
+.btn-todo:hover .tooltiptext{
+    visibility: visible;
+    position: fixed; 
+    bottom:3.7rem; 
+    right: 1.7rem; 
+    width: 55px; 
+    height: 25px;
+}
 .setup {
     position: fixed;
     width: 520px;

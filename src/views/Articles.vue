@@ -1,31 +1,31 @@
 <template>
     <div class="articles">
         <banner></banner>
+        {{ $route.params.id }}
         <div class="site-content animate">
             <!-- 文章目录 -->
             <div id="article-menus">
-                {{ $route.params.id }}
                 <menu-tree :menus="menusList" childLabel="1"></menu-tree>
             </div>
             <main class="site-main">
                 <article class="hentry">
                     <!-- 文章头部 -->
-                    <header class="entry-header">
+                    <!-- <header class="entry-header"> -->
                         <!-- 标题输出
                         <h1 class="entry-title">看一遍闭着眼都会安装Lua了</h1>
                         <hr>
                         <div class="breadcrumbs">
                             <div id="crumbs">最后更新时间：2020年04月21日</div>
                         </div> -->
-                    </header>
+                    <!-- </header> -->
                     <!-- 正文输出 -->
-                    <div class="entry-content" v-highlight>
-                    </div>
+                    <!-- <div class="entry-content" v-highlight>
+                    </div> -->
                     <!-- 文章底部 -->
-                    <section-title>
-                        <footer class="post-footer">
+                    <!-- <section-title>
+                        <footer class="post-footer"> -->
                             <!-- 阅读次数 -->
-                            <div class="post-like">
+                            <!-- <div class="post-like">
                                 <i class="iconfont iconeyes"></i>
                                 <span class="count">685</span>
                             </div>
@@ -35,28 +35,28 @@
                                     <li class="wedonate"><img src="http://cdn.fengziy.cn/gblog/wexin_pay.png"><p>微信</p></li>
                                     <li class="alidonate"><img src="http://cdn.fengziy.cn/gblog/ali_pay.jpg"><p>支付宝</p></li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <!-- 文章标签 -->
-                            <div class="post-tags">
+                            <!-- <div class="post-tags">
                                 <i class="iconfont iconcategory"></i>
                                 <router-link to="/category/web">Web</router-link>
                             </div>
                         </footer>
-                    </section-title>
+                    </section-title> -->
 
                     <!--声明-->
-                    <div class="open-message">
+                    <!-- <div class="open-message">
                         <p>声明：Gblog博客|版权所有，违者必究|如未注明，均为原创|本网站采用<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">BY-NC-SA</a>协议进行授权</p>
                         <p>转载：转载请注明原文链接 - <a href="/">看一遍闭着眼都会安装Lua了</a></p>
-                    </div>
+                    </div> -->
                     <!--评论-->
-                    <div class="comments">
+                    <!-- <div class="comments">
                         <comment v-for="item in comments" :key="item.comment.id" :comment="item.comment">
                             <template v-if="item.reply.length">
                                 <comment v-for="reply in item.reply" :key="reply.id" :comment="reply"></comment>
                             </template>
                         </comment>
-                    </div>
+                    </div> -->
                 </article>
             </main>
         </div>
