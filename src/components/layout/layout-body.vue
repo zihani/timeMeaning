@@ -2,17 +2,17 @@
     <div id="layout-body">
         <router-view></router-view>
         <!-- <back-top></back-top> -->
-        <menu-right></menu-right>
+        <menu-left></menu-left>
         <table-pet></table-pet>
         <todo></todo>
     </div>
 </template>
 
 <script>
-    import backTop from '@/components/back-top'
-    // import menuRight from '@/components/menu-right'
-    import tablePet from '@/components/table-pet'
-    import todo from '@/components/todo'
+    import backTop from '@/components/global/back-top'
+    import menuLeft from '@/components/global/menu-left'
+    import tablePet from '@/components/global/table-pet'
+    import todo from '@/components/global/todo'
 
     export default {
         name: "layout-body",
@@ -21,7 +21,7 @@
               minHeight: 600
           }
         },
-        components: { backTop ,tablePet,todo},
+        components: { backTop ,tablePet,todo,menuLeft},
         
     }
 </script>

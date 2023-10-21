@@ -51,7 +51,7 @@ export default {
         data() {
             return{
                 removeshow:false,
-                imgPath: require("../assets/img/setup.svg"),
+                imgPath: require("../../assets/img/setup.svg"),
                 show:false,
                 todolist:[], //status 0 删除 1 正常
                 todotext:'',
@@ -59,6 +59,31 @@ export default {
                 tooltiptextshow:false
             }
         },
+        computed:{
+            toshow(){
+                return this.$store.getters.todoshow
+            }
+        },
+        watch:{
+            toshow:{
+              handler(nval,oval){
+                nval
+                oval
+                if(nval){
+                    this.$nextTick(()=>{
+                        debugger
+                        this.$refs.todoinput
+                        debugger
+                        // this.$refs.todoinput.focus();
+                    })
+                }
+              },
+              deep:true,
+              immediate:true
+            }
+        },
+        // debugger
+                // this.$refs.todoinput.focus();
         methods:{
             handleMouseLeave(){
               this.tooltiptextshow = false
@@ -121,8 +146,8 @@ export default {
                 setStorage("todoList",this.todolist)
             },
             todoshow(){
+              
                 this.$store.dispatch('updateToDoShow')
-                this.$refs.todoinput.focus();
             }
         },
         mounted(){

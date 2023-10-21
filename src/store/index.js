@@ -34,6 +34,7 @@ const mutations = {
     },
     SET_UPDATE_TODOSHOW:(state,v) =>{
         debugger;
+        
         state.todoshow = !state.todoshow
     }
 }

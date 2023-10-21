@@ -20,7 +20,7 @@
         components: {},
         data() {
             return{
-                imgPath: require("../assets/img/setup.svg"),
+                imgPath: require("../../assets/img/setup.svg"),
                 show:false
             }
         },

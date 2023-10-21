@@ -11,7 +11,7 @@
     </div>
 </template>
 <script>
-    import FlipClock from './FlipClock/FlipClock.vue'
+    import FlipClock from '../FlipClock/FlipClock.vue'
     import anime from 'animejs'
     export default {
         name: "table-pet",
