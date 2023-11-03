@@ -1,9 +1,6 @@
 <template>
     <div class="photo-main">
         <div class="containner">
-        <button @click="setdbStorage"> add</button>
-        <button @click="getdbStorage"> all</button>
-
             <!--焦点图-->
             <div class="top-feature" v-if="!hideSlogan">
                 <section-title>
@@ -130,7 +127,7 @@ export default {
             position: relative;
 
             .feature-item {
-                width: 32.9%;
+                width: 100%;
             }
         }
     }

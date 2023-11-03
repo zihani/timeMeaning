@@ -41,6 +41,18 @@ const routes = [
         component: () => import('../views/gallery.vue'),
         meta: { title: '画廊'}
     },
+    {
+        path: '/tinymce',
+        name: 'gallery',
+        component: () => import('../components/edit/tinymceEdit.vue'),
+        meta: { title: 'tinymce编辑器'}
+    },
+    {
+        path: '/mavon',
+        name: 'markdownedit',
+        component: () => import('../components/edit/mavonEdit.vue'),
+        meta: { title: 'markdown编辑器'}
+    }
 ]
 
 const router = new VueRouter({

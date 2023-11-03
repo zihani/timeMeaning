@@ -14,6 +14,10 @@ import  "nes.css/css/nes.min.css";
 import Element from "element-ui";
 import 'element-ui/lib/theme-chalk/index.css';
 import VueShortkey from 'vue-shortkey'
+import createScript from '@/utils/createScript'
+import MavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+createScript("tinymce")
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block)=>{
@@ -21,6 +25,7 @@ Vue.directive('highlight',function (el) {
   })
 })
 Vue.use(Element);
+Vue.use(MavonEditor);
 Vue.use(VueShortkey);
 Vue.config.productionTip = false
 Vue.filter('parseTime', (v) => parseTime(v,'{y}-{m}-{d}'))

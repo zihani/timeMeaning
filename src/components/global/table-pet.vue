@@ -92,6 +92,11 @@
     }
 </script>
 <style scoped lang="less">
+@media (max-width: 800px) {
+    .table-pet {
+        display: none;
+    }
+}
 .table-pet {
     position: fixed;
     width: 220px;

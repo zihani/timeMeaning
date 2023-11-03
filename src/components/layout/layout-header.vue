@@ -6,7 +6,8 @@
             </router-link>
         </div>
         <div class="menus-btn" @click.stop="mobileShow=!mobileShow">
-            Menus
+            <!-- 导航 -->
+            <img style="width: 20px; height: 20px;" :src="iconUrl">
         </div>
         <div class="site-menus" :class="{'mobileShow':mobileShow}" @click.stop="mobileShow=!mobileShow">
             <div class="menu-item header-search"><header-search/></div>
@@ -67,10 +68,15 @@
                         title:"vue组件和方法"
                     }
                 ],
-                mobileShow: false
+                mobileShow: false,
+                iconUrl:'/icon/movenavbar.svg'
+                // window.location.host + 
             }
         },
         mounted(){
+            debugger
+            // console.log(process.env.VIEW_BASE_API)
+            debugger
             window.addEventListener('scroll', this.watchScroll)
         },
         beforeDestroy () {

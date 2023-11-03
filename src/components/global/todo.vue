@@ -7,7 +7,7 @@
                 </div>
                 <div style="width:440px; height: 360px; overflow-x:hidden;">
                     <div style="padding:2px;" v-for="item in todolist" :key="item.id">
-                        <input ref="todoinput" v-if='!removeshow' style="float: right; margin-top: 5px; margin-right: 10px;" type="checkbox" :value="item.id" v-model="checkboxList" @change="ontodoChange(item)">
+                        <input v-if='!removeshow' style="float: right; margin-top: 5px; margin-right: 10px;" type="checkbox" :value="item.id" v-model="checkboxList" @change="ontodoChange(item)">
                         <div v-if='removeshow' style="float: right;color:#ffff;" @click="deltodo(item)"><span>remove</span></div>
                         <div style="width: 100%; border-bottom: 1px solid; color:#ffff;">
                             <span v-if="item.status == 0"  style="text-decoration: line-through;color:rgb(111, 111, 111);"> {{ item.text }} </span> 
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div style="width:420px; height: 50px;  border-top: 0.1px solid;">
-                    <input style=" width: 430px;
+                    <input ref="todoinput" style=" width: 430px;
                     height: 30px;
                     background-color:rgb(6, 6, 6);
                     color:#ffff;
@@ -66,16 +66,16 @@ export default {
         },
         watch:{
             toshow:{
-              handler(nval,oval){
+              handler(nval,oval){   
                 nval
                 oval
                 if(nval){
                     this.$nextTick(()=>{
-                        debugger
-                        this.$refs.todoinput
-                        debugger
-                        // this.$refs.todoinput.focus();
-                    })
+                        this.$refs.todoinput.focus();
+                        // for (const item of this.$refs.todoinput) {
+                        //     item.focus();
+                        // }
+                   })
                 }
               },
               deep:true,

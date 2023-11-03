@@ -13,7 +13,6 @@
     import menuLeft from '@/components/global/menu-left'
     import tablePet from '@/components/global/table-pet'
     import todo from '@/components/global/todo'
-
     export default {
         name: "layout-body",
         data(){
@@ -22,7 +21,6 @@
           }
         },
         components: { backTop ,tablePet,todo,menuLeft},
-        
     }
 </script>
 

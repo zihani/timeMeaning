@@ -1,8 +1,8 @@
 <template>
     <div class="home">
         <banner isHome="true"></banner>
-        <div class="site-content animate">
-              <div style="margin-bottom: 20px;">
+        <div class="site-content ">
+              <!-- <div style="margin-bottom: 20px;">
                 <el-button
                   size="small"
                   @click="addTab(editableTabsValue)"
@@ -18,9 +18,9 @@
                   :name="item.name"
                 >
                 </el-tab-pane>
-              </el-tabs>
+              </el-tabs> -->
         </div>
-        <div class="site-content animate">
+        <div class="site-content">
             <!--通知栏-->
             <div class="notify">
                 <div class="search-result" v-if="hideSlogan">
@@ -64,14 +64,26 @@
     import SmallIco from '@/components/small-ico'
     import Quote from '@/components/quote'
     import {fetchFocus, fetchList} from '../api'
-
     export default {
         name: 'Home',
         props: ['cate', 'words'],
         data() {
             return {
                 features: [],
-                postList: [],
+                postList: [
+                    {
+                        id:0,
+                        isTop:true,
+                        banner:"https://s1.ax1x.com/2020/05/14/YDhagx.jpg", // 封面图
+                        isHot:true,
+                        pubTime:294095007045, //日期
+                        title:"看一遍闭着眼都会安装Lua了", //大标题
+                        summary:"Lua 是一种轻量小巧的脚本语言，能为应用程序提供灵活的扩展和定制功能。", //详情
+                        content:"", //正文
+                        viewsCount:4045,
+                        commentsCount:99
+                    }
+                ],
                 currPage: 1,
                 hasNextPage: false,
                 editableTabsValue: '2',
@@ -123,14 +135,14 @@
                 let tabs = this.editableTabs;
                 let activeName = this.editableTabsValue;
                 if (activeName === targetName) {
-                tabs.forEach((tab, index) => {
-                    if (tab.name === targetName) {
-                    let nextTab = tabs[index + 1] || tabs[index - 1];
-                    if (nextTab) {
-                        activeName = nextTab.name;
-                    }
-                    }
-                });
+                    tabs.forEach((tab, index) => {
+                            if (tab.name === targetName) {
+                            let nextTab = tabs[index + 1] || tabs[index - 1];
+                            if (nextTab) {
+                                activeName = nextTab.name;
+                            }
+                        }
+                    });
                 }
                 
                 this.editableTabsValue = activeName;
@@ -148,18 +160,18 @@
             },
             fetchList() {
                 fetchList().then(res => {
-                    this.postList = res.data.items || []
-                    this.currPage = res.data.page
-                    this.hasNextPage = res.data.hasNextPage
+                    // this.postList = res.data.items || []
+                    // this.currPage = res.data.page
+                    // this.hasNextPage = res.data.hasNextPage
                 }).catch(err => {
                     console.log(err)
                 })
             },
             loadMore() {
                 fetchList({page:this.currPage+1}).then(res => {
-                    this.postList = this.postList.concat(res.data.items || [])
-                    this.currPage = res.data.page
-                    this.hasNextPage = res.data.hasNextPage
+                    // this.postList = this.postList.concat(res.data.items || [])
+                    // this.currPage = res.data.page
+                    // this.hasNextPage = res.data.hasNextPage
                 })
             }
         },
