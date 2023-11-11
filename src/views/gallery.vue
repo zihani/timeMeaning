@@ -1,25 +1,20 @@
 <template>
-    <div class="photo-main">
-        <div class="containner">
+    <div>
+        <banner isHome="true"></banner>
+         <div style="height: 30px;">
+1
+         </div>
+        <div class="site-content">
             <!--焦点图-->
-            <div class="top-feature" v-if="!hideSlogan">
+            <div>
                 <section-title>
-                    <div style="display: flex;align-items: flex-end;">聚焦<small-ico></small-ico></div>
+                    <div style="display: flex;align-items: flex-end;">笔记<small-ico></small-ico></div>
                 </section-title>
-                <div class="feature-content">
-                    <div class="feature-item" v-for="item in features" :key="item.title">
+                <div>
+                    <div  v-for="item in features" :key="item.title">
                         <Feature :data="item"></Feature>
                     </div>
                 </div>
-            </div>
-            <div class="photoBox">
-                <a href="javascript:;" @click="previewImg(item.url)" v-for="item in photoList" :key="item.id">
-                    <img class="" v-lazy="item.url" :key="item.url" />
-                    <span class="overlay"></span>
-                    <span class="desc">
-                        {{ item.info }}
-                    </span>
-                </a>
             </div>
         </div>
     </div>
@@ -27,6 +22,7 @@
 <script>
 import Feature from '@/components/feature'
 import {getStorage,setStorage} from '@/utils/localforage'
+import Banner from '@/components/banner'
 export default {
     metaInfo: {
         meta: [{
@@ -38,7 +34,8 @@ export default {
         }]
     },
     components:{
-        Feature
+        Feature,
+        Banner
     },
     data() {
         return {
@@ -54,7 +51,9 @@ export default {
             features:[
                 {id: 1, title: 'Akina', img: 'https://s1.ax1x.com/2020/05/14/YDfRnU.jpg'},
                 {id: 2, title: '使用说明', img: 'https://s1.ax1x.com/2020/05/14/YDf4AJ.jpg'},
-                {id: 3, title: '文章归档', img: 'https://s1.ax1x.com/2020/05/14/YDfT91.jpg'}
+                {id: 3, title: '文章归档', img: 'https://s1.ax1x.com/2020/05/14/YDfT91.jpg'},
+                {id: 4, title: '文章归档', img: 'https://s1.ax1x.com/2020/05/14/YDfT91.jpg'},
+                {id: 5, title: '文章归档', img: 'https://s1.ax1x.com/2020/05/14/YDfT91.jpg'},
             ]
         }
     },
@@ -114,40 +113,22 @@ export default {
     }
 }
 </script>
-<style scoped>
-    .top-feature {
-        width: 100%;
-        height: auto;
-        margin-top: 30px;
-
-        .feature-content {
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-
-            .feature-item {
-                width: 100%;
-            }
+<style scoped lang="less">
+.site-content {
+    .notify {
+        margin: 60px 0;
+        border-radius: 3px;
+        & > div {
+            padding: 20px;
         }
     }
-     
-    .photo-main {
-        display: flex;
-        justify-content: center;
-
-        @media screen and (max-width: 1118px) {
-            .containner {
-                width: 100%;
-                margin-top: 80px;
-            }
-        }
-
-        @media screen and (min-width: 1119px) {
-            .containner {
-                width: 65%;
-                margin-top: 80px;
-            }
-        }
+    .search-result {
+        padding: 15px 20px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 400;
+        border: 1px dashed #ddd;
+        color: #828282;
     }
+}
 </style>
