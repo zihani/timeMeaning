@@ -12,6 +12,7 @@ export function getStorage(key) {
 }
 //写入
 export function setStorage(key,value) {
+    debugger
     if(key){
       return localStorage.setItem(key,value)
     }

@@ -3,7 +3,6 @@ const createScript = (text)=>{
         {
             case "tinymce":
                 return new Promise(function (resolve, reject) {
-                    debugger
                     var s = document.createElement('script')
                     s.setAttribute('type', "text/javascript")
                     s.setAttribute('src', window.location.origin + "/tinymce/js/tinymce/tinymce.min.js")

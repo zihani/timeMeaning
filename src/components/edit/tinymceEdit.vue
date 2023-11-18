@@ -16,10 +16,8 @@ export default {
     },
     methods: {
         initTinymceEdit(){
-            debugger
             //延迟初始化tiny
             setTimeout(function(){
-                debugger
                 tinymce.init({
                     selector:"textarea",
                 });

@@ -69,11 +69,9 @@ export default {
         getdbStorage(){
             getStorage("add").then(res =>{
                 res
-                debugger
             })
         },
         setdb(){
-            debugger
             setStage("add",{name:"name"})
         },
         previewImg(img) {

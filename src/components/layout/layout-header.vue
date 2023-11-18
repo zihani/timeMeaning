@@ -74,9 +74,7 @@
             }
         },
         mounted(){
-            debugger
             // console.log(process.env.VIEW_BASE_API)
-            debugger
             window.addEventListener('scroll', this.watchScroll)
         },
         beforeDestroy () {

@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <banner isHome="true"></banner>
-        <div class="site-content ">
+        <div class="site-content">
               <!-- <div style="margin-bottom: 20px;">
                 <el-button
                   size="small"
@@ -150,9 +150,7 @@
             },
             fetchFocus() {
                 fetchFocus().then(res => {  
-                    debugger
                     console.log(res.data)
-                    debugger
                     this.features = res.data || []
                 }).catch(err => {
                     console.log(err)

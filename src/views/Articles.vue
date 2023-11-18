@@ -88,7 +88,6 @@
         methods: {
           getlist(){
             // axios.get("./assets/database/article.json").then(res=>{
-            //     debugger
             //     res
             // })
           },

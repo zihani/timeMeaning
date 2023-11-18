@@ -66,15 +66,10 @@ export default {
         },
         watch:{
             toshow:{
-              handler(nval,oval){   
-                nval
-                oval
+              handler(nval,oval){
                 if(nval){
                     this.$nextTick(()=>{
                         this.$refs.todoinput.focus();
-                        // for (const item of this.$refs.todoinput) {
-                        //     item.focus();
-                        // }
                    })
                 }
               },
@@ -82,7 +77,6 @@ export default {
               immediate:true
             }
         },
-        // debugger
                 // this.$refs.todoinput.focus();
         methods:{
             handleMouseLeave(){

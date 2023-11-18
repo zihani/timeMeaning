@@ -50,7 +50,7 @@ const routes = [
     {
         path: '/mavon',
         name: 'markdownedit',
-        component: () => import('../components/edit/mavonEdit.vue'),
+        component: () => import('../components/edit/mavonEdit/index.vue'),
         meta: { title: 'markdown编辑器'}
     }
 ]
