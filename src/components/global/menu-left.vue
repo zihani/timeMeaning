@@ -1,6 +1,5 @@
 <template>
-    <div  class="menu-left"  v-show="show" @click.stop="tag">
-        111111111111111s
+    <div  class="menu-left"  @click.stop="tag">
     </div>
 </template>
 <script>

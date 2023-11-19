@@ -26,18 +26,7 @@
             <div class="menu-item hasChild">
                 <a href="#" @click="openGallery">画廊</a>
             </div>
-            <!-- <div class="menu-item hasChild">
-                <img :src="imgPath" alt="">
-                <div class="childMenu" v-if="category.length">
-                    <div class="sub-menu" v-for="item in category" :key="item.id">
-                        <span @click="openUrl(item)"><a>{{item.title}}</a></span>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="menu-item"><router-link to="/friend">友链</router-link></div>
-            <div class="menu-item"><router-link to="/about">关于</router-link></div> -->
         </div>
-
     </div>
 </template>
 <script>
@@ -85,7 +74,7 @@
                this.$router.push({ path:"/gallery"})
             },
             openArticle(){
-               this.$router.push({ path: "/articlehome" });
+               this.$router.push({ path: "/articlelist" });
             },
             openUrl(item){
                 window.open(item.href)

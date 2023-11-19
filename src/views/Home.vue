@@ -2,44 +2,11 @@
     <div class="home">
         <banner isHome="true"></banner>
         <div class="site-content">
-              <!-- <div style="margin-bottom: 20px;">
-                <el-button
-                  size="small"
-                  @click="addTab(editableTabsValue)"
-                >
-                  add tab
-                </el-button>
-              </div>
-              <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
-                <el-tab-pane
-                  v-for="(item, index) in editableTabs"
-                  :key="item.name"
-                  :label="item.title"
-                  :name="item.name"
-                >
-                </el-tab-pane>
-              </el-tabs> -->
+          
         </div>
         <div class="site-content">
             <!--通知栏-->
-            <!-- <div class="notify">
-                <div class="search-result" v-if="hideSlogan">
-                    <span v-if="searchWords">搜索结果："{{searchWords}}" 相关文章</span>
-                    <span v-else-if="category">分类 "{{category}}" 相关文章</span>
-                </div>
-                <quote v-else>{{notice}}</quote>
-            </div> -->
-            <!--焦点图-->
-            <!-- <div class="top-feature" v-if="!hideSlogan">
-                <section-title>
-                    <div style="display: flex;align-items: flex-end;">聚焦<small-ico></small-ico></div>
-                </section-title>
-                <div class="feature-content">
-                    <div class="feature-item" v-for="item in features" :key="item.title">
-                        <Feature :data="item"></Feature>
-                    </div>
-                </div>
-            </div> -->
+      
             <!--文章列表-->
             <main class="site-main" :class="{'search':hideSlogan}">
                 <section-title v-if="!hideSlogan">推荐</section-title>
@@ -47,7 +14,6 @@
                     <post :post="item" :key="item.id"></post>
                 </template>
             </main>
-
             <!--加载更多-->
             <div class="more" v-show="hasNextPage">
                 <div class="more-btn" @click="loadMore">More</div>
@@ -69,6 +35,7 @@
         props: ['cate', 'words'],
         data() {
             return {
+                // iceVue:require("@/assets/ice/Vue.svg"),
                 features: [],
                 postList: [
                     {

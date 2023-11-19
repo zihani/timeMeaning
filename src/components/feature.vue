@@ -27,12 +27,12 @@
 <style scoped lang="less">
     .feature {
         margin: 4px;
-        width: 160px;
+        width: 150px;
         height:100px;
         float:left;
         img {
             height: 100px;
-            width: 160px;
+            width: 150px;
             object-fit: cover;
             border-radius: 5px;
         }
@@ -42,10 +42,10 @@
         .foverlay {
             position: absolute;
             z-index: 2;
-            width: 160px;
+            width: 150px;
             height: 100px;
             text-align: center;
-            line-height: 160px;
+            line-height: 150px;
             background: #BBE2DB;
             color: white;
             font-size: 16px;

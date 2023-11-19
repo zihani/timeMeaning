@@ -24,10 +24,10 @@ const routes = [
         meta: { title: '搜索', params: 'words'}
     },
     {
-        path: '/articlehome',
+        path: '/articlelist',
         name: 'article',
-        component: () => import('../views/Articlehome.vue'),
-        meta: { title: 'Articlehome'}
+        component: () => import('../views/Articlelist.vue'),
+        meta: { title: '笔记'}
     },
     {
         path: '/article/:id',
