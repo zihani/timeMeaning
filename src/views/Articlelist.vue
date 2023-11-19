@@ -134,4 +134,7 @@ export default {
     //     color: #828282;
     // }
 }
+@media(max-width:800px){
+    ///
+}
 </style>

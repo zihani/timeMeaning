@@ -1,13 +1,15 @@
 <template>
     <div class="mavonEditor">
         <mavon-editor
-        style="position:absolute; 
-        width: 100%;min-height: 300px;min-width: 300px;" :value="initValue" 
-        :language="language" 
-        :fontSize="fontSize" 
-        :scrollStyle="scrollStyle" 
-        :boxShadow="boxShadow"
-        :toolbarsBackground="toolbarsBackground" v-model="value" @change="Change"/>
+            style="position:absolute; 
+            width: 100%;
+            min-height:100vh;" 
+            :value="initValue" 
+            :language="language" 
+            :fontSize="fontSize" 
+            :scrollStyle="scrollStyle" 
+            :boxShadow="boxShadow"
+            :toolbarsBackground="toolbarsBackground" v-model="value" @change="Change"/>
     </div>
 </template>
 <script>

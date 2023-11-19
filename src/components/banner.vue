@@ -45,7 +45,7 @@
                 // 定义星星的颜色
                 STAR_COLOR:'#fff',
                 // 定义星星的大小
-                STAR_SIZE:7,
+                STAR_SIZE:5,
                 // 定义星星的数量
                 STAR_COUNT:(window.innerWidth + window.innerHeight) / 8,
                 // 获取canvas的绘图上下文
@@ -290,8 +290,12 @@
             width: 100%;
             height: 100%;
             /* 背景渐变 */
-            background-image: linear-gradient(-225deg, #FF1361 0%,
-                    #43107a 90%,  #231557 100%);
+            background-image: linear-gradient(-225deg, rgb(92, 18, 161) 40%,
+                    #302041 80%,  #1a1331 100%);
+            canvas {
+                width: 100%;
+                height: 100%;
+            }
             &:hover {
                 transform: scale(1.1, 1.1);
                 filter: contrast(130%);
@@ -384,10 +388,9 @@
     }
     @media (max-width: 800px){
         #banner {display: none;}
+    } 
+    @media (max-wodth: 800px) {
+        
     }
-    canvas {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-    }
+ 
 </style>

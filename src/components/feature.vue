@@ -57,4 +57,38 @@
             transition: opacity .4s ease-out;
         }
     }
+    @media (max-width:800px) {
+        .feature {
+            margin: 4px;
+            width: 100%;
+            height:50%;
+            float:left;
+            img {
+                height: 50%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+            & a:hover .foverlay{
+                opacity:1;
+            }
+            .foverlay {
+                position: absolute;
+                z-index: 2;
+                width: 100%;
+                height: 50%;
+                text-align: center;
+                line-height: 50%;
+                background: #BBE2DB;
+                color: white;
+                font-size: 16px;
+                opacity: 0;
+                border-radius: 5px;
+                -moz-transition: opacity .4s ease-out;
+                -o-transition: opacity .4s ease-out;
+                -webkit-transition: opacity .4s ease-out;
+                transition: opacity .4s ease-out;
+            }
+        }
+    }
 </style>

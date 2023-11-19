@@ -17,7 +17,7 @@
                 <div class="post-more">
                     <router-link :to="`/article/${post.id}`"><i class="iconfont iconfish-li" style="font-size: 25px;"></i></router-link>
                 </div>
-                <div class="info-meta">
+                <!-- <div class="info-meta">
                     <div class="comnum">
                         <span>
                             <i class="iconfont iconcomment"></i>
@@ -27,7 +27,7 @@
                     <div class="views">
                         <span><i class="iconfont iconeyes"></i>{{post.viewsCount}} 热度</span>
                     </div>
-                </div>
+                </div> -->
             </footer>
         </div>
         <hr/>

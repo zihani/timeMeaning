@@ -6,7 +6,6 @@
         </div>
         <div class="site-content">
             <!--通知栏-->
-      
             <!--文章列表-->
             <main class="site-main" :class="{'search':hideSlogan}">
                 <section-title v-if="!hideSlogan">推荐</section-title>
@@ -16,7 +15,6 @@
             </main>
             <!--加载更多-->
             <div class="more" v-show="hasNextPage">
-                <div class="more-btn" @click="loadMore">More</div>
             </div>
         </div>
     </div>
@@ -29,28 +27,14 @@
     import Post from '@/components/post'
     import SmallIco from '@/components/small-ico'
     import Quote from '@/components/quote'
-    import {fetchFocus, fetchList} from '../api'
+    import axios from 'axios'
     export default {
         name: 'Home',
         props: ['cate', 'words'],
         data() {
             return {
                 // iceVue:require("@/assets/ice/Vue.svg"),
-                features: [],
-                postList: [
-                    {
-                        id:0,
-                        isTop:true,
-                        banner:"https://s1.ax1x.com/2020/05/14/YDhagx.jpg", // 封面图
-                        isHot:true,
-                        pubTime:294095007045, //日期
-                        title:"看一遍闭着眼都会安装Lua了", //大标题
-                        summary:"Lua 是一种轻量小巧的脚本语言，能为应用程序提供灵活的扩展和定制功能。", //详情
-                        content:"", //正文
-                        viewsCount:4045,
-                        commentsCount:99
-                    }
-                ],
+                postList: [],
                 currPage: 1,
                 hasNextPage: false,
                 editableTabsValue: '2',
@@ -89,6 +73,10 @@
             }
         },
         methods: {
+            initPostList(){
+                const path = require('@/assets/articlejson/json/Articlelist.json');  
+                this.postList =   path
+            },
             addTab(targetName) {
                 let newTabName = ++this.tabIndex + '';
                 this.editableTabs.push({
@@ -115,34 +103,9 @@
                 this.editableTabsValue = activeName;
                 this.editableTabs = tabs.filter(tab => tab.name !== targetName);
             },
-            fetchFocus() {
-                fetchFocus().then(res => {  
-                    console.log(res.data)
-                    this.features = res.data || []
-                }).catch(err => {
-                    console.log(err)
-                })
-            },
-            fetchList() {
-                fetchList().then(res => {
-                    // this.postList = res.data.items || []
-                    // this.currPage = res.data.page
-                    // this.hasNextPage = res.data.hasNextPage
-                }).catch(err => {
-                    console.log(err)
-                })
-            },
-            loadMore() {
-                fetchList({page:this.currPage+1}).then(res => {
-                    // this.postList = this.postList.concat(res.data.items || [])
-                    // this.currPage = res.data.page
-                    // this.hasNextPage = res.data.hasNextPage
-                })
-            }
         },
         mounted() {
-            this.fetchFocus();
-            this.fetchList();
+            this.initPostList();
         }
     }
 </script>
