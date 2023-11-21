@@ -18,6 +18,7 @@ import createScript from '@/utils/createScript'
 import MavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 createScript("tinymce")
+createScript("onlyoffice")
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block)=>{

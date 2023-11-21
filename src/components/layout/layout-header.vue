@@ -1,6 +1,7 @@
 <template>
     <div id="layout-header" :class="{'fixed':fixed,'hidden':hidden}" @click.stop="mobileShow=false">
         <div class="site-logo">
+            天气预报log
             <router-link to="/">
                 <!-- <img src="@/assets/img/touxiang.jpg" alt=""> -->
             </router-link>
@@ -31,6 +32,7 @@
 </template>
 <script>
     import HeaderSearch from '@/components/header-search'
+    import axios from 'axios'
     export default {
         name: "layout-header",
         components: {HeaderSearch},
@@ -70,6 +72,11 @@
             window.removeEventListener("scroll", this.watchScroll)
         },
         methods: {
+            inittianqi(){
+                axios.get('https://devapi.qweather.com/v7/weather/now').then(res =>{
+                    res
+                })
+            },
             openGallery(){
                this.$router.push({ path:"/gallery"})
             },

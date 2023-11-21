@@ -14,7 +14,7 @@ const createScript = (text)=>{
                 return new Promise(function (resolve, reject) {
                     var s = document.createElement('script')
                     s.setAttribute('type', "text/javascript")
-                    // s.setAttribute('src', "http://192.168.199.128:8888/web-apps/apps/api/documents/api.js")
+                    s.setAttribute('src', "http://43.138.54.217:4000/web-apps/apps/api/documents/api.js")
                     document.head.appendChild(s)
                     s.onload = resolve
                     s.onerror = reject
