@@ -58,17 +58,17 @@
         <div class="site-menus" :class="{'mobileShow':mobileShow}" @click.stop="mobileShow=!mobileShow">
             <div class="menu-item header-search"></div>
             <div class="menu-item"><router-link to="/">首页</router-link></div>
-            <div class="menu-item hasChild">
+            <!-- <div class="menu-item hasChild">
                 <a href="#" @click="openUrl({href:`https://www.yuque.com/dashboard`})">语雀文章</a>
                 <div class="childMenu" v-if="category.length">
                     <div class="sub-menu" v-for="item in category" :key="item.id">
                         <span @click="openUrl(item)"><a>{{item.title}}</a></span>
                     </div>
                 </div>
-            </div>
-            <div class="menu-item hasChild">
+            </div> -->
+            <!-- <div class="menu-item hasChild">
                 <a href="#" @click="openArticle">文章</a>
-            </div>
+            </div> -->
             <div class="menu-item hasChild">
                 <a href="#" @click="openGallery">画廊</a>
             </div>

@@ -148,12 +148,12 @@
     // 更新星星的位置和速度
     const update=(()=> {
         // 缓动速度
-        velocity.value.tx *= 0.6;
-        velocity.value.ty *= 0.6;
-        //  更新速度
-        velocity.value.x += (velocity.value.tx - velocity.value.x) * 0.8;
-        velocity.value.y += (velocity.value.ty - velocity.value.y) * 0.8;
-        //  遍历所有星星
+        velocity.value.tx *= 0.9;
+        velocity.value.ty *= 0.9;
+        // 更新速度
+        velocity.value.x += (velocity.value.tx - velocity.value.x) * 0.6;
+        velocity.value.y += (velocity.value.ty - velocity.value.y) * 0.6;
+        // 遍历所有星星
         stars.value.forEach((star:any) => {
             // 根据速度和缩放比例更新星星的位置
             star.x += velocity.value.x * star.z;
@@ -204,8 +204,8 @@
         if (typeof pointerX.value === 'number' && typeof pointerY.value === 'number') {
             let ox = x - pointerX.value;
             let oy = y - pointerY.value;
-            velocity.value.tx = velocity.value.tx + (ox / 8) * scale.value * (touchInput.value ? 1 : -1);
-            velocity.value.ty = velocity.value.ty + (oy / 8) * scale.value * (touchInput.value ? 1 : -1);
+            velocity.value.tx = velocity.value.tx + (ox / 10) * scale.value * (touchInput.value ? 1 : -1);
+            velocity.value.ty = velocity.value.ty + (oy / 10) * scale.value * (touchInput.value ? 1 : -1);
         }
         // 更新鼠标指针的位置
         pointerX.value = x;
@@ -267,8 +267,8 @@
         width: 100%;
         height: 100%;
         /* 背景渐变 */
-        background-image: linear-gradient(-225deg, rgb(207, 202, 211) 40%,
-        #2d2633 80%,  #35343b 100%);
+        background-image: linear-gradient(-225deg, rgb(111, 83, 133) 40%,
+        #3d3247 80%,  #232133 100%);
         canvas {
             width: 100%;
             height: 100%;
@@ -286,8 +286,8 @@
             width: 100%;
             height: 100%;
             /* 背景渐变 */
-            background-image: linear-gradient(-225deg, rgb(207, 202, 211) 40%,
-        #2d2633 80%,  #35343b 100%);
+            background-image: linear-gradient(-225deg, rgb(111, 83, 133) 40%,
+        #3d3247 80%,  #232133 100%);
             &:hover {
                 transform: unset;
                 filter: unset;

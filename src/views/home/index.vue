@@ -10,28 +10,7 @@ articleListStore.articleTable
     <div class="Home">
         <Banner></Banner>   
         <div class="site-content">
-           啦啦啦啦啦啦啦哈哈哈哈哈哈哈哈哈
-        </div>
-        <div class="site-content">
-            <!--通知栏-->
-            <!--文章列表-->
-            <!-- {{ postList }} -->
-            <main class="site-main" >
-                <div class="w-100">
-                    <div class="news">
-                      <div class="flex">
-                        <SvgIcon icon-class="laba" size="1.2rem"></SvgIcon>
-                      </div>
-                      <template v-for="item in articleListStore.articleTable">
-                        <ArticleItem :article="item"></ArticleItem>
-                      </template>
-                      <div class="flex arrow-right">
-                        <el-icon :size="20"><DArrowRight /></el-icon>
-                      </div>
-                    </div>
-                </div>
-            </main>
-            <!--加载更多--> 
+            
         </div>
     </div>
 </template>

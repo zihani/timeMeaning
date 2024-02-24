@@ -8,9 +8,6 @@ import Banner from "@/components/public/Banner/index.vue"
     <div class="Gallery">
         <Banner></Banner>
         <div class="site-content">
-          
-        </div>
-        <div class="site-content">
             <!--通知栏-->
             <!-- 文章列表
             文章列表
