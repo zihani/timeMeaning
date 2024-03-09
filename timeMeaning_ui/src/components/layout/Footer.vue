@@ -1,11 +1,12 @@
 <script setup lang="ts">
   import { onMounted, ref } from "vue";
+  import { useBannerStore } from "@/stores/useBannerStore"
+  const banner = useBannerStore()
   const socials = ref([])
   const runTimeInterval = "30mm";
-  socials
 </script>
 <template>
-    <div id="layout-footer">
+    <div v-if="banner.isHome" id="layout-footer">
         <div id="layout-footer">
             <div class="footer-main">
                 <div class="footer-item" v-if="socials.length">

@@ -6,7 +6,7 @@
     
     const loading = ref(false)
     const websiteInfo = ref({slogan:"博客"})
-    const socials =  ref([])
+    const socials =  ref([{id:1,title:"vue",color:"#ffffff",icon:"",href:"www.baidu.com"}])
         // 定义星星数组
     const stars = ref([])
     // 定义星星的最小缩放比例
@@ -240,17 +240,24 @@
                     <div class="top-social">
                        <span style="color:#ffffff;">社交信息</span> 
                        <!-- <button @click="ann">按钮</button> -->
-
-                       <!-- <div v-for="item in socials" :key="item.id" :title="item.title">
+                       {{ socials }}
+                       <div v-for="item in socials" :key="item.id" :title="item.title">
                             <a :href="item.href" target="_blank" :style="{'color':item.color}">
                                 <i class="iconfont" :class="item.icon"></i>
                             </a>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <!--左右倾斜-->
                 <div class="slant-left"></div>
                 <div class="slant-right"></div>
+            </template>
+            <template v-else>
+                <div class="focusinfo">
+                    <div class="top-social">
+                        <h1>123</h1>
+                    </div>
+                </div>
             </template>
             <canvas></canvas>
         </div>

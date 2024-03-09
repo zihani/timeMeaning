@@ -4,135 +4,92 @@ import Banner from "@/components/public/Banner/index.vue"
 import { useArticleListStore } from "@/stores/useArticleListStore"
 import ArticleItem from "@/components/ArticleItem/index.vue"
 import { marked }  from 'marked';
+import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore"
+import 'element-plus/dist/index.css';
+const banner = useBannerStore();
 // import ElementPlus from 'element-plus'
 // const app = createApp(App);    debugger
 marked
-debugger
-
-import 'element-plus/dist/index.css';
 const articleListStore = useArticleListStore(); //这是个函数
 articleListStore.articleTable
 const markdownText = ref('# Hello, **Vue 3**!\n\nThis is a **Markdown** text.');
-
 onMounted(() => {
     marked
       // 使用 marked 将 Markdown 转换为 HTML
      debugger
 });
-
 </script>
 <template>
     <div class="Home">
         <Banner></Banner>
-        <div class="site-content">
-            <el-row :gutter="20">
-                <el-col :span="6"><div class="grid-content ep-bg-purple" />1</el-col>
-                <el-col :span="6"><div class="grid-content ep-bg-purple" />2</el-col>
-                <el-col :span="6"><div class="grid-content ep-bg-purple" />3</el-col>
-                <el-col :span="6"><div class="grid-content ep-bg-purple" />4</el-col>
-            </el-row>
-          <el-button type="primary">Primary</el-button>
+        <div v-if='banner.isHome'>
+            <el-container>
+                <el-aside width="200px"></el-aside>
+                <el-container>
+                    <el-main>
+                        <div class="container">
+                           <el-row :gutter="2">
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <div class='container-item'>
+
+                                    </div>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-main>
+                </el-container>
+                <el-aside width="200px"></el-aside>
+            </el-container>
         </div>
     </div>
 </template>
 <style scoped lang="less">
-.site-content {
-    .notify {
-        margin: 60px 0;
-        border-radius: 3px;
-        & > div {
-            padding: 20px;
-        }
-    }
-    .search-result {
-        padding: 15px 20px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: 400;
-        border: 1px dashed #ddd;
-        color: #828282;
-    }
-}
-.top-feature {
+.container-item {
+    height: 100px;
     width: 100%;
-    height: auto;
-    margin-top: 30px;
-
-    .feature-content {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-
-        .feature-item {
-            width: 32.9%;
-        }
-    }
+    border: 2px solid; 
+    border-color:blue;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
-
-.site-main {
-    padding-top: 80px;
-
-    &.search {
-        padding-top: 0;
-    }
-}
-
-.more{
-    margin: 50px 0;
-    .more-btn{
-        width: 100px;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        color: #ADADAD;
-        border: 1px solid #ADADAD;
-        border-radius: 20px;
-        margin: 0 auto;
-        cursor: pointer;
-        &:hover{
-            color: #8fd0cc;
-            border: 1px dashed #8fd0cc;
-        }
-    }
-}
-
 /******/
 @media (max-width: 800px) {
-    .top-feature {
-        display: none;
-    }
-
-    .site-main {
-        padding-top: 40px;
-    }
-
-    .site-content {
-        .notify {
-            margin: 30px 0 0 0;
-        }
-
-        .search-result {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-    }
+  
 }
-/******/
-.arrow-right {
-    animation: arrow-right-shake 1.5s ease-out infinite;
-}
-.news {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 20px;
-    margin: 0 8px;
-    border-radius: 15px;
-}
-.w-100 {
-    width: 100%;
-}
-
 </style>
 
