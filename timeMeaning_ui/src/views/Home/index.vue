@@ -4,8 +4,9 @@ import Banner from "@/components/public/Banner/index.vue"
 import { useArticleListStore } from "@/stores/useArticleListStore"
 import ArticleItem from "@/components/ArticleItem/index.vue"
 import { marked }  from 'marked';
-import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore"
+import { useBannerStore ,useBannerSetopStore } from "@/stores/useBannerStore"
 import 'element-plus/dist/index.css';
+import { useRouter } from 'vue-router';
 const banner = useBannerStore();
 // import ElementPlus from 'element-plus'
 // const app = createApp(App);    debugger
@@ -18,6 +19,24 @@ onMounted(() => {
       // 使用 marked 将 Markdown 转换为 HTML
      debugger
 });
+
+//**
+// 跳转
+// */
+const router = useRouter(); 
+const openArticles = ((item)=>{
+    router.push({ path: '/article', query: { name: item.name } });
+})
+//**
+// 图片列表
+// */
+const articleList = ref([{
+    name:"javascript",
+    src:'/log/js.jpg',
+},{
+    name:"nodejs",
+    src:'/log/node.png',
+}])
 </script>
 <template>
     <div class="Home">
@@ -29,44 +48,9 @@ onMounted(() => {
                     <el-main>
                         <div class="container">
                            <el-row :gutter="2">
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <div class='container-item'>
-
+                                <el-col :span="6" v-for="(item,index) in articleList" :key="index">
+                                    <div class='container-item' @click="openArticles(item)">
+                                       <el-image class="el-image-class" :src="item.src" fit="cover"/>
                                     </div>
                                 </el-col>
                             </el-row>
@@ -80,12 +64,17 @@ onMounted(() => {
 </template>
 <style scoped lang="less">
 .container-item {
-    height: 100px;
+    border-radius: 3px;
+    height: 120px;
     width: 100%;
-    border: 2px solid; 
-    border-color:blue;
+    border: 1px solid; 
+    border-color:rgb(18, 18, 31);
     margin-top: 1px;
     margin-bottom: 1px;
+}
+.el-image-class {
+    width: 100%; 
+    height: 100%;
 }
 /******/
 @media (max-width: 800px) {

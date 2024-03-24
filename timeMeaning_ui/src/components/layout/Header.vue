@@ -27,12 +27,16 @@
    }
    const watchScroll =()=>{
         let scrollTop: number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        if (scrollTop ===0 ){
+       if (scrollTop ===0 ){
             fixed.value = false;
         } else if (scrollTop>=lastScrollTop.value){
+            var element = document.getElementById("layout-header");  
+            element.style.color = "#fffff";
             fixed.value = false;
             hidden.value = true;
         } else {
+            var element = document.getElementById("layout-header");  
+            element.style.color = "#00000";
             fixed.value = true
             hidden.value = false
         }
@@ -48,16 +52,20 @@
 <template>
     <div id="layout-header" :class="{'fixed':fixed,'hidden':hidden}" @click.stop="mobileShow=false">
         <div class="site-logo">
-           <!-- logo  <Button @click="openArticle">{{ lastScrollTop }}</Button> -->
-           logo
         </div>
         <div class="menus-btn" @click.stop="mobileShow=!mobileShow">
             <!-- 导航 -->
-            <!-- <img style="width: 20px; height: 20px;" :src="iconUrl"> -->
+            <!-- <img style="width: 20px; height: 20px;" :src="iconUrl"> --> 
         </div>
-        <div class="site-menus" :class="{'mobileShow':mobileShow}" @click.stop="mobileShow=!mobileShow">
+        <!-- :class="{'fixed':fixed,'hidden':hidden}" -->
+        <div class="site-menus"  @click.stop="mobileShow=!mobileShow">
             <div class="menu-item header-search"></div>
-            <div class="menu-item"><router-link to="/">首页</router-link></div>
+            <div class="menu-item" >
+                <router-link to="/">
+                    <span v-if="fixed">首页</span>
+                    <span  v-if="!fixed" style="color:#ffff">首页</span>
+                </router-link>
+            </div>
             <!-- <div class="menu-item hasChild">
                 <a href="#" @click="openUrl({href:`https://www.yuque.com/dashboard`})">语雀文章</a>
                 <div class="childMenu" v-if="category.length">
@@ -70,13 +78,15 @@
                 <a href="#" @click="openArticle">文章</a>
             </div> -->
             <div class="menu-item hasChild">
-                <a href="#" @click="openGallery">画廊</a>
+                  <a v-if="fixed" @click="openGallery" href="">画廊</a>
+                  <a v-if="!fixed" @click="openGallery"  style="color:#ffff" href="">画廊</a>
             </div>
         </div>
     </div>
 </template>
 <style scoped lang="less">
     #layout-header {
+        color:#ffff;
         position: fixed;
         top: 0;
         z-index: 9;
@@ -98,6 +108,7 @@
             background-color: #FFFFFF;
             box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         }
+        
     }
 
     .site-logo {
@@ -251,4 +262,5 @@
             z-index: 99;
         }
     }
+   
 </style>

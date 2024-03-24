@@ -240,7 +240,6 @@
                     <div class="top-social">
                        <span style="color:#ffffff;">社交信息</span> 
                        <!-- <button @click="ann">按钮</button> -->
-                       {{ socials }}
                        <div v-for="item in socials" :key="item.id" :title="item.title">
                             <a :href="item.href" target="_blank" :style="{'color':item.color}">
                                 <i class="iconfont" :class="item.icon"></i>
@@ -255,7 +254,7 @@
             <template v-else>
                 <div class="focusinfo">
                     <div class="top-social">
-                        <h1>123</h1>
+                        <h1 style="color:#ffffff;">Hello</h1>
                     </div>
                 </div>
             </template>

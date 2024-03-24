@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home/index.vue'
-
+import NProgress from "nprogress";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -16,7 +16,7 @@ const router = createRouter({
           meta: { title: '笔记'}
       },
       {
-          path: '/article/:id',
+          path: '/article',
           name: 'article',
           component: () => import("@/views/Articles/index.vue"),
           meta: { 
@@ -32,6 +32,16 @@ const router = createRouter({
         },
       }
     ]
+})
+
+NProgress.configure({
+  showSpinner:false
+})
+router.beforeEach((to)=>{
+  NProgress.start();
+})
+router.afterEach((to)=>{
+  NProgress.done()
 })
 
 export default router

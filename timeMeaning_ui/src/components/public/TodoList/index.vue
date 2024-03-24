@@ -97,7 +97,9 @@ const tooltiptextshow = ref(false)
         <div class="frame">
             <InlineMessage style="width: 100%;" v-if="todoListStore.InlineMessage.messageShow" :severity="todoListStore.InlineMessage.severity"> {{todoListStore.InlineMessage.messageText}} </InlineMessage>
             <div style="width: 440px;height: 40px;border-bottom: 1px solid;padding-top: 8px;float: left;"> 
-               <span  style="color:#ffff;"><i @click='todoedit' class="pi pi-arrow-right-arrow-left"></i> </span>
+               <span  style="color:#ffff; cursor: pointer;">
+                <i @click='todoedit' class="pi pi-arrow-right-arrow-left"></i>
+               </span>
                <input ref="todoinput" style=" width: 430px;
                width: 260px;
                background-color:rgb(6, 6, 6);
@@ -106,8 +108,8 @@ const tooltiptextshow = ref(false)
                outline:none;
                margin-left: 10px;
                " type="text" placeholder="title" v-model="todoListStore.todotitle" @keyup.enter="addtodo">
-               <span  style="color:#ffff; padding-left: 20px;"> <i v-tooltip.left="'导出txt'" @click='todoexport' class="pi pi-download"></i> </span>
-               <span  style="color:#ffff; padding-left: 20px;"> <i v-tooltip.left="'上传.txt 文件模板按照导出的格式。'" @click='todoupload' class="pi pi-upload"></i> </span>
+               <span  style="color:#ffff; padding-left: 20px; cursor: pointer;"> <i v-tooltip.left="'导出txt'" @click='todoexport' class="pi pi-download"></i> </span>
+               <span  style="color:#ffff; padding-left: 20px; cursor: pointer;"> <i v-tooltip.left="'上传.txt 文件模板按照导出的格式。'" @click='todoupload' class="pi pi-upload"></i> </span>
                <!-- <input type="file" id="fileUpload" accept=".txt" @change="todoUploadtext">  -->
                <!-- <span @click='todoUploadtext' style="color:#ffff;"> upload </span> -->
             </div>

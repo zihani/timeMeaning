@@ -3,7 +3,7 @@ import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import Tooltip from 'primevue/tooltip';
 import pinia from "./stores/index";
-import {create} from '@/utils/created';
+// import {create} from '@/utils/created';
 import VueShortkey from 'vue-shortkey';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css';
@@ -22,8 +22,8 @@ app.use(VueShortkey);
 app.use(ElementPlus);
 app.use(pinia);
 app.use(router);
-app.use(PrimeVue, { unstyled: true }); //是否开启PrimeVue无样式模式
+app.use(PrimeVue, { unstyled: false }); //是否开启PrimeVue无样式模式
 //注册组件
 app.mount('#app'); // 挂载到#app
 // app.mount('#app2') // 可以创建多个挂在点
-create()
+// create()

@@ -52,14 +52,14 @@ export const useTodoListStore = defineStore(
             id = todoList.value[todoList.value.length - 1].id + 1
         }
         todoList.value.push({id:id,text:todotext.value,status:false})
-        console.log(todoList._rawValue)
+        console.log(todoList.value._rawValue)
       }
-      setStorage(key,todoList._rawValue)
+      setStorage(key,todoList.value._rawValue)
     };
       //更新Storage
     function newStorageListState(key:string){
       if(key === 'todoList'){
-        setStorage(key,todoList._rawValue)
+        setStorage(key,todoList.value._rawValue)
       }
     };
     function setUpdateStorageListState(key:string,id:Number){
@@ -71,18 +71,18 @@ export const useTodoListStore = defineStore(
             }
         }
       }
-      todoList.value = todoList._rawValue
-      setStorage(key,todoList._rawValue)
+      todoList.value = todoList.value._rawValue
+      setStorage(key,todoList.value._rawValue)
     };
     //通过id 来remove item
     function removeStorageitem(key:string,id:any){
       if(key === 'todoList'){
         todoList.value = todoList.value.filter((row:any) => row.id != id);
         //排序id
-        todoList.value = idsort("todoList",todoList._rawValue)
+        todoList.value = idsort("todoList",todoList.value._rawValue)
       
       }
-      setStorage(key,todoList._rawValue)
+      setStorage(key,todoList.value._rawValue)
     };
     //remove all
     function removeAllStorage(key:string){
@@ -94,8 +94,8 @@ export const useTodoListStore = defineStore(
     function exportStoragetext(key:string){
       if(key === "todoList"){
         let test:string = `todoList: ${todotitle.value}`
-        if(todoList._rawValue.length > 0){
-            for (const item of todoList._rawValue) {
+        if(todoList.value._rawValue.length > 0){
+            for (const item of todoList.value._rawValue) {
               if(item.status === true){
                 test +=  "\n"+item.id+'. '+ item.text + '   √'
               }else{
@@ -108,7 +108,7 @@ export const useTodoListStore = defineStore(
     };
     //创建 a 标签出触发事件下载为文本
     function download(filename:string, text:string) {  
-      var element = document.createElement('a');  
+      const element = document.createElement('a');  
       element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));  
       element.setAttribute('download', filename);  
       element.style.display = 'none';  
@@ -118,7 +118,7 @@ export const useTodoListStore = defineStore(
     }
     //导入list
     function importTodoList (key:string,todolist:Ref<Array<object>>){
-      const mergelength =  todoList._rawValue.length  + todolist.length
+      const mergelength =  todoList.value._rawValue.length  + todolist.length
       if(mergelength > capacity.value){
          alert("todoList 长度超出")
         return

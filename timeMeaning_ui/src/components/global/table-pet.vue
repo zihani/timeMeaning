@@ -86,7 +86,7 @@
             this.newdatetime()
             window.addEventListener('scroll', this.scroll)
         },
-        beforeDestroy () {
+        beforeUnmount () {
             window.removeEventListener('scroll', this.scroll)
         }
     }

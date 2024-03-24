@@ -1,15 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 import Banner from "@/components/public/Banner/index.vue"
+import { useRoute } from 'vue-router'; 
+import {getHtml} from "@/utils/marked";
+const route = useRoute();
+let articleType = ref()
+// .md 转html 
+const initArticles = function(value){
+     getHtml(value)
+     debugger
+    return ref([{name:"javascript"}])
+}
+
+onMounted(() => {
+      debugger
+    // 访问 query 参数  
+    if (route.query.name) {
+       articleType.value = route.query.name
+        console.log('Search Query:', route.query.name); 
+        initArticles(route.query.name);
+    }  
+});
 </script>
 <template>
     <div class="Articles">
         <Banner></Banner>
         <div class="site-content">
+           {{ articleType}}
         </div>
-        <div class="site-content">
-      
-        </div>
+     
     </div>
 </template>
 <style scoped lang="less">

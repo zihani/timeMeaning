@@ -22,10 +22,10 @@
             const scroll = () => {
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
                 if (scrollTop > 150) {
-                    show = true
+                    show.value = true
                     listAnimate(show)
                 } else {
-                    show = false
+                    show.value = false
                     listAnimate(show)
                 };   
             };
