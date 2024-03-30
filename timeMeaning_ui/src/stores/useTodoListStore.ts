@@ -94,7 +94,7 @@ export const useTodoListStore = defineStore(
     function exportStoragetext(key:string){
       if(key === "todoList"){
         let test:string = `todoList: ${todotitle.value}`
-        if(todoList.value._rawValue.length > 0){
+        if(todoList.value._rawValue && todoList.value._rawValue.length > 0){
             for (const item of todoList.value._rawValue) {
               if(item.status === true){
                 test +=  "\n"+item.id+'. '+ item.text + '   √'

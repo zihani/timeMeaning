@@ -16,9 +16,10 @@
   },
   "dependencies": {
     "animejs": "^3.2.0",
+    "axios": "^1.6.8",
     "element-plus": "^2.5.5",
     "localforage": "^1.10.0",
-    "marked": "^12.0.0",
+    "marked": "^12.0.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.0",

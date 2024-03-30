@@ -2,21 +2,31 @@
 import { ref,onMounted } from 'vue'
 import Banner from "@/components/public/Banner/index.vue"
 import { useRoute } from 'vue-router'; 
-import {getHtml} from "@/utils/marked";
+import { getHtml } from "@/utils/convertHtml";
 const route = useRoute();
-let articleType = ref()
+const html = ref()
+const articleType:any = ref({
+    name:ref(""),
+    fileName:ref(""),
+})
 // .md 转html 
-const initArticles = function(value){
-     getHtml(value)
+const initArticles = function(){
+    debugger
+     getHtml(articleType).then(res =>{
+        debugger
+        html.value = res
+     })
     return ref([{name:"javascript"}])
 }
-
+const menuArticles = function(value:string){
+    return value
+}
 onMounted(() => {
     // 访问 query 参数  
     if (route.query.name) {
-       articleType.value = route.query.name
-        console.log('Search Query:', route.query.name); 
-        initArticles(route.query.name);
+       articleType.name = route.query.name
+       articleType.fileName =  route.query.fileName
+       initArticles();
     }  
 });
 </script>
@@ -24,9 +34,9 @@ onMounted(() => {
     <div class="Articles">
         <Banner></Banner>
         <div class="site-content">
-           {{ articleType}}
+            <div  v-html="html">
+            </div> 
         </div>
-     
     </div>
 </template>
 <style scoped lang="less">
@@ -114,3 +124,4 @@ onMounted(() => {
 }
 /******/
 </style>
+@/utils/convertHtml

@@ -7,38 +7,33 @@ import { marked }  from 'marked';
 import { useBannerStore ,useBannerSetopStore } from "@/stores/useBannerStore"
 import 'element-plus/dist/index.css';
 import { useRouter } from 'vue-router';
-import logo from "@/assets/logo.svg";
-import strSvg from "@/assets/logo.svg?raw";
+import axios from "axios";
+import type { Ref } from "vue";
 const baseURl = import.meta.env;
 const banner = useBannerStore();
 // import ElementPlus from 'element-plus'
-// const app = createApp(App);    debugger
-marked
+// const app = createApp(App);  
 const articleListStore = useArticleListStore(); //这是个函数
-articleListStore.articleTable
-const markdownText = ref('# Hello, **Vue 3**!\n\nThis is a **Markdown** text.');
-onMounted(() => {
-    marked
-      // 使用 marked 将 Markdown 转换为 HTML
-});
+function initArticleList(){
+    axios.get("/md/json/directory.json").then(res =>{ 
+        articleListStore.initArticleList = res.data
+    })
+}
+onMounted(() => {  
+    initArticleList()
+}); 
 
 //**
 // 跳转
 // */
 const router = useRouter(); 
-const openArticles = ((item)=>{
-    router.push({ path: '/article', query: { name: item.name } });
+const openArticles = ((item:any)=>{
+    router.push({ path: '/article', query: { name: item.name,fileName:item.fileName } });
 })
 //**
 // 图片列表
 // */
-const articleList = ref([{
-    name:"javascript",
-    src:'/log/js.jpg',
-},{
-    name:"nodejs",
-    src:'/log/node.png',
-}])
+const articleList = articleListStore.initArticleList
 </script>
 <template>
     <div class="Home">
@@ -53,7 +48,7 @@ const articleList = ref([{
                     <el-main>
                         <div class="container">
                            <el-row :gutter="2">
-                                <el-col :span="6" v-for="(item,index) in articleList" :key="index">
+                                <el-col :span="6" v-for="(item,index) in articleListStore.initArticleList" :key="index">
                                     <div class='container-item' @click="openArticles(item)">
                                        <el-image class="el-image-class" :src="item.src" fit="cover"/>
                                     </div>
@@ -70,7 +65,7 @@ const articleList = ref([{
 <style scoped lang="less">
 .container-item {
     border-radius: 3px;
-    height: 30vh;
+    height: 20vh;
     width: 100%;
     border: 1px solid; 
     border-color:rgb(18, 18, 31);
