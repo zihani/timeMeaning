@@ -70,7 +70,7 @@ const articleList = ref([{
 <style scoped lang="less">
 .container-item {
     border-radius: 3px;
-    height: 120px;
+    height: 30vh;
     width: 100%;
     border: 1px solid; 
     border-color:rgb(18, 18, 31);
