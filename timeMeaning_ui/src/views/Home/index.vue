@@ -7,6 +7,9 @@ import { marked }  from 'marked';
 import { useBannerStore ,useBannerSetopStore } from "@/stores/useBannerStore"
 import 'element-plus/dist/index.css';
 import { useRouter } from 'vue-router';
+import logo from "@/assets/logo.svg";
+import strSvg from "@/assets/logo.svg?raw";
+const baseURl = import.meta.env;
 const banner = useBannerStore();
 // import ElementPlus from 'element-plus'
 // const app = createApp(App);    debugger
@@ -17,7 +20,6 @@ const markdownText = ref('# Hello, **Vue 3**!\n\nThis is a **Markdown** text.');
 onMounted(() => {
     marked
       // 使用 marked 将 Markdown 转换为 HTML
-     debugger
 });
 
 //**
@@ -41,6 +43,9 @@ const articleList = ref([{
 <template>
     <div class="Home">
         <Banner></Banner>
+       {{baseURl}}
+        <!-- <div v-html="strSvg"></div>
+        <img :src="logo" alt=""> -->
         <div v-if='banner.isHome'>
             <el-container>
                 <el-aside width="200px"></el-aside>

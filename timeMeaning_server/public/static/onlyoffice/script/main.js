@@ -3,7 +3,6 @@
 */
 (function(){
     "use strict"
-     debugger
      var onlyoffice = function(text){
        switch (text){
           case "open":

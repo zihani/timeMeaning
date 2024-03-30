@@ -8,6 +8,10 @@ import VueShortkey from 'vue-shortkey';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css';
 import App from './App.vue';
+// console.log("import.meta.env");
+// console.log(import.meta.env);
+// console.log("import.meta.env");
+
 // import Home from '@/views/Home/index.vue'
 // import App2 from './App2.vue'
 import  "nes.css/css/nes.min.css";

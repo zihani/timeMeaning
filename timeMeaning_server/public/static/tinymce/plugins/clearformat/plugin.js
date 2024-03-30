@@ -115,7 +115,6 @@ tinymce.PluginManager.add('clearformat', function(editor, url) {
 		}
 		catch(err)
 		{
-            debugger
 			console.log(err);
 		}
     }
@@ -407,7 +406,6 @@ tinymce.PluginManager.add('clearformat', function(editor, url) {
 		}
 		catch(err)
 		{
-            debugger
 			console.log(err);
 		}
     }
@@ -597,7 +595,6 @@ tinymce.PluginManager.add('clearformat', function(editor, url) {
 		}
 		catch(err)
 		{
-            debugger
 			console.log(err);
 		}
     }
@@ -678,7 +675,6 @@ tinymce.PluginManager.add('clearformat', function(editor, url) {
                 let regen =  new RegExp("[a−b−c−d−e−f−g−h−i−j−k−|−m−n−o−p−q−r−s−t−u−v−w−x−y−zA−B−C−D−E−F−G−H−I−J−K−L−M−N−O−P−Q−R−S−T−U−V−W−X−Y−Z0−9]+");
                 for (const filitem of filtered) {
                     if(filitem){
-                        debugger
                             // 排除 <>p img  video audio table pre thead tbody tr td
                             //上一个字段
                             if(regzh(filitem.front)){
@@ -716,7 +712,6 @@ tinymce.PluginManager.add('clearformat', function(editor, url) {
 		}
 		catch(err)
 		{
-            debugger
 			console.log(err);
 		}
     }

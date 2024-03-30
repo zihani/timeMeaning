@@ -393,7 +393,6 @@ tinymce.PluginManager.add('automatic', function(editor, url) {
             editor.selection.setCursorLocation();
             editor.nodeChanged();
             doAct(editor,text,blocks)
-                 debugger
 		}
 		catch(err)
 		{
@@ -1068,7 +1067,6 @@ tinymce.PluginManager.add('automatic', function(editor, url) {
         text:pluginName,
         tooltip: pluginName,
 		onAction: function() {
-            debugger
             var text = editor.selection.getContent();
             var blocks = editor.selection.getSelectedBlocks();
             let documents = editor.contentDocument.activeElement.childNodes;
@@ -1077,7 +1075,6 @@ tinymce.PluginManager.add('automatic', function(editor, url) {
             let regex = /<br\s*[\/]?>/i;
 
             let isbrbool = regex.test(html);
-            debugger
             eliminate(text);
             // if(isbrbool){
             //     text

@@ -7428,7 +7428,6 @@
     };
     var applyAlign = function (editor, elm, name) {
       if (name) {
-          debugger
           let dom = editor.dom;
           if(elm.tagName === "TABLE" && name === "right"){
             dom.setStyle(elm, 'margin-left', "auto")
@@ -8525,15 +8524,11 @@
           if (captionElm && !data.caption || !captionElm && data.caption) {
             editor.execCommand('mceTableToggleCaption');
           }
-          debugger
           if (data.align === '') {
-            debugger
             unApplyAlign(editor, tableElm);
           } else {
-            debugger
             applyAlign(editor, tableElm, data.align);
           }
-          debugger
         }
         editor.focus();
         editor.addVisual();

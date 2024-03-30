@@ -326,7 +326,6 @@
                     params:params
                 }).then(res =>{
                     if(res.data.code === 200){
-                        debugger
                         this.createimgTotal = res.data.data.total
                         this.createimageList = res.data.data.rows.map(row =>{
                             // row.path = document.location.origin +"/"+ row.path
@@ -351,13 +350,11 @@
                     params:params
                 }).then(res =>{
                     if(res.data.code === 200){
-                        debugger
                         this.createvideTotal = res.data.data.total
                         this.createvideoList = res.data.data.rows.map(row =>{
                             row.path = _url + row.path
                             return row
                         })
-                        // debugger
                     }
                 })
             },
@@ -376,7 +373,6 @@
                         params:params
                     }).then(res =>{
                         if(res.data.code === 200){
-                            debugger
                             this.imgTotal = res.data.data.total
                             this.imageList = res.data.data.rows.map(row =>{
                                 row.path = url + row.path
@@ -406,7 +402,6 @@
                     params:params
                 }).then(res =>{
                     if(res.data.code === 200){
-                        debugger
                         this.videoTotal = res.data.data.total
                         this.videoList = res.data.data.rows.map(row =>{
                             row.path = _url + row.path

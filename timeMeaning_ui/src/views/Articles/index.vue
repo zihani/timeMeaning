@@ -8,12 +8,10 @@ let articleType = ref()
 // .md 转html 
 const initArticles = function(value){
      getHtml(value)
-     debugger
     return ref([{name:"javascript"}])
 }
 
 onMounted(() => {
-      debugger
     // 访问 query 参数  
     if (route.query.name) {
        articleType.value = route.query.name
