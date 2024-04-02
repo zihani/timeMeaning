@@ -6,7 +6,7 @@ import TodoList from '@/components/public/TodoList/index.vue'
 <template>
     <div id="layout-body">
         <router-view></router-view>
-        <TablePet></TablePet>
+        <!-- <TablePet></TablePet> -->
         <TodoList></TodoList>
     </div>
 </template>

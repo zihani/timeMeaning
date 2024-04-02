@@ -8,6 +8,7 @@ import VueShortkey from 'vue-shortkey';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css';
 import App from './App.vue';
+import hljsVuePlugin from "@highlightjs/vue-plugin"
 // console.log("import.meta.env");
 // console.log(import.meta.env);
 // console.log("import.meta.env");
@@ -27,6 +28,9 @@ app.use(ElementPlus);
 app.use(pinia);
 app.use(router);
 app.use(PrimeVue, { unstyled: false }); //是否开启PrimeVue无样式模式
+app.use(hljsVuePlugin,{
+
+})
 //注册组件
 app.mount('#app'); // 挂载到#app
 // app.mount('#app2') // 可以创建多个挂在点

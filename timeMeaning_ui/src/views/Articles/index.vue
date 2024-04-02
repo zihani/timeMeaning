@@ -1,26 +1,36 @@
 <script setup lang="ts">
-import { ref,onMounted } from 'vue'
-import Banner from "@/components/public/Banner/index.vue"
+import { ref,onMounted, type Ref } from 'vue';
+import Banner from "@/components/public/Banner/index.vue";
 import { useRoute } from 'vue-router'; 
 import { getHtml } from "@/utils/convertHtml";
+import "highlight.js/styles/atom-one-dark.css";
+import  Catalog  from "./common/Catalog.vue";
 const route = useRoute();
 const html = ref()
 const articleType:any = ref({
     name:ref(""),
     fileName:ref(""),
 })
+const htmlContainer:Ref<null> = ref(null);
 // .md 转html 
 const initArticles = function(){
     debugger
      getHtml(articleType).then(res =>{
         debugger
         html.value = res
+        setTimeout(function(){
+
+            console.log(htmlContainer.value.querySelectorAll("h2"))
+        },1000)
      })
     return ref([{name:"javascript"}])
 }
 const menuArticles = function(value:string){
     return value
 }
+let titles = ["js","rust"]
+
+
 onMounted(() => {
     // 访问 query 参数  
     if (route.query.name) {
@@ -33,30 +43,27 @@ onMounted(() => {
 <template>
     <div class="Articles">
         <Banner></Banner>
-        <div class="site-content">
-            <div  v-html="html">
-            </div> 
-        </div>
+        <el-container class="layout-container" style="height: 500px">
+            <el-row :gutter="10">
+                <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
+                <div class="catalog">
+                        <catalog :titles="titles"> </catalog> 
+                </div>
+                </el-col>
+                <el-col :xs="18" :sm="18" :md="18" :lg="18" :xl="18" >
+                    <div class="site-content">
+                        <div v-html="html" ref="htmlContainer"> </div>
+                    </div>
+                </el-col>
+            </el-row>
+        </el-container>
     </div>
 </template>
 <style scoped lang="less">
-.site-content {
-    .notify {
-        margin: 60px 0;
-        border-radius: 3px;
-        & > div {
-            padding: 20px;
-        }
-    }
-    .search-result {
-        padding: 15px 20px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: 400;
-        border: 1px dashed #ddd;
-        color: #828282;
-    }
+.catalog {
+
 }
+
 .top-feature {
     width: 100%;
     height: auto;
@@ -124,4 +131,6 @@ onMounted(() => {
 }
 /******/
 </style>
-@/utils/convertHtml
+<style scoped>
+@import 'highlight.js/styles/github.css';
+</style>
