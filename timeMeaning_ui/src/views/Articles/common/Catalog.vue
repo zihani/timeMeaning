@@ -18,8 +18,9 @@ window.addEventListener('scroll', function() {
         if(scrollTop > 388){
             catalogref.value.style.position = "fixed";
             catalogref.value.style.top = "0";
+            catalogref.value.style.width = "189px";
         }else{
-             catalogref.value.style.position = "";
+            catalogref.value.style.position = "";
             catalogref.value.style.top = "";
         }
 });
@@ -31,7 +32,7 @@ onMounted(() => {
 <template>
     <div class="Catalog" ref="catalogref">
         <!-- 目录 -->
-        <el-aside width="100%">
+        <el-aside style="width: 100%;">
         <el-scrollbar>
             <el-menu :default-openeds="['1', '3']">
             <el-sub-menu index="1">

@@ -62,7 +62,7 @@ onMounted(() => {
 </template>
 <style scoped lang="less">
 .catalog{
-    width: 220px;
+    width: 189px;
 }
 .top-feature {
     width: 100%;
