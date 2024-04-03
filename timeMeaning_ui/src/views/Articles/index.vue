@@ -51,8 +51,9 @@ onMounted(() => {
                 </el-col>
                 <el-col :xs="18" :sm="18" :md="18" :lg="18" :xl="18" >
                     <div class="site-content">
-                        <div v-if="html.length > 0" v-html="html" ref="htmlContainer"> </div>
+                        <div v-if="html" v-html="html" ref="htmlContainer"> </div>
                         <el-skeleton v-else :rows="100" animated />
+
                     </div>
                 </el-col>
             </el-row>
