@@ -38,7 +38,7 @@ const articleList = articleListStore.initArticleList
 <template>
     <div class="Home">
         <Banner></Banner>
-       {{baseURl}}
+       <!-- {{baseURl}} -->
         <!-- <div v-html="strSvg"></div>
         <img :src="logo" alt=""> -->
         <div v-if='banner.isHome'>

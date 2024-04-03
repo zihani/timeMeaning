@@ -11,34 +11,32 @@ const articleType:any = ref({
     name:ref(""),
     fileName:ref(""),
 })
-const htmlContainer:Ref<null> = ref(null);
+const htmlContainer:Ref<any> = ref(null);
+let titles:Ref<Array<string>> = ref([]);
 // .md 转html 
 const initArticles = function(){
-    debugger
      getHtml(articleType).then(res =>{
-        debugger
         html.value = res
         setTimeout(function(){
-
-            console.log(htmlContainer.value.querySelectorAll("h2"))
+            htmlContainer.value.querySelectorAll("h2").forEach(element => {
+                element.id = element.innerText
+                titles.value.push(element.innerText)
+            });
         },1000)
      })
-    return ref([{name:"javascript"}])
 }
 const menuArticles = function(value:string){
     return value
 }
-let titles = ["js","rust"]
-
-
 onMounted(() => {
-    // 访问 query 参数  
+    // 获取 query 参数  
     if (route.query.name) {
        articleType.name = route.query.name
        articleType.fileName =  route.query.fileName
        initArticles();
     }  
 });
+
 </script>
 <template>
     <div class="Articles">
@@ -46,13 +44,15 @@ onMounted(() => {
         <el-container class="layout-container" style="height: 500px">
             <el-row :gutter="10">
                 <el-col :xs="4" :sm="4" :md="4" :lg="4" :xl="4">
-                <div class="catalog">
-                        <catalog :titles="titles"> </catalog> 
-                </div>
+                    <div class="catalog" >
+                        <catalog v-if="titles.length > 0"  :titles="titles"> </catalog> 
+                        <el-skeleton v-else :rows="100" animated />
+                    </div>
                 </el-col>
                 <el-col :xs="18" :sm="18" :md="18" :lg="18" :xl="18" >
                     <div class="site-content">
-                        <div v-html="html" ref="htmlContainer"> </div>
+                        <div v-if="html.length > 0" v-html="html" ref="htmlContainer"> </div>
+                        <el-skeleton v-else :rows="100" animated />
                     </div>
                 </el-col>
             </el-row>
@@ -60,10 +60,9 @@ onMounted(() => {
     </div>
 </template>
 <style scoped lang="less">
-.catalog {
-
+.catalog{
+    width: 220px;
 }
-
 .top-feature {
     width: 100%;
     height: auto;
