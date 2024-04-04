@@ -68,9 +68,9 @@ const articleList = articleListStore.initArticleList
     height: 20vh;
     width: 100%;
     border: 1px solid; 
-    border-color:rgb(18, 18, 31);
-    margin-top: 1px;
-    margin-bottom: 1px;
+    // border-color:rgb(18, 18, 31);
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 .el-image-class {
     width: 100%; 
