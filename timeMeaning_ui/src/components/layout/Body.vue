@@ -2,6 +2,7 @@
 <script  setup lang="ts">
 import TablePet from '@/components/public/TablePet.vue'
 import TodoList from '@/components/public/TodoList/index.vue'
+import Weather from '@/components/public/Weather/index.vue'
 </script>
 <template>
     <div id="layout-body">
