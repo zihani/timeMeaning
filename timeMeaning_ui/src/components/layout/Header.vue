@@ -2,6 +2,7 @@
    import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
    import{ useBackgroundTheme } from "@/stores/useBackgroundTheme"
    const backgroundTheme = useBackgroundTheme()
+  
    const mobileShow = ref(false);
    const hidden = ref(false);
    const headerFixed = ref(backgroundTheme.headerFixed)
@@ -69,7 +70,8 @@
             <div class="menu-item header-search"></div>
             <div class="menu-item" >
                 <router-link to="/">
-                    <span >首页</span>
+                    <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff">首页</span>
+                    <span v-else>首页</span>
                 </router-link>
             </div>
             <!-- <div class="menu-item hasChild">
@@ -84,7 +86,8 @@
                 <a href="#" @click="openArticle">文章</a>
             </div> -->
             <div class="menu-item hasChild">
-                  <a @click="openGallery" href="">画廊</a>
+                  <a v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" @click="openGallery" href="">画廊</a>
+                  <a v-else @click="openGallery" href="">画廊</a>
             </div>
         </div>
     </div>

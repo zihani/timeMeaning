@@ -7,7 +7,7 @@ export const useBackgroundTheme = defineStore(
         const headerFixed:Ref<boolean> = ref(false);
         let backgroundColor:Ref<string>= ref(""); 
         let white:string = "rgb(255, 255, 255)";
-        let dark:string = "rgb(35, 24, 69)";
+        let dark:string = "#000000";
         // 6 - 19 白 white
         // 19 - 6 夜 dark
         let timeWhite:Ref<number> = [6,7,8,9,10,11,12,13,14,15,16,17,18,]
