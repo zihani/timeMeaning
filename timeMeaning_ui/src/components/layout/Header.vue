@@ -1,8 +1,10 @@
 <script setup lang="ts">
-   import { onMounted,onUnmounted, ref } from "vue";
+   import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
+   import{ useBackgroundTheme } from "@/stores/useBackgroundTheme"
+   const backgroundTheme = useBackgroundTheme()
    const mobileShow = ref(false);
    const hidden = ref(false);
-   const fixed = ref(false);
+   const headerFixed = ref(backgroundTheme.headerFixed)
    const lastScrollTop = ref(0);
    const iconUrl = '/icon/movenavbar.svg';
    const isref = ref()
@@ -28,21 +30,28 @@
    const watchScroll =()=>{
         let scrollTop: number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
        if (scrollTop ===0 ){
-            fixed.value = false;
+            headerFixed.value = false;
         } else if (scrollTop>=lastScrollTop.value){
             var element = document.getElementById("layout-header");  
             element.style.color = "#fffff";
-            fixed.value = false;
+            headerFixed.value = false;
             hidden.value = true;
         } else {
             var element = document.getElementById("layout-header");  
             element.style.color = "#00000";
-            fixed.value = true
+            headerFixed.value = true
             hidden.value = false
         }
         lastScrollTop.value = scrollTop
    }
+   const layoutHeader:Ref<any> = ref(null);
+   function styleUpdate (){
+        if(headerFixed){
+            backgroundTheme.domUpdate(layoutHeader)
+        }
+   }
    onMounted(()=>{
+        styleUpdate()
         window.addEventListener('scroll', watchScroll)
    })
    onUnmounted(()=>{
@@ -50,20 +59,17 @@
    })
 </script>
 <template>
-    <div id="layout-header" :class="{'fixed':fixed,'hidden':hidden}" @click.stop="mobileShow=false">
+    <div id="layout-header" ref="layoutHeader" :class="{'fixed':headerFixed,'hidden':hidden}" @click.stop="mobileShow=false">
         <div class="site-logo">
         </div>
         <div class="menus-btn" @click.stop="mobileShow=!mobileShow">
-            <!-- 导航 -->
-            <!-- <img style="width: 20px; height: 20px;" :src="iconUrl"> --> 
+          
         </div>
-        <!-- :class="{'fixed':fixed,'hidden':hidden}" -->
         <div class="site-menus"  @click.stop="mobileShow=!mobileShow">
             <div class="menu-item header-search"></div>
             <div class="menu-item" >
                 <router-link to="/">
-                    <span v-if="fixed">首页</span>
-                    <span  v-if="!fixed" style="color:#ffff">首页</span>
+                    <span >首页</span>
                 </router-link>
             </div>
             <!-- <div class="menu-item hasChild">
@@ -78,8 +84,7 @@
                 <a href="#" @click="openArticle">文章</a>
             </div> -->
             <div class="menu-item hasChild">
-                  <a v-if="fixed" @click="openGallery" href="">画廊</a>
-                  <a v-if="!fixed" @click="openGallery"  style="color:#ffff" href="">画廊</a>
+                  <a @click="openGallery" href="">画廊</a>
             </div>
         </div>
     </div>

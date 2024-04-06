@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { link } from 'fs';
 import { ref,onMounted,defineProps,defineEmits ,type Ref} from 'vue'
+import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
+const backgroundTheme=useBackgroundTheme()
 const html = ref()
 const articleType:any = ref({
     name:ref(""),
@@ -12,6 +13,11 @@ const props = defineProps({
     titles:Array
 })
 const catalogref:Ref<any> = ref(null);
+// const scrollbar:Ref<any> = ref(null);
+
+function styleUpdate(){
+    backgroundTheme.domUpdate(catalogref)
+}
 window.addEventListener('scroll', function() {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         var windowHeight = window.innerHeight;
@@ -30,27 +36,40 @@ const openlink = ((name)=>{
     link.click();
 })
 onMounted(() => {
+    styleUpdate();
     // 访问 query 参数  
 });
 </script>
 <template>
     <div class="Catalog" ref="catalogref">
         <!-- 目录 -->
-        <el-aside style="width: 100%;">
-        <el-scrollbar>
-            <el-menu :default-openeds="['1', '3']">
-            <el-sub-menu index="1" style="overflow-y: scroll; height: 100vh;">
-                <template #title>
-                    <el-icon><message /></el-icon>目录
-                </template>
-                <el-menu-item-group>
-                <el-menu-item v-for="(item,index ) in props.titles" @click="openlink(item)"><strong>{{item}}</strong></el-menu-item>
-                </el-menu-item-group>
-            </el-sub-menu>
-            </el-menu>
-        </el-scrollbar>
-    </el-aside>
+        <el-aside style="width: 100%;" ref="scrollbar">
+            <el-scrollbar>
+                <el-menu :default-openeds="['1', '3']">
+                <el-sub-menu  index="1" style="overflow-y: scroll; height: 70vh;">
+                    <template #title>
+                        <el-icon><message /></el-icon>目录
+                    </template>
+                    <el-menu-item-group>
+                        <el-menu-item v-for="(item,index ) in props.titles" @click="openlink(item)"><strong>{{item}}</strong></el-menu-item>
+                    </el-menu-item-group>
+                </el-sub-menu>
+                </el-menu>
+            </el-scrollbar>
+        </el-aside>
     </div>
 </template>
 <style scoped lang="less">
+// .el-sub-menu {  
+//     background-color:rgb(35, 24, 69)!important;  
+//     color: #ffff!important;
+// }
+// .el-menu {
+//     background-color:rgb(35, 24, 69)!important;  
+//     color: #ffff!important;
+// }
+// .el-menu-item-group{
+//     background-color:rgb(35, 24, 69)!important;  
+//     color: #ffff!important;
+// }
 </style>

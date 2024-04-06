@@ -1,11 +1,20 @@
 
 <script  setup lang="ts">
+import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
 import TablePet from '@/components/public/TablePet.vue'
 import TodoList from '@/components/public/TodoList/index.vue'
-import Weather from '@/components/public/Weather/index.vue'
+import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
+const backgroundTheme=useBackgroundTheme()
+const body:Ref<any> = ref(null);
+function styleUpdate(){
+    backgroundTheme.domUpdate(body)
+}
+ onMounted(()=>{
+        styleUpdate()
+ })
 </script>
 <template>
-    <div id="layout-body">
+    <div id="layout-body" ref='body'>
         <router-view></router-view>
         <!-- <TablePet></TablePet> -->
         <TodoList></TodoList>

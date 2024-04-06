@@ -1,7 +1,7 @@
 ## 介绍
 > 💡 Tips：node js 由Ryan Dahl 开发，基于Chrome的V8引擎。Node.js采用事件驱动和非阻塞I/O模型，这使得JavaScript能够用于服务器端编程。在2009年发布第一个版本 
 
-## 安装分为介绍版本和mac版本的安装
+## 安装
 **地址**[**https://nodejs.org/en**](https://nodejs.org/en)
 **或者通过nvm来安装**
 ## node 特性

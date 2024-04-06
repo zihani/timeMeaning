@@ -1,24 +1,30 @@
 <script setup lang="ts">
-import { defineComponent ,ref ,onMounted ,createApp} from 'vue'
-import Banner from "@/components/public/Banner/index.vue"
-import { useArticleListStore } from "@/stores/useArticleListStore"
-import ArticleItem from "@/components/ArticleItem/index.vue"
+import { defineComponent ,ref ,onMounted ,createApp} from 'vue';
+import Banner from "@/components/public/Banner/index.vue";
+import { useArticleListStore } from "@/stores/useArticleListStore";
+import ArticleItem from "@/components/ArticleItem/index.vue";
 import { marked }  from 'marked';
-import { useBannerStore ,useBannerSetopStore } from "@/stores/useBannerStore"
+import { useBannerStore ,useBannerSetopStore } from "@/stores/useBannerStore";
 import 'element-plus/dist/index.css';
 import { useRouter } from 'vue-router';
 import axios from "axios";
 import type { Ref } from "vue";
+import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
 const baseURl = import.meta.env;
 const banner = useBannerStore();
+
 // import ElementPlus from 'element-plus'
 // const app = createApp(App);  
+const container:Ref<any> = ref(null);
+const backgroundTheme = useBackgroundTheme();
+
 const articleListStore = useArticleListStore(); //这是个函数
 function initArticleList(){
     axios.get("/md/json/directory.json").then(res =>{ 
         articleListStore.initArticleList = res.data
+        backgroundTheme.domUpdate(container)
     })
-}
+};
 onMounted(() => {  
     initArticleList()
 }); 
@@ -38,16 +44,13 @@ const articleList = articleListStore.initArticleList
 <template>
     <div class="Home">
         <Banner></Banner>
-       <!-- {{baseURl}} -->
-        <!-- <div v-html="strSvg"></div>
-        <img :src="logo" alt=""> -->
-        <div v-if='banner.isHome'>
+        <div ref="container">
             <el-container>
                 <el-aside width="200px"></el-aside>
                 <el-container>
                     <el-main>
                         <div class="container">
-                           <el-row :gutter="2">
+                           <el-row :gutter="10">
                                 <el-col :span="6" v-for="(item,index) in articleListStore.initArticleList" :key="index">
                                     <div class='container-item' @click="openArticles(item)">
                                        <el-image class="el-image-class" :src="item.src" fit="cover"/>
@@ -68,7 +71,7 @@ const articleList = articleListStore.initArticleList
     height: 20vh;
     width: 100%;
     border: 1px solid; 
-    // border-color:rgb(18, 18, 31);
+    border-color:rgb(255, 255, 255);
     margin-top: 3px;
     margin-bottom: 3px;
 }

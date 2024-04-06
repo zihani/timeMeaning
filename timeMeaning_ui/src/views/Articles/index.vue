@@ -4,24 +4,31 @@ import Banner from "@/components/public/Banner/index.vue";
 import { useRoute } from 'vue-router'; 
 import { getHtml } from "@/utils/convertHtml";
 import "highlight.js/styles/atom-one-dark.css";
-import  Catalog  from "./common/Catalog.vue";
+import Catalog from "./common/Catalog.vue";
+import Content from "./common/Content.vue";
+import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
+const backgroundTheme = useBackgroundTheme()
 const route = useRoute();
 const html = ref()
 const articleType:any = ref({
     name:ref(""),
     fileName:ref(""),
 })
-const htmlContainer:Ref<any> = ref(null);
+const contentRef:Ref<any> = ref(null);
+const layoutContainer:Ref<any> = ref(null);
 let titles:Ref<Array<string>> = ref([]);
 // .md 转html 
 const initArticles = function(){
      getHtml(articleType).then(res =>{
         html.value = res
         setTimeout(function(){
-            htmlContainer.value.querySelectorAll("h2").forEach(element => {
+            debugger
+            contentRef.value.querySelectorAll("h2").forEach(element => {
                 element.id = element.innerText
                 titles.value.push(element.innerText)
             });
+            debugger
+            backgroundTheme.domUpdate(layoutContainer)
         },1000)
      })
 }
@@ -39,9 +46,9 @@ onMounted(() => {
 
 </script>
 <template>
-    <div class="Articles">
+    <div class="Articles" >
         <Banner></Banner>
-        <el-container class="layout-container" style="height: 500px">
+        <el-container class="layout-container" ref="layoutContainer" >
             <el-row :gutter="90">
                 <el-col :span="6">
                     <div class="catalog" >
@@ -50,9 +57,8 @@ onMounted(() => {
                     </div>
                 </el-col>
                 <el-col :span="18">
-                    <div class="site-content">
-                        <div v-if="html" v-html="html" ref="htmlContainer"> </div>
-                        <el-skeleton v-else :rows="100" animated />
+                    <div ref="contentRef" class="site-content">
+                       <Content  v-if="html" :html="html"></Content>
                     </div>
                 </el-col>
             </el-row>

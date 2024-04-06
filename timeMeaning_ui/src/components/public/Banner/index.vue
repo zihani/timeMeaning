@@ -238,23 +238,26 @@
                         <!-- <img :src="websiteInfo.avatar"> -->
                     <!-- </div> -->
                     <div class="top-social">
-                       <span style="color:#ffffff;">社交信息</span> 
+                       <!-- <span style="color:#ffffff;">社交信息</span>  -->
                        <!-- <button @click="ann">按钮</button> -->
-                       <div v-for="item in socials" :key="item.id" :title="item.title">
+                       <!-- <div v-for="item in socials" :key="item.id" :title="item.title">
                             <a :href="item.href" target="_blank" :style="{'color':item.color}">
                                 <i class="iconfont" :class="item.icon"></i>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!--左右倾斜-->
-                <div class="slant-left"></div>
-                <div class="slant-right"></div>
+                <!-- <div class="slant-left"></div>
+                <div class="slant-right"></div> -->
             </template>
             <template v-else>
                 <div class="focusinfo">
                     <div class="top-social">
-                        <h1 style="color:#ffffff;">Hello</h1>
+                        <div style="height:100vh;">
+                            <h1 style="color:#ffffff;">Hello</h1>
+                        </div>
+                       
                     </div>
                 </div>
             </template>
@@ -308,6 +311,7 @@
             border-right: 800px solid transparent;
             left: 0;
             bottom: 0;
+            background-color:rgb(35, 24, 69);
         }
         .slant-right {
             content: '';
@@ -318,6 +322,7 @@
             border-left: 800px solid transparent;
             right: 0;
             bottom: 0;
+            background-color:rgb(35, 24, 69);
         }
     }
 }

@@ -1,12 +1,24 @@
 <script setup lang="ts">
-  import { onMounted, ref } from "vue";
-  import { useBannerStore } from "@/stores/useBannerStore"
-  const banner = useBannerStore()
-  const socials = ref([])
-  const runTimeInterval = "30mm";
+import { onMounted, ref,nextTick} from "vue";
+import type { Ref } from "vue";
+
+import { useBannerStore } from "@/stores/useBannerStore"
+import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
+const backgroundTheme = useBackgroundTheme();
+const footer:Ref<any> = ref(null);
+// nextTick(()=>{
+//    backgroundTheme.domUpdate(footer)
+// })
+ setTimeout(function(){
+    debugger
+   backgroundTheme.domUpdate(footer)
+ },1000)
+const banner = useBannerStore()
+const socials = ref([])
+const runTimeInterval = "30mm";
 </script>
 <template>
-    <div v-if="banner.isHome" id="layout-footer">
+    <div id="layout-footer" ref="footer">
         <div id="layout-footer">
             <div class="footer-main">
                 <div class="footer-item" v-if="socials.length">
