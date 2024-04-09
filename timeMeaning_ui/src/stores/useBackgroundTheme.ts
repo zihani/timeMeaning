@@ -6,8 +6,8 @@ export const useBackgroundTheme = defineStore(
     'backgroundTheme', () => {
         const headerFixed:Ref<boolean> = ref(false);
         let backgroundColor:Ref<string>= ref(""); 
-        let white:string = "rgb(255, 255, 255)";
-        let dark:string = "#000000";
+        const white:Ref<string>= ref("rgb(255, 255, 255)");
+        const dark:Ref<string>= ref("#000000");
         // 6 - 19 白 white
         // 19 - 6 夜 dark
         let timeWhite:Ref<number> = [6,7,8,9,10,11,12,13,14,15,16,17,18,]
@@ -21,13 +21,13 @@ export const useBackgroundTheme = defineStore(
         }
         function domUpdate (dom:any){
             if(backgroundColor.value === "dark"){
-                dom.value.style.backgroundColor = dark;
-                dom.value.style.color = white;
+                dom.value.style.backgroundColor = dark.value;
+                dom.value.style.color = white.value;
             }
             if(backgroundColor.value === "white"){
-                dom.value.style.backgroundColor = white;
-                dom.value.style.color = dark;
+                dom.value.style.backgroundColor = white.value;
+                dom.value.style.color = dark.value;
             }
         }
-    return {domUpdate,backgroundColor,headerFixed}
+    return {domUpdate,backgroundColor,headerFixed,white,dark}
 })

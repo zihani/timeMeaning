@@ -12,7 +12,13 @@ const emit = defineEmits(['link'])
 const props = defineProps({
     titles:Array
 })
+ 
+ 
+
+debugger
+useBackgroundTheme
 const catalogref:Ref<any> = ref(null);
+const menuItemGroup:Ref<any> = ref(null);
 // const scrollbar:Ref<any> = ref(null);
 
 function styleUpdate(){
@@ -46,11 +52,11 @@ onMounted(() => {
         <el-aside style="width: 100%;" ref="scrollbar">
             <el-scrollbar>
                 <el-menu :default-openeds="['1', '3']">
-                <el-sub-menu  index="1" style="overflow-y: scroll; height: 70vh;">
+                <el-sub-menu  index="1" :style="`overflow-y: scroll; height: 70vh;background-color :${backgroundTheme[backgroundTheme.backgroundColor]};`">
                     <template #title>
                         <el-icon><message /></el-icon>目录
                     </template>
-                    <el-menu-item-group>
+                    <el-menu-item-group :style="`background-color :${backgroundTheme[backgroundTheme.backgroundColor]};`"> 
                         <el-menu-item v-for="(item,index ) in props.titles" @click="openlink(item)"><strong>{{item}}</strong></el-menu-item>
                     </el-menu-item-group>
                 </el-sub-menu>

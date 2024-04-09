@@ -12,15 +12,12 @@ import type { Ref } from "vue";
 import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
 const baseURl = import.meta.env;
 const banner = useBannerStore();
-
-// import ElementPlus from 'element-plus'
-// const app = createApp(App);  
 const container:Ref<any> = ref(null);
 const backgroundTheme = useBackgroundTheme();
 
 const articleListStore = useArticleListStore(); //这是个函数
 function initArticleList(){
-    axios.get("/md/json/directory.json").then(res =>{ 
+    axios.get("/md/json/directory.json").then(res =>{
         articleListStore.initArticleList = res.data
         backgroundTheme.domUpdate(container)
     })

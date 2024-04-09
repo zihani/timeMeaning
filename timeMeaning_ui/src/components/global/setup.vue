@@ -1,10 +1,5 @@
 <template>
     <div  class="setup" >
-         <!-- <div class="bubble"> 气泡</div> -->
-        <!-- <div class="bubble" v-if="show" >
-            添加定时时间
-            <span class="triangle"></span>
-        </div> -->
         <div class="frame"  v-if="show">
             定时设置：
             显示桌宠：
