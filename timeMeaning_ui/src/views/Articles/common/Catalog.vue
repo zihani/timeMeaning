@@ -7,20 +7,13 @@ const articleType:any = ref({
     name:ref(""),
     fileName:ref(""),
 })
-const emit = defineEmits(['link'])
+const emit = defineEmits(['emit'])
 
 const props = defineProps({
     titles:Array
 })
- 
- 
-
-debugger
-useBackgroundTheme
 const catalogref:Ref<any> = ref(null);
 const menuItemGroup:Ref<any> = ref(null);
-// const scrollbar:Ref<any> = ref(null);
-
 function styleUpdate(){
     backgroundTheme.domUpdate(catalogref)
 }
@@ -57,7 +50,7 @@ onMounted(() => {
                         <el-icon><message /></el-icon>目录
                     </template>
                     <el-menu-item-group :style="`background-color :${backgroundTheme[backgroundTheme.backgroundColor]};`"> 
-                        <el-menu-item v-for="(item,index ) in props.titles" @click="openlink(item)"><strong>{{item}}</strong></el-menu-item>
+                        <el-menu-item v-for="(item,index ) in props.titles" :key="index" @click="openlink(item)"><strong>{{item}}</strong></el-menu-item>
                     </el-menu-item-group>
                 </el-sub-menu>
                 </el-menu>

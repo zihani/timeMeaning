@@ -6,7 +6,7 @@ export const useBackgroundTheme = defineStore(
     'backgroundTheme', () => {
         const headerFixed:Ref<boolean> = ref(false);
         let backgroundColor:Ref<string>= ref(""); 
-        const white:Ref<string>= ref("rgb(255, 255, 255)");
+        const white:Ref<string>= ref("#ffffff");
         const dark:Ref<string>= ref("#000000");
         // 6 - 19 白 white
         // 19 - 6 夜 dark

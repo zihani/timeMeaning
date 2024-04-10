@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { onMounted, ref,defineComponent  } from "vue";
-    import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore"
+    import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore";
+    import Time from "@/components/public/Time/index.vue"
     const banner = useBannerStore()
     //   const bannersetop = useBannerSetopStore()
     
@@ -238,6 +239,7 @@
                         <!-- <img :src="websiteInfo.avatar"> -->
                     <!-- </div> -->
                     <div class="top-social">
+                         <Time> </Time>
                        <!-- <span style="color:#ffffff;">社交信息</span>  -->
                        <!-- <button @click="ann">按钮</button> -->
                        <!-- <div v-for="item in socials" :key="item.id" :title="item.title">

@@ -22,12 +22,10 @@ const initArticles = function(){
      getHtml(articleType).then(res =>{
         html.value = res
         setTimeout(function(){
-            debugger
             contentRef.value.querySelectorAll("h2").forEach(element => {
                 element.id = element.innerText
                 titles.value.push(element.innerText)
             });
-            debugger
             backgroundTheme.domUpdate(layoutContainer)
         },1000)
      })

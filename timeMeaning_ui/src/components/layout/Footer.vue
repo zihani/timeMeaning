@@ -10,7 +10,6 @@ const footer:Ref<any> = ref(null);
 //    backgroundTheme.domUpdate(footer)
 // })
  setTimeout(function(){
-    debugger
    backgroundTheme.domUpdate(footer)
  },1000)
 const banner = useBannerStore()
