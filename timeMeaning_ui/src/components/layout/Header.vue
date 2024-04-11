@@ -2,23 +2,17 @@
    import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
    import{ useBackgroundTheme } from "@/stores/useBackgroundTheme"
    const backgroundTheme = useBackgroundTheme()
+   const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor])
+    watch(() => backgroundTheme.backgroundColor,  
+    (newVal, oldVal) => {
+        backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+    },  
+    {
+        deep: true // 开启深度监听  
+    })
    const mobileShow = ref(false);
    const hidden = ref(false);
-   const headerFixed = ref(backgroundTheme.headerFixed)
    const lastScrollTop = ref(0);
-   const iconUrl = '/icon/movenavbar.svg';
-   const isref = ref()
-   const menu = [{href:"https://www.yuque.com/u1261089/va0mph/gr8vg4gzg0akzvz0",
-                  id:1,
-                  title:"js的常用函数"},
-                 {href:"https://www.yuque.com/u1261089/va0mph/ldegnme3ilhqmvtc",
-                  id:2,
-                  title:"vue组件和方法"},
-                 {href:"https://www.yuque.com/u1261089/va0mph/ldegnme3ilhqmvtc",
-                  id:3,
-                  title:"vue组件和方法"
-                  }]
-   const category = ref(menu)
    const openUrl=(item:any)=>{
         window.open(item.href)
    }
@@ -29,29 +23,18 @@
    }
    const watchScroll =()=>{
         let scrollTop: number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-       if (scrollTop ===0 ){
-            headerFixed.value = false;
-        } else if (scrollTop>=lastScrollTop.value){
+        if (scrollTop>=lastScrollTop.value){
             var element = document.getElementById("layout-header");  
             element.style.color = "#fffff";
-            headerFixed.value = false;
             hidden.value = true;
         } else {
             var element = document.getElementById("layout-header");  
             element.style.color = "#00000";
-            headerFixed.value = true
             hidden.value = false
         }
         lastScrollTop.value = scrollTop
    }
-   const layoutHeader:Ref<any> = ref(null);
-   function styleUpdate (){
-        if(headerFixed){
-            backgroundTheme.domUpdate(layoutHeader)
-        }
-   }
    onMounted(()=>{
-        styleUpdate()
         window.addEventListener('scroll', watchScroll)
    })
    onUnmounted(()=>{
@@ -59,7 +42,7 @@
    })
 </script>
 <template>
-    <div id="layout-header" ref="layoutHeader" :class="{'fixed':headerFixed,'hidden':hidden}" @click.stop="mobileShow=false">
+    <div id="layout-header" :style="`background-color:`+backgroundColor" :class="{'fixed':headerFixed,'hidden':hidden}" @click.stop="mobileShow=false">
         <div class="site-logo">
         </div>
         <div class="menus-btn" @click.stop="mobileShow=!mobileShow">
@@ -73,17 +56,6 @@
                     <span v-else>首页</span>
                 </router-link>
             </div>
-            <!-- <div class="menu-item hasChild">
-                <a href="#" @click="openUrl({href:`https://www.yuque.com/dashboard`})">语雀文章</a>
-                <div class="childMenu" v-if="category.length">
-                    <div class="sub-menu" v-for="item in category" :key="item.id">
-                        <span @click="openUrl(item)"><a>{{item.title}}</a></span>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="menu-item hasChild">
-                <a href="#" @click="openArticle">文章</a>
-            </div> -->
             <div class="menu-item hasChild">
                 <router-link to="/gallery">
                   <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">画廊</span>

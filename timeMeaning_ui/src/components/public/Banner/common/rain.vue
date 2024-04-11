@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref,defineComponent  } from "vue";
 import Time from "@/components/public/Time/index.vue";
-
-   
 </script>
 <template>
     <div id="rain">

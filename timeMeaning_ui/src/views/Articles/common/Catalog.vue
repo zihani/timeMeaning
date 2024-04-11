@@ -1,22 +1,24 @@
 <script setup lang="ts">
-import { ref,onMounted,defineProps,defineEmits ,type Ref} from 'vue'
+import { ref,onMounted,defineProps,defineEmits ,type Ref,watch} from 'vue';
 import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
-const backgroundTheme=useBackgroundTheme()
-const html = ref()
+const backgroundTheme=useBackgroundTheme();
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
+watch(()=>backgroundTheme.backgroundColor,(newVal,oldVal)=>{
+   backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor];
+},{
+    deep:true
+});
+const html = ref();
 const articleType:any = ref({
     name:ref(""),
     fileName:ref(""),
-})
-const emit = defineEmits(['emit'])
-
+});
+const emit = defineEmits(['emit']);
 const props = defineProps({
     titles:Array
-})
+});
 const catalogref:Ref<any> = ref(null);
 const menuItemGroup:Ref<any> = ref(null);
-function styleUpdate(){
-    backgroundTheme.domUpdate(catalogref)
-}
 window.addEventListener('scroll', function() {
         var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         var windowHeight = window.innerHeight;
@@ -27,20 +29,19 @@ window.addEventListener('scroll', function() {
         }else{
             catalogref.value.style.position = "";
             catalogref.value.style.top = "";
-        }
+        };
 });
 const openlink = ((name)=>{
-   let link =  document.createElement("a")
-    link.href = "#"+name
+   let link =  document.createElement("a");
+    link.href = "#"+name;
     link.click();
-})
+});
 onMounted(() => {
-    styleUpdate();
     // 访问 query 参数  
 });
 </script>
 <template>
-    <div class="Catalog" ref="catalogref">
+    <div class="Catalog" :style="`background-color:${backgroundColor}`" ref="catalogref">
         <!-- 目录 -->
         <el-aside style="width: 100%;" ref="scrollbar">
             <el-scrollbar>

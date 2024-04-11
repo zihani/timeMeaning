@@ -1,23 +1,22 @@
 <script setup lang="ts">
-import { onMounted, ref,nextTick} from "vue";
-import type { Ref } from "vue";
-
+import { onMounted, ref,nextTick,type Ref,watch } from "vue";
 import { useBannerStore } from "@/stores/useBannerStore"
 import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
 const backgroundTheme = useBackgroundTheme();
-const footer:Ref<any> = ref(null);
-// nextTick(()=>{
-//    backgroundTheme.domUpdate(footer)
-// })
- setTimeout(function(){
-   backgroundTheme.domUpdate(footer)
- },1000)
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor])
+//监听pinia 的变化重新渲染
+watch(() => backgroundTheme.backgroundColor,  
+(newVal, oldVal) => {
+    backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+},  
+{
+    deep: true // 开启深度监听  
+})
 const banner = useBannerStore()
 const socials = ref([])
-const runTimeInterval = "30mm";
 </script>
 <template>
-    <div id="layout-footer" ref="footer">
+    <div id="layout-footer" :style="`background-color:${backgroundColor}`">
         <div id="layout-footer">
             <div class="footer-main">
                 <div class="footer-item" v-if="socials.length">
@@ -26,14 +25,8 @@ const runTimeInterval = "30mm";
                     </div>
                 </div>
                 <div class="footer-item">
-                    <!-- <div style="font-size:17px;font-weight: bold;">资源</div>
-                    <div><a target="_blank" class="out-link" href="">每周精选</a></div>
-                    <div><a target="_blank" class="out-link" href="">简明教程</a></div>
-                    <div><a target="_blank" class="out-link" href="">廖雪峰的官方网站</a></div> -->
                 </div>
                 <div class="footer-item">
-                    <!-- <div>本站已苟活 {{runTimeInterval}}</div>
-                    <div><a target="_blank" class="out-link" href="#">☞后台管理</a></div> -->
                 </div>
             </div>
             <div class="copyright">Copyright © 2023 by <a target="_blank" class="out-link" href=""></a> . All rights reserved. | <a target="_blank" class="out-link" href="http://www.beian.miit.gov.cn">京ICP备2023036653号-1</a></div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineComponent ,ref ,onMounted ,createApp} from 'vue';
+import { defineComponent ,ref ,onMounted ,createApp,watch} from 'vue';
 import Banner from "@/components/public/Banner/index.vue";
 import { useArticleListStore } from "@/stores/useArticleListStore";
 import ArticleItem from "@/components/ArticleItem/index.vue";
@@ -14,12 +14,18 @@ const baseURl = import.meta.env;
 const banner = useBannerStore();
 const container:Ref<any> = ref(null);
 const backgroundTheme = useBackgroundTheme();
-
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor])
 const articleListStore = useArticleListStore(); //这是个函数
+watch(() => backgroundTheme.backgroundColor,  
+    (newVal, oldVal) => {
+        backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+    },  
+    {
+        deep: true // 开启深度监听  
+})
 function initArticleList(){
     axios.get("/md/json/directory.json").then(res =>{
         articleListStore.initArticleList = res.data
-        backgroundTheme.domUpdate(container)
     })
 };
 onMounted(() => {  
@@ -41,7 +47,7 @@ const articleList = articleListStore.initArticleList
 <template>
     <div class="Home">
         <Banner></Banner>
-        <div ref="container">
+        <div :style="`background-color:${backgroundColor}`">
             <el-container>
                 <el-aside width="200px"></el-aside>
                 <el-container>

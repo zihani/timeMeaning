@@ -1,22 +1,25 @@
 <script setup lang="ts">
-import { ref,onMounted,defineProps,defineEmits ,type Ref} from 'vue'
+import { ref,onMounted,defineProps,defineEmits ,type Ref,watch} from 'vue';
 import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
-const backgroundTheme = useBackgroundTheme()
+const backgroundTheme = useBackgroundTheme();
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
 const props = defineProps({
     html:String
+});
+watch(() => backgroundTheme.backgroundColor,  
+(newVal, oldVal) => {
+    backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor];
+},  
+{
+    deep: true // 开启深度监听  
 })
-const html = props.html
-const content:Ref<any> = ref(null);
-setTimeout(function(){
-    backgroundTheme.domUpdate(content);
-},1000);
+const html = props.html;
 onMounted(() => {
-    // 访问 query 参数  
 });
 </script>
 <template>
     <div class="Content">
-         <div ref="content" v-if="html" v-html="html"> </div>
+         <div :style="`background-color:${backgroundColor};`"  v-if="html" v-html="html"> </div>
          <el-skeleton v-else :rows="100" animated />
     </div>
 </template>

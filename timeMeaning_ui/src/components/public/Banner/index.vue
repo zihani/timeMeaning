@@ -3,6 +3,8 @@
     import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore";
     import Time from "@/components/public/Time/index.vue";
     import src from "@/assets/img/touxiang.jpg"
+   import Switch from "@/components/public/Switch/index.vue"
+
     const banner = useBannerStore()
     //   const bannersetop = useBannerSetopStore()
     
@@ -250,9 +252,9 @@
                         </div> -->
                     </div>
                 </div>
-                <!--左右倾斜-->
-                <!-- <div class="slant-left"></div>
-                <div class="slant-right"></div> -->
+                <div class="switch">
+                    <Switch></Switch>
+                </div>
             </template>
             <template v-else>
                 <div class="focusinfo">
@@ -261,16 +263,19 @@
                             <h1 style="color:#ffffff;">Hello</h1>
                             <img :src="src">
                         </div>
-                       
                     </div>
                 </div>
             </template>
             <canvas></canvas>
-
+            
         </div>
     </div>
 </template>
 <style scoped lang="less">
+.switch{
+    position: relative;
+    top:40px;
+}
 #banner {
     position: relative;
     width: 100%;

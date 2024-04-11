@@ -5,7 +5,7 @@ import localforage from 'localforage'
 //创建一个 indexedDB
 const myIndexedDB = localforage.createInstance({
   name: 'myIndexedDB',
-})
+});
 async function getStorage(key:string) {
   try {
     const value = await myIndexedDB.getItem(key);
@@ -16,7 +16,7 @@ async function getStorage(key:string) {
 }
 function setStorage(key:string,value:Array<any>) {
   myIndexedDB.setItem(key, value);
-}
+};
 
 // 定义用户状态仓库
 export const useTodoListStore = defineStore(
@@ -32,7 +32,7 @@ export const useTodoListStore = defineStore(
       select: '' //err success
     });
     function updatetodoShow (){
-      todoshow.value = !todoshow.value
+      todoshow.value = !todoshow.value;
     };
     //读取本地仓库
     async function getStorageList(name:string){
@@ -46,7 +46,6 @@ export const useTodoListStore = defineStore(
     //写入一条text本地仓库
     function setStorageList(key:string,todotext:Ref<string>){
       if(key === 'todoList'){
-        todotext
         let id: Number = 1;
         if(todoList.value.length > 0){
           id = todoList.value[todoList.value.length - 1].id + 1;

@@ -4,17 +4,20 @@ import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
 import TablePet from '@/components/public/TablePet.vue'
 import TodoList from '@/components/public/TodoList/index.vue'
 import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
-const backgroundTheme=useBackgroundTheme()
-const body:Ref<any> = ref(null);
-function styleUpdate(){
-    backgroundTheme.domUpdate(body)
-}
- onMounted(()=>{
-        styleUpdate()
+const backgroundTheme=useBackgroundTheme();
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
+//监听backgroundColor 变化
+ watch(() => backgroundTheme.backgroundColor,  
+    (newVal, oldVal) => {
+        backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+    },  
+    {  
+    deep: true // 开启深度监听  
  })
+ onMounted(()=>{})
 </script>
 <template>
-    <div id="layout-body" ref='body'>
+    <div id="layout-body" :style="`background-color:${backgroundColor}`">
         <router-view></router-view>
         <!-- <TablePet></TablePet> -->
         <TodoList></TodoList>
