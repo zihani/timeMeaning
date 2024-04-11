@@ -7,6 +7,8 @@ import "highlight.js/styles/atom-one-dark.css";
 import Catalog from "./common/Catalog.vue";
 import Content from "./common/Content.vue";
 import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
+import rain from "@/components/public/Banner/common/rain.vue"
+
 const backgroundTheme = useBackgroundTheme()
 const route = useRoute();
 const html = ref()
@@ -14,8 +16,10 @@ const articleType:any = ref({
     name:ref(""),
     fileName:ref(""),
 })
+const title:any = ref("")
 const contentRef:Ref<any> = ref(null);
 const layoutContainer:Ref<any> = ref(null);
+
 let titles:Ref<Array<string>> = ref([]);
 // .md 转html 
 const initArticles = function(){
@@ -36,6 +40,7 @@ const menuArticles = function(value:string){
 onMounted(() => {
     // 获取 query 参数  
     if (route.query.name) {
+       title.value = route.query.name
        articleType.name = route.query.name
        articleType.fileName =  route.query.fileName
        initArticles();
@@ -45,7 +50,9 @@ onMounted(() => {
 </script>
 <template>
     <div class="Articles" >
-        <Banner></Banner>
+        <!-- <Banner></Banner> -->
+        <rain></rain>
+       
         <el-container class="layout-container" ref="layoutContainer" >
             <el-row :gutter="90">
                 <el-col :span="6">
@@ -55,6 +62,9 @@ onMounted(() => {
                     </div>
                 </el-col>
                 <el-col :span="18">
+                    <div style="height: 80px; ">
+                        <h1>{{ title }}</h1> 
+                    </div>
                     <div ref="contentRef" class="site-content">
                        <Content  v-if="html" :html="html"></Content>
                     </div>
@@ -68,7 +78,7 @@ onMounted(() => {
     width: 300px;
 }
 .site-content {
-    width:800px;
+    width:70vw;
 }
 /******/
 @media (max-width: 800px) {

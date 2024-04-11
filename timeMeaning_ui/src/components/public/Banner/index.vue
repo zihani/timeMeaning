@@ -1,7 +1,8 @@
 <script setup lang="ts">
     import { onMounted, ref,defineComponent  } from "vue";
     import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore";
-    import Time from "@/components/public/Time/index.vue"
+    import Time from "@/components/public/Time/index.vue";
+    import src from "@/assets/img/touxiang.jpg"
     const banner = useBannerStore()
     //   const bannersetop = useBannerSetopStore()
     
@@ -258,12 +259,14 @@
                     <div class="top-social">
                         <div style="height:100vh;">
                             <h1 style="color:#ffffff;">Hello</h1>
+                            <img :src="src">
                         </div>
                        
                     </div>
                 </div>
             </template>
             <canvas></canvas>
+
         </div>
     </div>
 </template>
@@ -278,8 +281,8 @@
         width: 100%;
         height: 100%;
         /* 背景渐变 */
-        background-image: linear-gradient(-225deg, rgb(111, 83, 133) 40%,
-        #3d3247 80%,  #232133 100%);
+        background-image: linear-gradient(-225deg, rgb(111, 154, 211) 40%,
+        #233d63 80%,  #191820 100%);
         canvas {
             width: 100%;
             height: 100%;
@@ -297,8 +300,8 @@
             width: 100%;
             height: 100%;
             /* 背景渐变 */
-            background-image: linear-gradient(-225deg, rgb(111, 83, 133) 40%,
-        #3d3247 80%,  #232133 100%);
+            background-image:linear-gradient(-225deg, rgb(111, 154, 211) 40%,
+        #233d63 80%,  #191820 100%);
             &:hover {
                 transform: unset;
                 filter: unset;

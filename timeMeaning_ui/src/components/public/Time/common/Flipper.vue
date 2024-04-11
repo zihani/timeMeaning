@@ -104,7 +104,7 @@ watch(() => props.timeStr,
   line-height: 180px;
   border: solid 1px #ffffff;
   background: #ffffff;
-  color: #000000;
+  color: #ffffff;
   font-size: 100px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -117,7 +117,7 @@ watch(() => props.timeStr,
   position: absolute;
   left: 0;
   right: 0;
-  background: #ffffff;
+  background-image: linear-gradient( rgb(14, 13, 13)99%, rgb(255, 255, 255)1%);
   overflow: hidden;
   box-sizing: border-box;
 }
