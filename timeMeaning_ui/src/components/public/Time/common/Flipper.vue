@@ -19,22 +19,27 @@ let backTextFromData:Ref<number> = ref(1);
 let isFlipping:Ref<boolean> =ref(false);
 let flipType =ref('down');
 let playStatus= false;
+
 onMounted(()=>{
   let digital:any = document.getElementsByClassName("digital")
   //background
   if(backgroundTheme.backgroundColor === "dark"){
-    flipper.value.style.background = "#000000";
-    flipper.value.style.color = "#ffffff";
-    for (const item of digital) {
-        item.style.background = "#000000"
-    }
+    // flipper.value.style.background = "#000000";
+    // flipper.value.style.color = "#ffffff";
+    // for (const item of digital) {
+    //     item.style.background = "#000000"
+    // }
   }
   if(backgroundTheme.backgroundColor === "white"){
-    flipper.value.style.backgroundColor = "#ffffff";
-    flipper.value.style.color = "#000000";
-    for (const item of digital) {
-        item.style.background = "#ffffff"
-    }
+    // flipper.value.style.background = "#ffffff";
+    // flipper.value.style.color = "#000000";
+    // let element = document.querySelector('.M-Flipper .digital')
+  
+    // debugger
+    // debugger
+    // for (const item of digital) {
+    //     item.style.background = "#ffffff"
+    // }
   }
 })
 
@@ -85,8 +90,8 @@ watch(() => props.timeStr,
 </script>
 <template>
   <div class="M-Flipper" ref="flipper" :class="[flipType, {'go': isFlipping}]">
-    <div ref="front" class="digital front" :class="_textClass(frontTextFromData)"></div>
-    <div ref="back" class="digital back" :class="_textClass(backTextFromData)"></div>
+    <div class="digital front" :class="_textClass(frontTextFromData)"></div>
+    <div class="digital back" :class="_textClass(backTextFromData)"></div>
   </div>
 </template>
 <style scoped>
@@ -94,13 +99,13 @@ watch(() => props.timeStr,
   display: inline-block;
   position: relative;
   border-radius: 2px;
-  width: 80px;
-  height: 120px;
-  line-height: 120px;
+  width: 100px;
+  height: 180px;
+  line-height: 180px;
   border: solid 1px #ffffff;
-  /* background: #ffffff;
-  color: #000000; */
-  font-size: 90px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 100px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
   text-align: center;
   font-family: 'Helvetica Neue';
@@ -112,7 +117,7 @@ watch(() => props.timeStr,
   position: absolute;
   left: 0;
   right: 0;
-  background: #000000;
+  background: #ffffff;
   overflow: hidden;
   box-sizing: border-box;
 }

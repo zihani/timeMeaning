@@ -4,11 +4,11 @@ import { reactive, ref ,computed} from "vue";
 // 定义用户状态仓库
 export const useTablePetStore = defineStore(
   "tablePet",()=>{
-    const show = ref(false)
+    const show = ref(false);
     function increment() {
-      show.value = !show.value
+      show.value = !show.value;
     }
-    return {show,increment}
+    return { show, increment };
   });
 
 // 在 Setup Store 中：

@@ -1,10 +1,10 @@
 <script setup lang="ts" >
 import { onMounted, ref,defineComponent,type Ref} from "vue";
-import audio from "@/assets/audio/ding_Audio.mp3"
+// import audio from "@/assets/audio/ding_Audio.mp3"
 import Flipper from './common/Flipper.vue'
 let timer = null
 let flipObjs =  []
-let audioPath = audio
+// let audioPath = audio
 function ding(){
 
 }
@@ -206,8 +206,8 @@ showfen()
     position: relative;
     text-align: center;
     font-size: 60px; 
-    bottom:45px;
-    color:#ffff;
+    bottom:75px;
+    color:#000000;
 }
 .Time {
     text-align: center;

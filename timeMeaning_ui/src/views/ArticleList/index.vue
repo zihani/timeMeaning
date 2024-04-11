@@ -6,10 +6,7 @@ import Banner from "@/components/public/Banner/index.vue"
     <div class="ArticleList">
         <Banner></Banner>
         <div class="site-content">
-        </div>
-        <div class="site-content">
-            list
-            list
+            
         </div>
     </div>
 </template>

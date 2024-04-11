@@ -7,19 +7,19 @@ export const useBannerStore = defineStore(
     state: () => ({
       isHome:ref(false),
       count: 0,
-      strsting:"2233"
+      strsting: "2233"
     }),
     getters: {
        getisHome:((state)=>{
           setTimeout(function() {  
-            state.isHome = !state.isHome
+            state.isHome = !state.isHome;
           }, 2000);
        }),
        double: (state) => state.count * 2,
     },
     actions: {
       increment(){
-        this.strsting = "actions"
+        this.strsting = "actions";
       }
     }
   }
@@ -31,11 +31,11 @@ export const useBannerStore = defineStore(
 // function() 就是 actions
 export const useBannerSetopStore = defineStore(
   'setupBanner', () => {
-  const count = ref(0)
-  const getters1 = computed(()=>{
-    return count.value + 100
-  })
-  function increment() {
-  }
-  return { count,increment ,getters1}
-})
+    const count = ref(0);
+    const getters1 = computed(() => {
+      return count.value + 100;
+    })
+    function increment() {
+    }
+    return { count, increment, getters1 };
+  });
