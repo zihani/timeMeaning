@@ -1,6 +1,6 @@
 [
     {
-      "name":"vue3",
+      "name":"vue3和vue2的区别",
       "src":"/cover/vue3.jpeg",
       "fileName":"vue3.md"
     },{
@@ -16,15 +16,15 @@
       "src":"/cover/js设计模式.jpeg",
       "fileName":"JavaScript 设计模式.md"
     },{
-      "name":"pinia",
+      "name":"pinia安装",
       "src":"/cover/pinia.jpeg",
       "fileName":"pinia 安装使用.md"
     },{
-      "name":"typeScript",
+      "name":"typeScript在vue3中常用语法",
       "src":"/cover/typeScript.png",
       "fileName":"在vue3中TypeScript基本语法.md"
     },{
-      "name":"vite",
+      "name":"vite配置",
       "src":"/cover/vite.jpg",
       "fileName":"vite.md"
     }

@@ -23,12 +23,19 @@ watch(() => backgroundTheme.backgroundColor,
     {
         deep: true // 开启深度监听  
 })
+
+
+//**
+// 图片列表
+// */
+const articleList:Ref<any> = ref()
 function initArticleList(){
     axios.get("/md/json/directory.json").then(res =>{
         articleListStore.initArticleList = res.data
+        articleList.value = res.data
     })
 };
-onMounted(() => {  
+onMounted(() => {
     initArticleList()
 }); 
 
@@ -39,10 +46,6 @@ const router = useRouter();
 const openArticles = ((item:any)=>{
     router.push({ path: '/article', query: { name: item.name,fileName:item.fileName } });
 })
-//**
-// 图片列表
-// */
-const articleList = articleListStore.initArticleList
 </script>
 <template>
     <div class="Home">
@@ -54,9 +57,14 @@ const articleList = articleListStore.initArticleList
                     <el-main>
                         <div class="container">
                            <el-row :gutter="10">
-                                <el-col :span="6" v-for="(item,index) in articleListStore.initArticleList" :key="index">
+                                <el-col :span="6" v-for="(item,index) in articleList" :key="index">
                                     <div class='container-item' @click="openArticles(item)">
-                                       <el-image class="el-image-class" :src="item.src" fit="cover"/>
+                                       <div class="item-img"> 
+                                          <el-image class="el-image-class" :src="item.src" fit="cover"/>
+                                       </div>
+                                       <div class="item-lable">
+                                          <h4>{{ item.name }}</h4>  
+                                       </div>
                                     </div>
                                 </el-col>
                             </el-row>
@@ -71,7 +79,7 @@ const articleList = articleListStore.initArticleList
 <style scoped lang="less">
 .container-item {
     border-radius: 3px;
-    height: 20vh;
+    height: auto;
     width: 100%;
     border: 1px solid; 
     border-color:rgb(255, 255, 255);
@@ -81,6 +89,15 @@ const articleList = articleListStore.initArticleList
 .el-image-class {
     width: 100%; 
     height: 100%;
+}
+.item-img{
+    width: 100%; 
+    height: 200px;
+}
+.item-lable{
+    width: 100%; 
+    height: 20%;
+    text-align: center;
 }
 /******/
 @media (max-width: 800px) {
