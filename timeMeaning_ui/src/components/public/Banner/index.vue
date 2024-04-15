@@ -237,19 +237,8 @@
         <div  class="banner-img">
             <template v-if="banner.isHome">
                 <div class="focusinfo">
-                    <!-- <div class="header-tou">
-                        <router-link to="/"></router-link> -->
-                        <!-- <img :src="websiteInfo.avatar"> -->
-                    <!-- </div> -->
                     <div class="top-social">
                          <Time> </Time>
-                       <!-- <span style="color:#ffffff;">社交信息</span>  -->
-                       <!-- <button @click="ann">按钮</button> -->
-                       <!-- <div v-for="item in socials" :key="item.id" :title="item.title">
-                            <a :href="item.href" target="_blank" :style="{'color':item.color}">
-                                <i class="iconfont" :class="item.icon"></i>
-                            </a>
-                        </div> -->
                     </div>
                 </div>
                 <div class="switch">

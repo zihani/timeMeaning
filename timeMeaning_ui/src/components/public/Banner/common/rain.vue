@@ -2609,4 +2609,7 @@ import Time from "@/components/public/Time/index.vue";
             transform: translateY(500px);
         }
     }
+    @media (max-width: 800px){
+        #rain {display: none;}
+    } 
 </style>

@@ -57,20 +57,22 @@ onMounted(() => {
 <template>
     <div class="Articles" >
         <rain></rain>
-        <el-container class="layout-container" :style="`background-color:${backgroundColor};color:${color}`">
+        <el-container :style="`background-color:${backgroundColor};color:${color};`">
             <el-row :gutter="90">
-                <el-col :span="6">
+                <el-col :span="6" :xs="0">
                     <div class="catalog" >
                         <catalog v-if="titles.length > 0"  :titles="titles"> </catalog> 
                         <el-skeleton v-else :rows="100" animated />
                     </div>
                 </el-col>
-                <el-col :span="18">
-                    <div style="height: 80px; ">
+                <el-col :span="18" :xs="24">
+                    <div class="content">
                         <h1>{{ title }}</h1> 
                     </div>
-                    <div ref="contentRef" class="site-content">
-                       <Content  v-if="html" :html="html"></Content>
+                    <div ref="contentRef">
+                        <el-main>
+                            <Content  v-if="html" :html="html"></Content>
+                        </el-main>
                     </div>
                 </el-col>
             </el-row>
@@ -84,10 +86,13 @@ onMounted(() => {
 .site-content {
     width:70vw;
 }
+.content{
+    height: 80px;
+}
 /******/
 @media (max-width: 800px) {
-    .site-content {
-        
+    .Articles{
+        font-size: 8px;
     }
 }
 /******/

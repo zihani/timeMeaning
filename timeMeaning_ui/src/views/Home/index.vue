@@ -55,26 +55,22 @@ const openArticles = ((item:any)=>{
         <Banner></Banner>
         <div :style="`background-color:${backgroundColor}; color:${color};`">
             <el-container>
-                <el-aside width="200px"></el-aside>
-                <el-container>
-                    <el-main>
-                        <div class="container">
-                           <el-row :gutter="10">
-                                <el-col :span="6" v-for="(item,index) in articleList" :key="index">
-                                    <div class='container-item' @click="openArticles(item)">
-                                       <div class="item-img"> 
-                                          <el-image class="el-image-class" :src="item.src" fit="cover"/>
-                                       </div>
-                                       <div class="item-lable">
-                                          <h4>{{ item.name }}</h4>  
-                                       </div>
+                <el-main>
+                    <div class="container">
+                        <el-row :gutter="10">
+                            <el-col :span="6" v-for="(item,index) in articleList" :key="index" :xs="24">
+                                <div class='container-item' @click="openArticles(item)">
+                                    <div class="item-img"> 
+                                        <el-image class="el-image-class" :src="item.src" fit="cover"/>
                                     </div>
-                                </el-col>
-                            </el-row>
-                        </div>
-                    </el-main>
-                </el-container>
-                <el-aside width="200px"></el-aside>
+                                    <div class="item-lable">
+                                        <h4>{{ item.name }}</h4>  
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </el-main>
             </el-container>
         </div>
     </div>
@@ -103,6 +99,7 @@ const openArticles = ((item:any)=>{
 }
 /******/
 @media (max-width: 800px) {
+
   
 }
 </style>
