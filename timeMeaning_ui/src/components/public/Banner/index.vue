@@ -1,9 +1,9 @@
 <script setup lang="ts">
-    import { onMounted, ref,defineComponent  } from "vue";
+    import { onMounted, ref,defineComponent,type Ref  } from "vue";
     import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore";
     import Time from "@/components/public/Time/index.vue";
     import src from "@/assets/img/touxiang.jpg"
-   import Switch from "@/components/public/Switch/index.vue"
+    import Switch from "@/components/public/Switch/index.vue"
 
     const banner = useBannerStore()
     //   const bannersetop = useBannerSetopStore()
@@ -38,9 +38,23 @@
     const pointerY = ref(0)
     // 定义触摸输入标志
     const touchInput = ref(false)
+    const divTyping:Ref<any> = ref(null);
+    function typing() {
+      let str:string = 'Blog';
+      let i:number = 0;
+      debugger
+      if (i <= str.length) {
+        divTyping.value.innerHTML = str.slice(0, i++) + '_';
+        setTimeout(()=>{
+            typing()
+        },200);
+      } else {
+        divTyping.value.innerHTML = str;
+      }
+    }
     onMounted(()=>{
-        initanimation()
-        banner.getisHome
+        initanimation();
+        typing();
     })
     const initanimation = (()=>{
             canvas.value = document.querySelector('canvas')
@@ -249,7 +263,7 @@
                 <div class="focusinfo">
                     <div class="top-social">
                         <div style="height:100vh;">
-                            <h1 style="color:#ffffff;">Blog</h1>
+                            <h1 ref="divTyping" style="color:#ffffff;">Blog</h1>
                             <img :src="src">
                         </div>
                     </div>

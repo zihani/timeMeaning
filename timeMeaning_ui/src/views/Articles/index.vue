@@ -94,6 +94,9 @@ onMounted(() => {
     .Articles{
         font-size: 8px;
     }
+    .catalog{
+        width: 100%;
+    }
 }
 /******/
 </style>
