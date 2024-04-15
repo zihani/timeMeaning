@@ -23,6 +23,7 @@ const contentRef:Ref<any> = ref(null);
 watch(() => backgroundTheme.backgroundColor,  
 (newVal, oldVal) => {
     backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor];
+    color.value = backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark
 },  
 {
     deep: true // 开启深度监听  

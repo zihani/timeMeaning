@@ -14,11 +14,14 @@ const baseURl = import.meta.env;
 const banner = useBannerStore();
 const container:Ref<any> = ref(null);
 const backgroundTheme = useBackgroundTheme();
-const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor])
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
+const color:Ref<string> = ref(backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark);
+
 const articleListStore = useArticleListStore(); //这是个函数
 watch(() => backgroundTheme.backgroundColor,  
     (newVal, oldVal) => {
         backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+        color.value = backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark
     },  
     {
         deep: true // 开启深度监听  
@@ -50,7 +53,7 @@ const openArticles = ((item:any)=>{
 <template>
     <div class="Home">
         <Banner></Banner>
-        <div :style="`background-color:${backgroundColor}`">
+        <div :style="`background-color:${backgroundColor}; color:${color};`">
             <el-container>
                 <el-aside width="200px"></el-aside>
                 <el-container>
@@ -81,8 +84,6 @@ const openArticles = ((item:any)=>{
     border-radius: 3px;
     height: auto;
     width: 100%;
-    border: 1px solid; 
-    border-color:rgb(255, 255, 255);
     margin-top: 3px;
     margin-bottom: 3px;
 }
@@ -93,6 +94,7 @@ const openArticles = ((item:any)=>{
 .item-img{
     width: 100%; 
     height: 200px;
+    border-radius: 33px;
 }
 .item-lable{
     width: 100%; 

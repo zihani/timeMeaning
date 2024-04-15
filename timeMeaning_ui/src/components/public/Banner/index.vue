@@ -260,7 +260,7 @@
                 <div class="focusinfo">
                     <div class="top-social">
                         <div style="height:100vh;">
-                            <h1 style="color:#ffffff;">Hello</h1>
+                            <h1 style="color:#ffffff;">Blog</h1>
                             <img :src="src">
                         </div>
                     </div>
