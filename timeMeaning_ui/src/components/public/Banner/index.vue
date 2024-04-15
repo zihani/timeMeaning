@@ -13,6 +13,7 @@
     const socials =  ref([{id:1,title:"vue",color:"#ffffff",icon:"",href:"www.baidu.com"}])
         // 定义星星数组
     const stars = ref([])
+
     // 定义星星的最小缩放比例
     const STAR_MIN_SCALE = ref(0.2)
     const width = ref(0)
@@ -39,21 +40,22 @@
     // 定义触摸输入标志
     const touchInput = ref(false)
     const divTyping:Ref<any> = ref(null);
+    const str:string = 'Blog';
+    let i:number = 0;
     function typing() {
-      let str:string = 'Blog';
-      let i:number = 0;
-      debugger
-      if (i <= str.length) {
-        divTyping.value.innerHTML = str.slice(0, i++) + '_';
-        setTimeout(()=>{
-            typing()
-        },200);
-      } else {
-        divTyping.value.innerHTML = str;
-      }
+        if (i <= str.length) {
+            debugger
+            divTyping.value.innerHTML = str.slice(0, i++) + '_';
+            setTimeout(()=>{
+                typing()
+            },200);
+        } else {
+            divTyping.value.innerHTML = str;
+        }
     }
     onMounted(()=>{
         initanimation();
+        banner.getisHome
         typing();
     })
     const initanimation = (()=>{
