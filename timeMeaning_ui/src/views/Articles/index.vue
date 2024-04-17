@@ -56,9 +56,11 @@ onMounted(() => {
 </script>
 <template>
     <div class="Articles" >
-        <rain></rain>
-        <el-container :style="`background-color:${backgroundColor};color:${color};`">
-            <el-row :gutter="90">
+        <div style="width:100%;">
+            <rain></rain>
+        </div>
+        <el-container  :style="`background-color:${backgroundColor};color:${color};width:100%;`">
+             <el-row style="width:100%;">
                 <el-col :span="6" :xs="0">
                     <div class="catalog" >
                         <catalog v-if="titles.length > 0"  :titles="titles"> </catalog> 
@@ -69,17 +71,16 @@ onMounted(() => {
                     <div class="content">
                         <h1>{{ title }}</h1> 
                     </div>
-                    <div ref="contentRef">
-                        <el-main>
-                            <Content  v-if="html" :html="html"></Content>
-                        </el-main>
+                    <div class='content-html'  ref="contentRef">
+                        <Content  v-if="html" :html="html"></Content>
                     </div>
                 </el-col>
             </el-row>
-        </el-container>
+        </el-container> 
     </div>
 </template>
 <style scoped lang="less">
+
 .catalog{
     width: 300px;
 }
@@ -88,6 +89,17 @@ onMounted(() => {
 }
 .content{
     height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; /* 或者你需要的宽度 */
+}
+.Articles{
+   width:90vw;
+}
+.content-html{
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%; /* 或者你需要的宽度 */
 }
 /******/
 @media (max-width: 800px) {

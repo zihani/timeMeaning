@@ -24,4 +24,7 @@ onMounted(() => {
     </div>
 </template>
 <style scoped lang="less">
+.Content {
+    width: 100%;
+}
 </style>

@@ -266,18 +266,17 @@ import Time from "@/components/public/Time/index.vue";
     .time{
         // margin-top:  100px;
         padding-top:100px;
-        width: 100vw;
+        width: 99vw;
     }
     .container {
         position: relative;
-        width: 100vw;
+        width: 99vw;
         height:30vw;
         overflow: hidden;
     }
-
     .window {
         position: absolute;
-        width: 100vw;
+        width: 99vw;
         height: 100vh;
         background:  url("/src/assets/img/1.jpg");
         background-size: cover;
@@ -285,7 +284,6 @@ import Time from "@/components/public/Time/index.vue";
         -webkit-filter: blur(10px);
         filter: blur(10px);
     }
-
     .raindrops,
     .borders,
     .drops {
