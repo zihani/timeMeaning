@@ -9,6 +9,18 @@ import { analysisTxt } from './tools/analysis'
 import 'primeicons/primeicons.css'
 import anime from 'animejs'
 import Button from 'primevue/button';
+import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
+const backgroundTheme = useBackgroundTheme();
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
+const color:Ref<string> = ref(backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark);
+watch(() => backgroundTheme.backgroundColor,  
+    (newVal, oldVal) => {
+        backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+        color.value = backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark
+    },  
+    {
+        deep: true // 开启深度监听  
+})
 // import { useToast } from "primevue/usetoast";
 // const toast = useToast();
 const todoListStore = useTodoListStore(); //这是个函数
@@ -150,7 +162,7 @@ const tooltiptextshow = ref(false)
     <div v-show="tooltiptextshow" class="tooltiptext">
         Ctrl + Alt + T
    </div>
-   <div class="btn-todo" v-shortkey="['ctrl', 'alt' , 't']" @shortkey="istodoshow"  @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" @click="istodoshow">
+   <div class="btn-todo" :style="`color:${color}`" v-shortkey="['ctrl', 'alt' , 't']" @shortkey="istodoshow"  @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" @click="istodoshow">
         <strong>  To Do  </strong>
    </div>
 </template>

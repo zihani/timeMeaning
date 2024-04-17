@@ -76,6 +76,11 @@ const openArticles = ((item:any)=>{
     </div>
 </template>
 <style scoped lang="less">
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; 
+}
 .container-item {
     border-radius: 3px;
     height: auto;
