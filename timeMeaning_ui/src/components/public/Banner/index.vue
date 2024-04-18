@@ -258,7 +258,7 @@
                     </div>
                 </div>
                 <div class="switch">
-                    <Switch></Switch>
+                    <!-- <Switch></Switch> -->
                 </div>
             </template>
             <template v-else>
@@ -279,7 +279,7 @@
 <style scoped lang="less">
 .switch{
     position: relative;
-    top:40px;
+    // top:40px;
 }
 #banner {
     position: relative;

@@ -33,6 +33,7 @@ watch(() => backgroundTheme.backgroundColor,
 // */
 const articleList:Ref<any> = ref()
 function initArticleList(){
+    debugger
     axios.get("/md/json/directory.json").then(res =>{
         articleListStore.initArticleList = res.data
         articleList.value = res.data
