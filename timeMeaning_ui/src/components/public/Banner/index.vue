@@ -51,12 +51,15 @@
             },200);
         } else {
             divTyping.value.innerHTML = str;
+            banner.isHome = true;
         }
     }
     onMounted(()=>{
         initanimation();
-        banner.getisHome
-        typing();
+        if(!banner.isHome){
+            typing();
+        }
+        
     })
     const initanimation = (()=>{
             canvas.value = document.querySelector('canvas')

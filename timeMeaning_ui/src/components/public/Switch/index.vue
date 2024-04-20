@@ -6,7 +6,6 @@ const button:Ref<any> = ref(null)
 const stars:Ref<any> = ref(null)
 const sync:Ref<any> = ref(null)
 const toggleIndicatorWrapper:Ref<any> = ref(null)
-
 let isBool:Boolean =false
 
 function lsclick(){
@@ -15,7 +14,6 @@ function lsclick(){
     button.value.setAttribute("aria-pressed",isBool);
 }
 function day(){
-    // stars.value.style.width = "20%";
     debugger
    button.value.style.width = "10vw";
    if(backgroundTheme.backgroundColor === "dark"){

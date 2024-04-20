@@ -3,9 +3,12 @@
    import{ useBackgroundTheme } from "@/stores/useBackgroundTheme"
    const backgroundTheme = useBackgroundTheme()
    const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor])
+   const color:Ref<string> = ref(backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark);
     watch(() => backgroundTheme.backgroundColor,  
     (newVal, oldVal) => {
         backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+        color.value = backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark
+
     },  
     {
         deep: true // 开启深度监听  
@@ -52,14 +55,17 @@
             <div class="menu-item header-search"></div>
             <div class="menu-item" >
                 <router-link to="/">
-                    <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff">首页</span>
-                    <span v-else>首页</span>
+                    <span :style="`color:${color}`">首页</span>
+                </router-link>
+            </div>
+             <div class="menu-item" >
+                <router-link to="/articlelist">
+                    <span :style="`color:${color}`">笔记</span>
                 </router-link>
             </div>
             <div class="menu-item hasChild">
                 <router-link to="/gallery">
-                  <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">画廊</span>
-                  <span v-else  href="">画廊</span>
+                  <span :style="`color:${color}`" href="">画廊</span>
                 </router-link>
             </div>
         </div>
