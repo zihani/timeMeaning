@@ -11,7 +11,7 @@ import axios from "axios";
 import type { Ref } from "vue";
 import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
 const baseURl = import.meta.env;
-const banner = useBannerStore();
+const bannerStore = useBannerStore();
 const container:Ref<any> = ref(null);
 const backgroundTheme = useBackgroundTheme();
 const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
@@ -54,7 +54,7 @@ const openArticles = ((item:any)=>{
 <template>
     <div class="Home">
         <Banner></Banner>
-        <div :style="`background-color:${backgroundColor}; color:${color};`">
+        <div v-if="bannerStore.isHome"  :style="`background-color:${backgroundColor}; color:${color};`">
             <el-container>
                 <el-main>
                     <div class="container">
