@@ -2,38 +2,38 @@
     import { onMounted, ref,defineComponent,type Ref  } from "vue";
     import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore";
     import Time from "@/components/public/Time/index.vue";
-    import src from "@/assets/img/touxiang.jpg"
-    import Switch from "@/components/public/Switch/index.vue"
+    import src from "@/assets/img/touxiang.jpg";
+    import Switch from "@/components/public/Switch/index.vue";
 
-    const banner = useBannerStore()
+    const banner = useBannerStore();
     //   const bannersetop = useBannerSetopStore()
     
-    const loading = ref(false)
-    const websiteInfo = ref({slogan:"博客"})
-    const socials =  ref([{id:1,title:"vue",color:"#ffffff",icon:"",href:"www.baidu.com"}])
+    const loading = ref(false);
+    const websiteInfo = ref({slogan:"博客"});
+    const socials =  ref([{id:1,title:"vue",color:"#ffffff",icon:"",href:"www.baidu.com"}]);
         // 定义星星数组
-    const stars = ref([])
+    const stars = ref([]);
 
     // 定义星星的最小缩放比例
-    const STAR_MIN_SCALE = ref(0.2)
-    const width = ref(0)
-    const height = ref(0)
+    const STAR_MIN_SCALE = ref(0.2);
+    const width = ref(0);
+    const height = ref(0);
     // 定义缩放比例
-    const scale = ref(1)
+    const scale = ref(1);
     // 定义速度对象
-    const velocity = ref({ x: 0, y: 0, tx: 0, ty: 0, z: 0.0009 })
+    const velocity = ref({ x: 0, y: 0, tx: 0, ty: 0, z: 0.0009 });
     // 定义溢出阈值
-    const OVERFLOW_THRESHOLD= ref(50)
+    const OVERFLOW_THRESHOLD= ref(50);
     // 获取canvas元素
-    const canvas = ref(document.querySelector('canvas'))
+    const canvas = ref(document.querySelector('canvas'));
     // 定义星星的颜色
-    const STAR_COLOR = ref('#fff')
+    const STAR_COLOR = ref('#fff');
     // 定义星星的大小
-    const STAR_SIZE = ref(6)
+    const STAR_SIZE = ref(6);
     // 定义星星的数量
-    const STAR_COUNT = ref((window.innerWidth + window.innerHeight) / 10)
+    const STAR_COUNT = ref((window.innerWidth + window.innerHeight) / 10);
     // 获取canvas的绘图上下文
-    const context = ref(document.querySelector('canvas'))
+    const context = ref(document.querySelector('canvas'));
     // 定义鼠标指针的位置
     const pointerX = ref(0)
     const pointerY = ref(0)
@@ -44,7 +44,6 @@
     let i:number = 0;
     function typing() {
         if (i <= str.length) {
-            debugger
             divTyping.value.innerHTML = str.slice(0, i++) + '_';
             setTimeout(()=>{
                 typing()

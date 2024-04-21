@@ -34,7 +34,6 @@ watch(() => backgroundTheme.backgroundColor,
 // */
 const articleList:Ref<any> = ref()
 function initArticleList(){
-    debugger
     axios.get("/md/json/directory.json").then(res =>{
         articleListStore.initArticleList = res.data
         articleList.value = res.data
@@ -64,8 +63,11 @@ const openArticles = ((item:any)=>{
                         <el-row :gutter="10">
                             <el-col :span="6" v-for="(item,index) in articleList" :key="index" :xs="24">
                                 <div class='container-item' @click="openArticles(item)">
-                                    <div class="item-img"> 
+                                    <div class="item-img" v-if="item.src"> 
                                         <el-image class="el-image-class" :src="item.src" fit="cover"/>
+                                    </div>
+                                     <div class="item-img" v-else> 
+                                        <h2>{{ item.name }}</h2>
                                     </div>
                                     <div class="item-lable">
                                         <h4>{{ item.name }}</h4>  

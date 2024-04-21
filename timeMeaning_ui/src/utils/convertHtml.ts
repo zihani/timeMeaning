@@ -3,7 +3,6 @@ import hljs from 'highlight.js';
 import axios from "axios" 
 export async function getHtml (articleType:any){
    return await axios.get(`/md/${articleType.fileName}`).then(res =>{
-
       if(res.data){
              // 使用highlight.js的行内高亮方法
          const renderer = new marked.Renderer();

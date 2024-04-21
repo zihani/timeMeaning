@@ -10,6 +10,7 @@ import { useRouter } from 'vue-router';
 import axios from "axios";
 import type { Ref } from "vue";
 import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
+import { getRandomSpecificColor }   from "@/utils/getRandomSpecificColor.ts";
 const baseURl = import.meta.env;
 const bannerStore = useBannerStore();
 const container:Ref<any> = ref(null);
@@ -33,7 +34,6 @@ watch(() => backgroundTheme.backgroundColor,
 // */
 const articleList:Ref<any> = ref()
 function initArticleList(){
-    debugger
     axios.get("/md/json/directory.json").then(res =>{
         articleListStore.initArticleList = res.data
         articleList.value = res.data
@@ -41,6 +41,7 @@ function initArticleList(){
 };
 onMounted(() => {
     initArticleList()
+//    console.log() 
 }); 
 
 //**
@@ -62,8 +63,17 @@ const openArticles = ((item:any)=>{
                             <el-col :span="6" v-for="(item,index) in articleList" :key="index" :xs="24">
                                 <div class='container-item' @click="openArticles(item)">
                                     <div class="item-img"> 
-                                        <el-image class="el-image-class" :src="item.src" fit="cover"/>
+                                        <el-image class="el-image-class" :src="item.src" fit="cover">
+                                             <template #error>
+                                                <div class="image-slot" :style="`background-color:${getRandomSpecificColor()};color:#ffffff;`">
+                                                     <h2>{{ item.name }}</h2>
+                                                </div>
+                                             </template>
+                                        </el-image>
                                     </div>
+                                    <!-- <div class="item-img" v-else> 
+                                       
+                                    </div> -->
                                     <div class="item-lable">
                                         <h4>{{ item.name }}</h4>  
                                     </div>
@@ -77,6 +87,13 @@ const openArticles = ((item:any)=>{
     </div>
 </template>
 <style scoped lang="less">
+.image-slot{
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: 100%; /* 容器的高度 */
+    width: 100%; /* 容器的宽度 */
+}
 .container{
     margin-left: auto;
     margin-right: auto;

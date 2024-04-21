@@ -14,7 +14,6 @@ function lsclick(){
     button.value.setAttribute("aria-pressed",isBool);
 }
 function day(){
-    debugger
    button.value.style.width = "10vw";
    if(backgroundTheme.backgroundColor === "dark"){
       isBool = true;
