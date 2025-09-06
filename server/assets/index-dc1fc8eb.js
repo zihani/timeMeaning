@@ -1,0 +1,1 @@
+import{d as s,c as t,a as o,o as a,B as _,p as c,b as n,e as d,_ as p}from"./index-cbd81c70.js";const i=e=>(c("data-v-7877f3b3"),e=e(),n(),e),r={class:"ArticleList"},l=i(()=>d("div",{class:"site-content"},null,-1)),f=s({__name:"index",setup(e){return(u,x)=>(a(),t("div",r,[o(_),l]))}});const v=p(f,[["__scopeId","data-v-7877f3b3"]]);export{v as default};

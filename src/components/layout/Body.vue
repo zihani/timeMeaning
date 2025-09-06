@@ -1,4 +1,3 @@
-
 <script  setup lang="ts">
 import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
 import TablePet from '@/components/public/TablePet.vue'

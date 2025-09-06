@@ -21,7 +21,7 @@
         data() {
             return{
                 show: false,
-                dialogue:"hell",
+                dialogue:"hell111",
                 dialogueshow:false,
                 newdate:"",
             }

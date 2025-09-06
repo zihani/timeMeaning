@@ -4,9 +4,8 @@ import Banner from "@/components/public/Banner/index.vue"
 </script>
 <template>
     <div class="Gallery">
-        <Banner></Banner>
-        <div>
-          
+        <div style="padding-top: 80px;">
+            <iframe src="https://public.work/" style="width: 100%; height: 100vh;" frameborder="0"></iframe>
         </div>
     </div>
 </template>

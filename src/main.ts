@@ -13,6 +13,7 @@ import hljsVuePlugin from "@highlightjs/vue-plugin"
 import "nes.css/css/nes.min.css";
 import router from './router';
 import 'primevue/resources/themes/lara-light-green/theme.css';
+// import './qiankun'
 //createApp 根组件选择
 const app = createApp(App);
 app.directive('tooltip', Tooltip); //directive 注册指令

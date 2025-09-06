@@ -1,0 +1,1 @@
+import{d as t,c as s,o,e}from"./index-cbd81c70.js";const a={class:"Gallery"},r=e("div",{style:{"padding-top":"80px"}},[e("iframe",{src:"https://public.work/",style:{width:"100%",height:"100vh"},frameborder:"0"})],-1),c=[r],p=t({__name:"index",setup(n){return(d,i)=>(o(),s("div",a,c))}});export{p as default};
