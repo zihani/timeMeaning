@@ -30,6 +30,38 @@ const router = createRouter({
         meta: {
           keepAlive: false, //需要缓存
         },
+      },
+      {
+        path: "/dev-tools",
+        name: "devTools",
+        component: () => import("@/views/DevTools/index.vue"),
+        meta: {
+          keepAlive: false, //需要缓存
+        }
+      },
+      {
+        path: "/generate",
+        name: "generate",
+        component: () => import("@/components/tools/index.vue"),
+        meta: {
+          keepAlive: false, //需要缓存
+        },
+      },
+      {
+        path: "/generate-table",
+        name: "generate-table",
+        component: () => import("@/components/tools/generateList.vue"),
+        meta: {
+          keepAlive: false, //需要缓存
+        },
+      },
+      {
+        path: "/module3d",
+        name: "generate-table",
+        component: () => import("@/components/module3d/index.vue"),
+        meta: {
+          keepAlive: false, //需要缓存
+        },
       }
     ]
 })

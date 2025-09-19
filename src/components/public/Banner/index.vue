@@ -247,11 +247,10 @@
                        <!-- <div v-for="item in socials" :key="item.id" :title="item.title">
                         </div> -->
                         <i v-tooltip.left="'golog github'">
-                            <a href="https://github.com/zihani/timeMeaning" target="_blank" >
+                            <a href="" target="_blank" >
                               <img style="width: 32px;height: 32px;" :src="srcGithub" alt="">
                             </a>
                         </i> 
-                      
                     </div>
                 </div>
                 <div class="switch">
