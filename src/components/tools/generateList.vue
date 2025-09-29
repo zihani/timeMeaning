@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref,type Ref, watch, reactive } from "vue";
 import type { PropType } from 'vue';
 import { useToolsStore } from '@/stores/useToolsStore'
+import draggable from 'vuedraggable'
 const toolsStore = useToolsStore()
 defineProps({
   config: {
@@ -48,19 +49,56 @@ const createTableComponent = (() =>{
         console.log(error)
     }
 })
+const onDragEnd = (() =>{
+    try {
+        // 选择一个vue 版本 2x 3x
+        // 选择一个组合式api 选择式api
+        // 使用的组件库 
+        // 跳转到代码显示页面 添加拷贝按钮提升开发效率
+        // 使用模版字符串生成代码结构
+        // console.log(addrow._rawValue.length)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 </script>
 <template>
     <div style="padding-top: 80px; color:black;">
-       <el-form :model="form" label-width="120px" v-show="true">
-            <el-row>
-                <el-col :span="6">  
-                     <el-button type="primary" @click="onAddRow">新增列</el-button> 
-                </el-col>
-                <el-col>
-                    <el-button type="primary" @click="createTableComponent">生成列表代码</el-button> 
-                </el-col>
-            </el-row>
-            <el-row v-for="(item, key ) in addrow" :key="key">
+          <draggable 
+            v-model="addrow" 
+            item-key="id"
+            @end="onDragEnd">
+            <template #item="{ element }">
+                 <div>
+                    <el-form :model="element" label-width="120px" v-show="true">
+                        <el-row>
+                            <el-col :span="6">  
+                                <el-form-item label="字段:" :rules="[{
+                                    type: 'field',
+                                    required: true,
+                                    message: '请填写字段!',
+                                    trigger: 'blur'
+                                }]">
+                                    <el-input v-model="element.field" placeholder="请输入字段!" />
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="6">
+                                <el-form-item label="字段名称:"  :rules="[{
+                                    type: 'fieldName',
+                                    required: true,
+                                    message: '请填写字段名称!',
+                                    trigger: 'blur'
+                                }]">
+                                    <el-input v-model="element.fieldName" placeholder="请输入字段名称！" />
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-form>
+                 </div>
+            </template>
+        </draggable>
+            <!-- <el-row v-for="(item, key ) in addrow" :key="key">
                 <el-col :span="6">  
                     <el-form-item label="字段:" :rules="[{
                         type: 'field',
@@ -81,12 +119,15 @@ const createTableComponent = (() =>{
                         <el-input v-model="item.fieldName" placeholder="Please input" />
                     </el-form-item>
                 </el-col>
-            </el-row>
+            </el-row> -->
             <el-row>
                 <el-col :span="6">  
+                     <el-button type="primary" @click="onAddRow">新增列</el-button> 
+                </el-col>
+                <el-col :span="6">
+                    <el-button type="primary" @click="createTableComponent">生成列表代码</el-button> 
                 </el-col>
             </el-row>
-        </el-form>
     </div>
 </template>
 <style scoped>
