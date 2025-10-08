@@ -30,8 +30,10 @@
     "primevue": "^3.41.1",
     "qiankun": "^2.10.16",
     "vue": "^3.3.4",
+    "vue-i18n": "^9.14.5",
     "vue-router": "^4.2.5",
     "vue-shortkey": "^3.1.7",
+    "vue3-lazyload": "^0.3.8",
     "vuedraggable": "^4.1.0"
   },
   "devDependencies": {

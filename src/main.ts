@@ -15,6 +15,9 @@ import router from './router';
 import 'primevue/resources/themes/lara-light-green/theme.css';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
+import 'highlight.js/styles/atom-one-dark.css' // 推荐主题
+import 'highlight.js/lib/common'
+import Lazyload from 'vue3-lazyload'
 // import './qiankun'
 //createApp 根组件选择
 const app = createApp(App);
@@ -28,6 +31,10 @@ app.use(pinia);
 app.use(router);
 app.use(PrimeVue, { unstyled: false }); //是否开启PrimeVue无样式模式
 app.use(hljsVuePlugin,{
+})
+app.use(Lazyload, {
+  loading: '/placeholder.jpg', // 加载中占位图
+  error: '/error.jpg'         // 加载失败占位图
 })
 
 //注册组件

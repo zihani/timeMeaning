@@ -62,16 +62,22 @@
                   <span v-else  href="">画廊</span>
                 </router-link>
             </div>
-             <!-- <div class="menu-item hasChild">
+             <div class="menu-item hasChild">
                 <router-link to="/dev-tools">
                   <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">开发工具</span>
                   <span v-else  href="">开发工具</span>
                 </router-link>
-            </div> -->
-              <div class="menu-item hasChild">
+            </div>
+            <!-- <div class="menu-item hasChild">
                 <router-link to="/module3d">
                   <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">3D</span>
                   <span v-else  href="">3D</span>
+                </router-link>
+            </div> -->
+            <div class="menu-item hasChild">
+                <router-link to="/photo">
+                  <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">相册</span>
+                  <span v-else  href="">相册</span>
                 </router-link>
             </div>
         </div>

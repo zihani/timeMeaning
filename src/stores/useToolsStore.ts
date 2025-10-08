@@ -1,22 +1,27 @@
 import { defineStore } from "pinia";
 import { reactive, ref ,computed} from "vue";
 import { getStorage ,setStorage} from "@/utils/IndexedDB.ts"
+interface itableRow {
+  field: string;
+  fieldName: string;
+  rowShow: Boolean;
+}
 // 定义用户状态仓库
 export const useToolsStore = defineStore(
   "tools",{
     state: () => ({
-      tableRow:[{field:"",fieldName:""}]
+      tableRow : ref<itableRow[]>([{field:"",fieldName:"",rowShow:true}])
     }),
     getters: {
     },
     actions: {
-      addTableRow(value:Array<any>){
-        this.addTableRow = value
-        setStorage('tableRow',value).then((res:Array<any>) =>{
-          console.log('setRes')
-          console.log(res)
-          console.log('setRes')
-        })
+      addTableRow(value:Array<itableRow>){
+        this.tableRow.push(value)
+        // setStorage('tableRow',this.tableRow).then((res:Array<any>) =>{
+        //   console.log('setRes')
+        //   console.log(res)
+        //   console.log('setRes')
+        // })
       },
       getTableRow(){
          getStorage('tableRow').then((res:Array<any>) => {

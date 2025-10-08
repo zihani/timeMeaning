@@ -62,6 +62,14 @@ const router = createRouter({
         meta: {
           keepAlive: false, //需要缓存
         },
+      },
+      {
+        path: "/photo",
+        name: "photo",
+        component: () => import("@/components/photo/index.vue"),
+        meta: {
+          keepAlive: false, //需要缓存
+        },
       }
     ]
 })
