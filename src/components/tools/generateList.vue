@@ -4,10 +4,12 @@ import type { PropType } from 'vue';
 import { useToolsStore } from '@/stores/useToolsStore'
 import draggable from 'vuedraggable'
 import type { FormInstance } from '@hc/element-plus'
-import axios from 'axios'
-import { template } from '@/template/elementplus-table'
+import useClipboard from 'vue-clipboard3'
+import { Vue3TemplateComposition } from '@/template/vue3-Composition.ts'
+// import { formatCode } from '@/template/parser.ts'
+import type { CreateTable } from '@/interface/interface-generate-list'
 const toolsStore = useToolsStore()
-console.log(toolsStore)
+const { toClipboard } = useClipboard()
 defineProps({
   config: {
     type: Object as PropType<{
@@ -19,36 +21,17 @@ defineProps({
   }
 });
 
-interface icreateTable {
-  prop: string;
-  label: string;
-  showHeader: Boolean;
-}
+const refCode = ref('')
 const emit = defineEmits(['submit', 'update'])
-
 const tableData = ref([{id:0}])
 const show = ref(true)
-// toolsStore.getTableRow()
-// function addrow1() {
-//     return ref(toolsStore.tableRow)
-// }
 // 读取状态管理
 const activeName = ref('view')
-const addrow = ref(toolsStore.tableRow)
 const code = ref('div')
-const createTable:Ref<Array<icreateTable>> = ref([{prop:"",label:"",showHeader: true}])
+const createTable:Ref<Array<CreateTable>> = ref([{prop:"",label:"",showHeader: true}])
 const onAddRow = (()=>{
     toolsStore.addTableRow({field:"",fieldName:"",rowShow:true})
-    // toolsStore.tableRow.push()
-    // addrow = ref(toolsStore.tableRow)
-    // console.log('toolsStore.tableRow')
-    // console.log(toolsStore.tableRow)
-    // console.log('toolsStore.tableRow')
-    // toolsStore.addTableRow(toolsStore.tableRow)
-    // addrow.value.push({field:"",fieldName:""})
-    // emit('submit', addrow)
 })
-
 const onDragEnd = (() =>{
     try {
      //拖拽开始
@@ -68,29 +51,23 @@ const formRef = ref<FormInstance>()
 const createTableComponent = (formEl: FormInstance | undefined) =>{
         try {
               if (!formEl) return
-              formEl.validate((valid) => {
+              formEl.validate((valid:boolean) => {
                     if (valid) {
+                        let tableColumns = []
                         createTable.value = []
                         // 选择一个vue 版本 2x 3x
                         // 选择一个组合式api 选择式api
                         // 使用的组件库 
                         // 跳转到代码显示页面 添加拷贝按钮提升开发效率
                         for (const item of toolsStore.tableRow) {
-                            console.log(item)
+                            // console.log(item)
                             createTable.value.push({prop: item.field,label:item.fieldName,showHeader:item.rowShow})
+                            tableColumns.push(`<el-table-column prop="${item.field}" label="${item.fieldName}" />`)
                         }
                         show.value = false
-                        code.value = template({tableColumn: createTable.value})
-                        // axios.get('/template/text.txt')
-                        // .then(response => {
-                        //     let name = 'div'
-                        //     let replacedContent = response.data
-                        //     let text = replacedContent
-                        //     //.replace(/"/g, "`");
-                        //     console.log(text)
-                        // })
-                        // .catch(error => console.error('Error fetching the file', error));
-                        console.log('submit!')
+                        createTable.value
+                        let template:string = tableColumns.join('\n')
+                        code.value = Vue3TemplateComposition({template})
                     } else {
                         console.log('error submit!')
                         return false
@@ -100,6 +77,14 @@ const createTableComponent = (formEl: FormInstance | undefined) =>{
         } catch (error) {
             console.log(error)
         }
+}
+
+const copyBtn = async ()=>{
+    try {
+         await toClipboard(refCode.value);
+    } catch (e) {
+        console.error(e)
+    }
 }
 
 </script>
@@ -183,11 +168,16 @@ const createTableComponent = (formEl: FormInstance | undefined) =>{
                     </el-table>
                 </el-tab-pane>
                 <el-tab-pane label="代码" name="code">
-                    <code><highlightjs 
+                    <el-button @click="copyBtn"> 一键复制 </el-button> 
+                    <!-- <div> 111 </div> -->
+                     <div  ref="refCode">
+                        <highlightjs 
+                        class="refCode"
                         language="javascript"
                         :autodetect="false"
                         :code="code"
-                    /></code>
+                        />
+                     </div>
                 </el-tab-pane>
             </el-tabs>
            

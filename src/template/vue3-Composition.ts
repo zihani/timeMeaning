@@ -1,16 +1,32 @@
-
+import type { vue3TemplateOption } from '@/interface/vue3TemplateComposition';
 // Vue3组合式API模板生成器
-function generateVue3Template(options = {}) {
-  const {
-    componentName = 'MyComponent',
-    props = [],
-    setupReturn = [],
-    imports = ["ref", "computed"],
-    lifecycleHooks = ["onMounted"],
-    methods = [],
-    template = '<div>{{ count }}</div>'
-  } = options;
-
+export const Vue3TemplateComposition = function generateVue3Template(option: vue3TemplateOption): string{
+  if(!Reflect.has(option, 'componentName')){
+      option['componentName'] = 'MyComponent'
+  }
+  if(!Reflect.has(option, 'props')){
+      option['props'] = []
+  }
+  if(!Reflect.has(option, 'setupReturn')){
+      option['setupReturn'] = []
+  }
+  if(!Reflect.has(option, 'imports')){
+      option['imports'] = ["ref", "computed"]
+  }
+  if(!Reflect.has(option, 'lifecycleHooks')){
+      option['lifecycleHooks'] = ["onMounted"]
+  }
+  if(!Reflect.has(option, 'methods')){
+      option['methods'] = []
+  }
+  if(!Reflect.has(option, 'template')){
+      option['template'] = ''
+  }
+  if(!Reflect.has(option, 'variable')){
+      option['variable'] = ''
+  }
+  const { variable, template, methods, lifecycleHooks, imports, setupReturn, props, componentName } = option
+  const codeType = 'ts'
   // 生成import语句
   const importStatements = imports.length > 0 
     ? `import { ${imports.join(', ')} } from 'vue'`
@@ -35,16 +51,15 @@ function generateVue3Template(options = {}) {
   const methodsCode = methods.map(method => {
     return `  const ${method.name} = ${method.isAsync ? 'async ' : ''}() => {\n    ${method.body || '// 方法实现'}\n  }`;
   }).join('\n\n');
-
-  return `<script setup>
+  
+  // 生成变量
+  const variableAny = variable
+  return `<script setup${codeType === 'ts' ? ' lang="ts"':''}>
 ${importStatements}
-
 ${propsDeclaration}
-
+${variableAny}
 ${methodsCode}
-
 ${lifecycleCode}
-
 ${setupReturnContent}
 </script>
 
@@ -56,19 +71,3 @@ ${setupReturnContent}
 /* 组件样式 */
 </style>`;
 }
-
-// 使用示例
-export const template = generateVue3Template({
-  componentName: 'Counter',
-  props: [{ name: 'initialValue', type: 'Number' }],
-  imports: ['ref', 'onMounted', 'computed'],
-  setupReturn: ['count', 'increment'],
-  lifecycleHooks: ['onMounted'],
-  methods: [{
-    name: 'increment',
-    body: 'count.value++'
-  }],
-  template: '<button @click="increment">{{ count }}</button>'
-});
-
-console.log(template);

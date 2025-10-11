@@ -18,12 +18,15 @@ import 'highlight.js/styles/github.css';
 import 'highlight.js/styles/atom-one-dark.css' // 推荐主题
 import 'highlight.js/lib/common'
 import Lazyload from 'vue3-lazyload'
+
+import css from 'highlight.js/lib/languages/css'
 // import './qiankun'
 //createApp 根组件选择
 const app = createApp(App);
 app.directive('tooltip', Tooltip); //directive 注册指令
 app.directive('highlight', (el) => {
   hljs.highlightBlock(el.querySelector('code'));
+  hljs.registerLanguage('css', css)
 });
 app.use(VueShortkey);
 app.use(ElementPlus);

@@ -6,11 +6,23 @@ interface itableRow {
   fieldName: string;
   rowShow: Boolean;
 }
+interface iform {
+  vueType: string;
+  vueApiType: string;
+  vueComponents: string;
+  codeType: string;
+}
 // 定义用户状态仓库
 export const useToolsStore = defineStore(
   "tools",{
     state: () => ({
-      tableRow : ref<itableRow[]>([{field:"",fieldName:"",rowShow:true}])
+      tableRow : ref<itableRow[]>([{field:"",fieldName:"",rowShow:true}]),
+      form : reactive<iform>({
+        vueType: 'vue3',
+        vueApiType: 'Options',
+        vueComponents: 'element',
+        codeType: 'ts'
+      })
     }),
     getters: {
     },

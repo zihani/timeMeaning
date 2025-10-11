@@ -42,7 +42,7 @@ const router = createRouter({
       {
         path: "/generate",
         name: "generate",
-        component: () => import("@/components/tools/index.vue"),
+        component: () => import("@/components/tools/tools-index.vue"),
         meta: {
           keepAlive: false, //需要缓存
         },
