@@ -9,34 +9,34 @@ function ding(){
 
 }
 function initdate(fromDatas){
-      let time = fromDatas[0]+fromDatas[1]+":"+fromDatas[2]+fromDatas[3]+":"+fromDatas[4]+fromDatas[5]
+      // let time = fromDatas[0]+fromDatas[1]+":"+fromDatas[2]+fromDatas[3]+":"+fromDatas[4]+fromDatas[5]
+      console.log(fromDatas)
       // 从cooik中获取设置时间
-      switch(time){
-        case '6:00:00':
-          ding();
-          break;
-        case '9:00:00':
-          ding();
-          break; 
-        case '12:00:00':
-          ding();
-          break; 
-        case '15:00:00':
-          ding();
-          break;
-        case '18:00:00':
-          ding();
-          break;
-        case '21:08:00':
-          ding();
-          break;
-        case '00:03:00':
-          ding();
-          break;
-      }
+      // switch(time){
+      //   case '6:00:00':
+      //     ding();
+      //     break;
+      //   case '9:00:00':
+      //     ding();
+      //     break; 
+      //   case '12:00:00':
+      //     ding();
+      //     break; 
+      //   case '15:00:00':
+      //     ding();
+      //     break;
+      //   case '18:00:00':
+      //     ding();
+      //     break;
+      //   case '21:08:00':
+      //     ding();
+      //     break;
+      //   case '00:03:00':
+      //     ding();
+      //     break;
+      // }
        // 如果时间到整点调取音频文件 
  }
-
 const flipperHour1:Ref<any> = ref({nowTimeStr:"",nextTimeStr:""});
 const flipperHour2:Ref<any> = ref({nowTimeStr:"",nextTimeStr:""});
 const flipperMinute1:Ref<any> = ref({nowTimeStr:"",nextTimeStr:""});
@@ -101,10 +101,10 @@ function run() {
             flipObjs[i].value.nowTimeStr = nowTimeStr[i] 
             flipObjs[i].value.nextTimeStr = nextTimeStr[i]
         }
-        // const fromDatas= flipObjs.map(item =>{
-        //     return item.frontTextFromData
-        // })
-        // initdate(fromDatas)
+        const fromDatas= flipObjs.map(item =>{
+            return item.value
+        })
+        initdate(fromDatas)
     }, 1000)
 }
     // 正则格式化日期

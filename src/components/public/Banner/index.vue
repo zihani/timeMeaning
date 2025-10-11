@@ -1,46 +1,64 @@
 <script setup lang="ts">
-    import { onMounted, ref,defineComponent  } from "vue";
+    import { onMounted, ref,defineComponent,type Ref  } from "vue";
     import {useBannerStore ,useBannerSetopStore} from "@/stores/useBannerStore";
     import Time from "@/components/public/Time/index.vue";
-    import src from "@/assets/img/touxiang.jpg"
-   import Switch from "@/components/public/Switch/index.vue"
-   import srcGithub from "@/assets/img/github.svg"
-    const banner = useBannerStore()
+    import src from "@/assets/img/touxiang.jpg";
+    import Switch from "@/components/public/Switch/index.vue";
+
+    const banner = useBannerStore();
     //   const bannersetop = useBannerSetopStore()
     
-    const loading = ref(false)
-    const websiteInfo = ref({slogan:"博客"})
-    const socials =  ref([{id:1,title:"vue",color:"#ffffff",icon:"srcGithub",href:"www.baidu.com"}])
+    const loading = ref(false);
+    const websiteInfo = ref({slogan:"博客"});
+    const socials =  ref([{id:1,title:"vue",color:"#ffffff",icon:"",href:"www.baidu.com"}]);
         // 定义星星数组
-    const stars = ref([])
+    const stars = ref([]);
+
     // 定义星星的最小缩放比例
-    const STAR_MIN_SCALE = ref(0.2)
-    const width = ref(0)
-    const height = ref(0)
+    const STAR_MIN_SCALE = ref(0.2);
+    const width = ref(0);
+    const height = ref(0);
     // 定义缩放比例
-    const scale = ref(1)
+    const scale = ref(1);
     // 定义速度对象
-    const velocity = ref({ x: 0, y: 0, tx: 0, ty: 0, z: 0.0009 })
+    const velocity = ref({ x: 0, y: 0, tx: 0, ty: 0, z: 0.0009 });
     // 定义溢出阈值
-    const OVERFLOW_THRESHOLD= ref(50)
+    const OVERFLOW_THRESHOLD= ref(50);
     // 获取canvas元素
-    const canvas = ref(document.querySelector('canvas'))
+    const canvas = ref(document.querySelector('canvas'));
     // 定义星星的颜色
-    const STAR_COLOR = ref('#fff')
+    const STAR_COLOR = ref('#fff');
     // 定义星星的大小
-    const STAR_SIZE = ref(6)
+    const STAR_SIZE = ref(6);
     // 定义星星的数量
-    const STAR_COUNT = ref((window.innerWidth + window.innerHeight) / 10)
+    const STAR_COUNT = ref((window.innerWidth + window.innerHeight) / 10);
     // 获取canvas的绘图上下文
-    const context = ref(document.querySelector('canvas'))
+    const context = ref(document.querySelector('canvas'));
     // 定义鼠标指针的位置
     const pointerX = ref(0)
     const pointerY = ref(0)
     // 定义触摸输入标志
     const touchInput = ref(false)
+    const divTyping:Ref<any> = ref(null);
+    const str:string = 'Blog';
+    let i:number = 0;
+    function typing() {
+        if (i <= str.length) {
+            divTyping.value.innerHTML = str.slice(0, i++) + '_';
+            setTimeout(()=>{
+                typing()
+            },200);
+        } else {
+            divTyping.value.innerHTML = str;
+            banner.isHome = true;
+        }
+    }
     onMounted(()=>{
-        initanimation()
-        banner.getisHome
+        initanimation();
+        if(!banner.isHome){
+            typing();
+        }
+        
     })
     const initanimation = (()=>{
             canvas.value = document.querySelector('canvas')
@@ -237,31 +255,19 @@
         <div  class="banner-img">
             <template v-if="banner.isHome">
                 <div class="focusinfo">
-                    <!-- <div class="header-tou">
-                        <router-link to="/"></router-link> -->
-                        <!-- <img :src="websiteInfo.avatar"> -->
-                    <!-- </div> -->
                     <div class="top-social">
                          <Time> </Time>
-                       <!-- <span style="color:#ffffff;">社交信息</span>  -->
-                       <!-- <div v-for="item in socials" :key="item.id" :title="item.title">
-                        </div> -->
-                        <i v-tooltip.left="'golog github'">
-                            <a href="" target="_blank" >
-                              <img style="width: 32px;height: 32px;" :src="srcGithub" alt="">
-                            </a>
-                        </i> 
                     </div>
                 </div>
                 <div class="switch">
-                    <Switch></Switch>
+                    <!-- <Switch></Switch> -->
                 </div>
             </template>
             <template v-else>
                 <div class="focusinfo">
                     <div class="top-social">
                         <div style="height:100vh;">
-                            <h1 style="color:#ffffff;">Hello</h1>
+                            <h1 ref="divTyping" style="color:#ffffff;">Blog</h1>
                             <img :src="src">
                         </div>
                     </div>
@@ -275,7 +281,7 @@
 <style scoped lang="less">
 .switch{
     position: relative;
-    top:40px;
+    // top:40px;
 }
 #banner {
     position: relative;

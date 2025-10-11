@@ -220,7 +220,7 @@
 }
 
 .toggle__indicator-wrapper {
-    position: absolute;
+    right: 50px;
     inset: 0;
     transition: translate var(--speed) var(--slide-ease);
     translate: calc(var(--dark, 0) * (var(--width) - (3 / 8 * var(--width)))) 0;
@@ -300,6 +300,7 @@
     opacity: calc(1 - var(--dark, 0));
     translate: 0 calc(var(--dark, 0) * 200%);
     transition: opacity var(--speed) var(--easing), translate var(--speed) var(--easing);
+    top:10px;
 }
 
 .pilot-bear {

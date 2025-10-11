@@ -1,11 +1,15 @@
 <script setup lang="ts">
    import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
    import{ useBackgroundTheme } from "@/stores/useBackgroundTheme"
+   import Switch from "@/components/public/Switch/index.vue"
    const backgroundTheme = useBackgroundTheme()
    const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor])
+   const color:Ref<string> = ref(backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark);
     watch(() => backgroundTheme.backgroundColor,  
     (newVal, oldVal) => {
         backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+        color.value = backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark
+
     },  
     {
         deep: true // 开启深度监听  
@@ -50,6 +54,9 @@
         </div>
         <div class="site-menus"  @click.stop="mobileShow=!mobileShow">
             <div class="menu-item header-search"></div>
+            <div class="menu-item" >
+              <Switch> </Switch>
+            </div>
             <div class="menu-item" >
                 <router-link to="/">
                     <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff">首页</span>
