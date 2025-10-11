@@ -1,97 +1,117 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import Banner from "@/components/public/Banner/index.vue"
+import { defineComponent ,ref ,onMounted ,createApp,watch} from 'vue';
+import Banner from "@/components/public/Banner/index.vue";
+import { useArticleListStore } from "@/stores/useArticleListStore";
+import ArticleItem from "@/components/ArticleItem/index.vue";
+import { marked }  from 'marked';
+import { useBannerStore ,useBannerSetopStore } from "@/stores/useBannerStore";
+import 'element-plus/dist/index.css';
+import { useRouter } from 'vue-router';
+import axios from "axios";
+import type { Ref } from "vue";
+import{ useBackgroundTheme } from "@/stores/useBackgroundTheme";
+import rain from "@/components/public/Banner/common/rain.vue";
+const baseURl = import.meta.env;
+const banner = useBannerStore();
+const container:Ref<any> = ref(null);
+const backgroundTheme = useBackgroundTheme();
+const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
+const color:Ref<string> = ref(backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark);
+
+const articleListStore = useArticleListStore(); //这是个函数
+watch(() => backgroundTheme.backgroundColor,  
+    (newVal, oldVal) => {
+        backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+        color.value = backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark
+    },  
+    {
+        deep: true // 开启深度监听  
+})
+
+
+//**
+// 图片列表
+// */
+const articleList:Ref<any> = ref()
+function initArticleList(){
+    axios.get("/md/json/directory.json").then(res =>{
+        articleListStore.initArticleList = res.data
+        articleList.value = res.data
+    })
+};
+onMounted(() => {
+    initArticleList()
+}); 
+
+//**
+// 跳转
+// */
+const router = useRouter(); 
+const openArticles = ((item:any)=>{
+    router.push({ path: '/article', query: { name: item.name,fileName:item.fileName } });
+})
 </script>
 <template>
-    <div class="ArticleList">
-        <Banner></Banner>
-        <div class="site-content">
-            
+    <div class="Home">
+         <div style="width:100%;">
+            <rain></rain>
+        </div>
+        <div :style="`background-color:${backgroundColor}; color:${color};`">
+            <el-container>
+                <el-main>
+                    <div class="container">
+                        <el-row :gutter="10">
+                            <el-col :span="6" v-for="(item,index) in articleList" :key="index" :xs="24">
+                                <div class='container-item' @click="openArticles(item)">
+                                    <div class="item-img" v-if="item.src"> 
+                                        <el-image class="el-image-class" :src="item.src" fit="cover"/>
+                                    </div>
+                                     <div class="item-img" v-else> 
+                                        <h2>{{ item.name }}</h2>
+                                    </div>
+                                    <div class="item-lable">
+                                        <h4>{{ item.name }}</h4>  
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </el-main>
+            </el-container>
         </div>
     </div>
 </template>
 <style scoped lang="less">
-.site-content {
-    .notify {
-        margin: 60px 0;
-        border-radius: 3px;
-        & > div {
-            padding: 20px;
-        }
-    }
-    .search-result {
-        padding: 15px 20px;
-        text-align: center;
-        font-size: 20px;
-        font-weight: 400;
-        border: 1px dashed #ddd;
-        color: #828282;
-    }
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; 
 }
-.top-feature {
-    width: 100%;
+.container-item {
+    border-radius: 3px;
     height: auto;
-    margin-top: 30px;
-
-    .feature-content {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-
-        .feature-item {
-            width: 32.9%;
-        }
-    }
+    width: 100%;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
-
-.site-main {
-    padding-top: 80px;
-
-    &.search {
-        padding-top: 0;
-    }
+.el-image-class {
+    width: 100%; 
+    height: 100%;
 }
-
-.more{
-    margin: 50px 0;
-    .more-btn{
-        width: 100px;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        color: #ADADAD;
-        border: 1px solid #ADADAD;
-        border-radius: 20px;
-        margin: 0 auto;
-        cursor: pointer;
-        &:hover{
-            color: #8fd0cc;
-            border: 1px dashed #8fd0cc;
-        }
-    }
+.item-img{
+    width: 100%; 
+    height: 200px;
+    border-radius: 33px;
 }
-
+.item-lable{
+    width: 100%; 
+    height: 20%;
+    text-align: center;
+}
 /******/
 @media (max-width: 800px) {
-    .top-feature {
-        display: none;
-    }
 
-    .site-main {
-        padding-top: 40px;
-    }
-
-    .site-content {
-        .notify {
-            margin: 30px 0 0 0;
-        }
-
-        .search-result {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-    }
+  
 }
-/******/
 </style>
+

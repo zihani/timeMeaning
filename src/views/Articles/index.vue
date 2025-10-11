@@ -23,6 +23,7 @@ const contentRef:Ref<any> = ref(null);
 watch(() => backgroundTheme.backgroundColor,  
 (newVal, oldVal) => {
     backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor];
+    color.value = backgroundTheme.backgroundColor === "dark"?backgroundTheme.white:backgroundTheme.dark
 },  
 {
     deep: true // 开启深度监听  
@@ -55,38 +56,58 @@ onMounted(() => {
 </script>
 <template>
     <div class="Articles" >
-        <rain></rain>
-        <el-container class="layout-container" :style="`background-color:${backgroundColor};color:${color}`">
-            <el-row :gutter="90">
-                <el-col :span="6">
+        <div style="width:100%;">
+            <rain></rain>
+        </div>
+        <el-container  :style="`background-color:${backgroundColor};color:${color};width:100%;`">
+             <el-row style="width:100%;">
+                <el-col :span="6" :xs="0">
                     <div class="catalog" >
                         <catalog v-if="titles.length > 0"  :titles="titles"> </catalog> 
                         <el-skeleton v-else :rows="100" animated />
                     </div>
                 </el-col>
-                <el-col :span="18">
-                    <div style="height: 80px; ">
+                <el-col :span="18" :xs="24">
+                    <div class="content">
                         <h1>{{ title }}</h1> 
                     </div>
-                    <div ref="contentRef" class="site-content">
-                       <Content  v-if="html" :html="html"></Content>
+                    <div class='content-html'  ref="contentRef">
+                        <Content  v-if="html" :html="html"></Content>
                     </div>
                 </el-col>
             </el-row>
-        </el-container>
+        </el-container> 
     </div>
 </template>
 <style scoped lang="less">
+
 .catalog{
     width: 300px;
 }
 .site-content {
     width:70vw;
 }
+.content{
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%; /* 或者你需要的宽度 */
+}
+.Articles{
+   width:90vw;
+}
+.content-html{
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%; /* 或者你需要的宽度 */
+}
 /******/
 @media (max-width: 800px) {
-    .site-content {
-        
+    .Articles{
+        font-size: 8px;
+    }
+    .catalog{
+        width: 100%;
     }
 }
 /******/
