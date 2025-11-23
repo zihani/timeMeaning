@@ -8,6 +8,7 @@ import useClipboard from 'vue-clipboard3'
 import { Vue3TemplateComposition } from '@/template/vue3-Composition.ts'
 // import { formatCode } from '@/template/parser.ts'
 import type { CreateTable } from '@/interface/interface-generate-list'
+import TinymceEdit from "@/components/tinymce/tinymceEdit.vue";
 const toolsStore = useToolsStore()
 const { toClipboard } = useClipboard()
 defineProps({
@@ -178,6 +179,7 @@ const copyBtn = async ()=>{
                         :code="code"
                         />
                      </div>
+                     <TinymceEdit/>
                 </el-tab-pane>
             </el-tabs>
            

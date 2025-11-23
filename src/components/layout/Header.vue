@@ -46,17 +46,15 @@
    })
 </script>
 <template>
+    <div style="display: flex; align-items: center; margin-top: 20px;"><Switch> </Switch></div>
     <div id="layout-header" :style="`background-color:`+backgroundColor" :class="{'fixed':headerFixed,'hidden':hidden}" @click.stop="mobileShow=false">
         <div class="site-logo">
         </div>
         <div class="menus-btn" @click.stop="mobileShow=!mobileShow">
           
         </div>
+        
         <div class="site-menus"  @click.stop="mobileShow=!mobileShow">
-            <div class="menu-item header-search"></div>
-            <div class="menu-item" >
-              <Switch> </Switch>
-            </div>
             <div class="menu-item" >
                 <router-link to="/">
                     <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff">首页</span>
@@ -69,24 +67,24 @@
                   <span v-else  href="">画廊</span>
                 </router-link>
             </div>
-             <div class="menu-item hasChild">
+             <!-- <div class="menu-item hasChild">
                 <router-link to="/dev-tools">
                   <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">开发工具</span>
                   <span v-else  href="">开发工具</span>
                 </router-link>
-            </div>
+            </div> -->
             <!-- <div class="menu-item hasChild">
                 <router-link to="/module3d">
                   <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">3D</span>
                   <span v-else  href="">3D</span>
                 </router-link>
             </div> -->
-            <div class="menu-item hasChild">
+            <!-- <div class="menu-item hasChild">
                 <router-link to="/photo">
                   <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">相册</span>
                   <span v-else  href="">相册</span>
                 </router-link>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

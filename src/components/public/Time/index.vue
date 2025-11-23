@@ -10,7 +10,7 @@ function ding(){
 }
 function initdate(fromDatas){
       // let time = fromDatas[0]+fromDatas[1]+":"+fromDatas[2]+fromDatas[3]+":"+fromDatas[4]+fromDatas[5]
-      console.log(fromDatas)
+      // console.log(fromDatas)
       // 从cooik中获取设置时间
       // switch(time){
       //   case '6:00:00':
