@@ -98,9 +98,9 @@ const banner = useBannerStore()
                     <div v-for="(item,i) in links3" :key="i"><a :href="item.href" target="_blank">{{item.title}}</a></div>
                 </div>
             </div>
-            <div class="copyright">Copyright © 2023 by <a target="_blank" class="out-link" href=""></a> . All rights reserved. | <a target="_blank" class="out-link" href="http://www.beian.miit.gov.cn">京ICP备2023036653号-1</a></div>
+            <!-- <div class="copyright">Copyright © 2026 by <a target="_blank" class="out-link" href=""></a> . All rights reserved. | <a target="_blank" class="out-link" href="http://www.beian.miit.gov.cn">京ICP备2023036653号-1</a></div> -->
         </div>
-    </div>
+    </div>  
 </template>
 <style scoped>
 #layout-footer{
