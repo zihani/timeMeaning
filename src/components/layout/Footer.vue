@@ -58,7 +58,7 @@ watch(() => backgroundTheme.backgroundColor,
 const banner = useBannerStore()
 </script>
 <template>
-    <div id="layout-footer" :style="`background-color:${backgroundColor}; color:${color};`">
+    <div id="layout-footer" :style="`background-color:${backgroundColor}; color:${color};  border-top: 1px solid ${color};`">
         <div id="layout-footer">
             <div class="footer-main">
                 <div class="footer-item">
@@ -75,7 +75,6 @@ const banner = useBannerStore()
 <style scoped>
 #layout-footer{
     padding: 2%;
-    border-top: 1px solid rgba(247, 247, 247, 0.2);
     font-size: 13px;
     a {
         color: inherit;

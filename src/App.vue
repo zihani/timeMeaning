@@ -11,7 +11,8 @@ import Footer from '@/components/layout/Footer.vue'
 </template>
 <style scoped lang="less">
 #app {
-  font-size: 17px;
+  font-size: clamp(14px, 1.2vw, 17px);
   color: #6f6f6f;
+  line-height: 1.6;
 }
 </style>
