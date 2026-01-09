@@ -25,7 +25,7 @@ const links1 = ref([{
         href: "https://caniuse.com/"
     },{
         title: "css布局工具",
-        href: " "
+        href: "https://layout.bradwoods.io/customize"
 }])
 const links2 = ref([{
         title: "element-plus",
@@ -45,7 +45,34 @@ const links2 = ref([{
     },{
         title: "w3cschool--javaScript",
         href:"https://www.w3cschool.cn/javascript/dict"
+    },{
+        title: "node release",
+        href:"https://nodejs.org/en/blog/release"
 }])
+const links3 = ref([{
+        title: "github",
+        href: "https://github.com/"
+    }
+    ,{
+        title: "gitee",
+        href: "https://gitee.com/"
+    },{
+        title: "掘金",
+        href: "https://juejin.cn/"
+    },{
+        title: "知乎",
+        href: "https://www.zhihu.com/"
+    },{
+        title: "gemini",
+        href: "https://gemini.google.com/app"
+    },{
+        title: "deepseek",
+        href: "https://www.deepseek.com/"
+    },{
+        title: "openai",
+        href: "https://openai.com/zh-Hans-CN/"
+    }
+])
 //监听pinia 的变化重新渲染
 watch(() => backgroundTheme.backgroundColor,  
 (newVal, oldVal) => {
@@ -66,6 +93,9 @@ const banner = useBannerStore()
                 </div>
                 <div class="footer-item">
                     <div v-for="(item,i) in links2" :key="i"><a :href="item.href" target="_blank">{{item.title}}</a></div>
+                </div>
+                <div class="footer-item">
+                    <div v-for="(item,i) in links3" :key="i"><a :href="item.href" target="_blank">{{item.title}}</a></div>
                 </div>
             </div>
             <div class="copyright">Copyright © 2023 by <a target="_blank" class="out-link" href=""></a> . All rights reserved. | <a target="_blank" class="out-link" href="http://www.beian.miit.gov.cn">京ICP备2023036653号-1</a></div>
