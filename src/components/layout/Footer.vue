@@ -4,6 +4,7 @@ import { useBannerStore } from "@/stores/useBannerStore"
 import { useBackgroundTheme } from "@/stores/useBackgroundTheme";
 const backgroundTheme = useBackgroundTheme();
 const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor])
+const color:Ref<string> = ref(backgroundTheme.backgroundColor === "dark" ? backgroundTheme.white : backgroundTheme.dark);
 const links1 = ref([{
         title:"vue3文档",
         href: "https://cn.vuejs.org/"
@@ -49,6 +50,7 @@ const links2 = ref([{
 watch(() => backgroundTheme.backgroundColor,  
 (newVal, oldVal) => {
     backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+    color.value = backgroundTheme.backgroundColor === "dark" ? backgroundTheme.white : backgroundTheme.dark;
 },  
 {
     deep: true // 开启深度监听  
@@ -56,7 +58,7 @@ watch(() => backgroundTheme.backgroundColor,
 const banner = useBannerStore()
 </script>
 <template>
-    <div id="layout-footer" :style="`background-color:${backgroundColor}`">
+    <div id="layout-footer" :style="`background-color:${backgroundColor}; color:${color};`">
         <div id="layout-footer">
             <div class="footer-main">
                 <div class="footer-item">
@@ -73,9 +75,16 @@ const banner = useBannerStore()
 <style scoped>
 #layout-footer{
     padding: 2%;
-    border-top: 1px solid #F7F7F7;
+    border-top: 1px solid rgba(247, 247, 247, 0.2);
     font-size: 13px;
-    color: #9c9c9c;
+    a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        &:hover {
+            color: #ff6d6d;
+        }
+    }
     a.out-link:hover{
         color: #ff6d6d;
     }

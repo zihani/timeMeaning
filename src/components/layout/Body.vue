@@ -4,17 +4,19 @@ import TodoList from '@/components/public/TodoList/index.vue'
 import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
 const backgroundTheme = useBackgroundTheme();
 const backgroundColor: Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
+const color: Ref<string> = ref(backgroundTheme.backgroundColor === "dark" ? backgroundTheme.white : backgroundTheme.dark);
 //监听backgroundColor 变化
 watch(() => backgroundTheme.backgroundColor,
     (newVal, oldVal) => {
         backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
+        color.value = backgroundTheme.backgroundColor === "dark" ? backgroundTheme.white : backgroundTheme.dark
     },
     {
         deep: true // 开启深度监听
     })
 </script>
 <template>
-    <div id="layout-body" :style="`background-color:${backgroundColor}`">
+    <div id="layout-body" :style="`background-color:${backgroundColor}; color:${color};`">
         <router-view></router-view>
         <TodoList></TodoList>
     </div>

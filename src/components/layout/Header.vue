@@ -20,16 +20,8 @@
    const watchScroll = () => {
         let scrollTop: number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         if (scrollTop >= lastScrollTop.value) {
-            var element = document.getElementById("layout-header");
-            if (element) {
-                element.style.color = "#fffff";
-            }
             hidden.value = true;
         } else {
-            var element = document.getElementById("layout-header");
-            if (element) {
-                element.style.color = "#00000";
-            }
             hidden.value = false
         }
         lastScrollTop.value = scrollTop
@@ -43,7 +35,7 @@
 </script>
 <template>
     <div style="display: flex; align-items: center; margin-top: 20px;"><Switch> </Switch></div>
-    <div id="layout-header" :style="`background-color:`+backgroundColor" :class="{'hidden':hidden}" @click.stop="mobileShow=false">
+    <div id="layout-header" :style="`background-color:${backgroundColor}; color:${color};`" :class="{'hidden':hidden}" @click.stop="mobileShow=false">
         <div class="site-logo">
         </div>
         <div class="menus-btn" @click.stop="mobileShow=!mobileShow">
@@ -52,41 +44,16 @@
         
         <div class="site-menus"  @click.stop="mobileShow=!mobileShow">
             <div class="menu-item" >
-                <router-link to="/">
-                    <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff">首页</span>
-                    <span v-else>首页</span>
-                </router-link>
+                <router-link to="/">首页</router-link>
             </div>
             <div class="menu-item hasChild">
-                <router-link to="/gallery">
-                  <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">画廊</span>
-                  <span v-else  href="">画廊</span>
-                </router-link>
+                <router-link to="/gallery">画廊</router-link>
             </div>
-             <!-- <div class="menu-item hasChild">
-                <router-link to="/dev-tools">
-                  <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">开发工具</span>
-                  <span v-else  href="">开发工具</span>
-                </router-link>
-            </div> -->
-            <!-- <div class="menu-item hasChild">
-                <router-link to="/module3d">
-                  <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">3D</span>
-                  <span v-else  href="">3D</span>
-                </router-link>
-            </div> -->
-            <!-- <div class="menu-item hasChild">
-                <router-link to="/photo">
-                  <span v-if="backgroundTheme.backgroundColor === 'dark'" style="color:#ffffff" href="">相册</span>
-                  <span v-else  href="">相册</span>
-                </router-link>
-            </div> -->
         </div>
     </div>
 </template>
 <style scoped lang="less">
     #layout-header {
-        color:#ffff;
         position: fixed;
         top: 0;
         z-index: 9;
@@ -142,9 +109,11 @@
             position: relative;
             a{
                 padding: 12px 10px;
-                color: #545454;
+                color: inherit;
                 font-weight: 500;
                 font-size: 16px;
+                text-decoration: none;
+                transition: color 0.3s ease;
                 &:hover {
                     color: #ff6d6d;
                 }
