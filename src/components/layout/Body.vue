@@ -1,24 +1,21 @@
 <script  setup lang="ts">
-import { onMounted,onUnmounted, ref,type Ref,watch } from "vue";
-import TablePet from '@/components/public/TablePet.vue'
+import { ref, type Ref, watch } from "vue";
 import TodoList from '@/components/public/TodoList/index.vue'
 import { useBackgroundTheme } from '@/stores/useBackgroundTheme';
-const backgroundTheme=useBackgroundTheme();
-const backgroundColor:Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
+const backgroundTheme = useBackgroundTheme();
+const backgroundColor: Ref<string> = ref(backgroundTheme[backgroundTheme.backgroundColor]);
 //监听backgroundColor 变化
- watch(() => backgroundTheme.backgroundColor,  
+watch(() => backgroundTheme.backgroundColor,
     (newVal, oldVal) => {
         backgroundColor.value = backgroundTheme[backgroundTheme.backgroundColor]
-    },  
-    {  
-    deep: true // 开启深度监听  
- })
- onMounted(()=>{})
+    },
+    {
+        deep: true // 开启深度监听
+    })
 </script>
 <template>
     <div id="layout-body" :style="`background-color:${backgroundColor}`">
         <router-view></router-view>
-        <!-- <TablePet></TablePet> -->
         <TodoList></TodoList>
     </div>
 </template>

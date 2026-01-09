@@ -17,23 +17,19 @@
    const mobileShow = ref(false);
    const hidden = ref(false);
    const lastScrollTop = ref(0);
-   const openUrl=(item:any)=>{
-        window.open(item.href)
-   }
-   const openArticle=(item:Object)=>{
-        lastScrollTop.value++;
-   }
-   const openGallery=(item:Object)=>{
-   }
-   const watchScroll =()=>{
+   const watchScroll = () => {
         let scrollTop: number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        if (scrollTop>=lastScrollTop.value){
-            var element = document.getElementById("layout-header");  
-            element.style.color = "#fffff";
+        if (scrollTop >= lastScrollTop.value) {
+            var element = document.getElementById("layout-header");
+            if (element) {
+                element.style.color = "#fffff";
+            }
             hidden.value = true;
         } else {
-            var element = document.getElementById("layout-header");  
-            element.style.color = "#00000";
+            var element = document.getElementById("layout-header");
+            if (element) {
+                element.style.color = "#00000";
+            }
             hidden.value = false
         }
         lastScrollTop.value = scrollTop
@@ -47,7 +43,7 @@
 </script>
 <template>
     <div style="display: flex; align-items: center; margin-top: 20px;"><Switch> </Switch></div>
-    <div id="layout-header" :style="`background-color:`+backgroundColor" :class="{'fixed':headerFixed,'hidden':hidden}" @click.stop="mobileShow=false">
+    <div id="layout-header" :style="`background-color:`+backgroundColor" :class="{'hidden':hidden}" @click.stop="mobileShow=false">
         <div class="site-logo">
         </div>
         <div class="menus-btn" @click.stop="mobileShow=!mobileShow">

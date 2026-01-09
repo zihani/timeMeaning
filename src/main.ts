@@ -3,7 +3,6 @@ import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import Tooltip from 'primevue/tooltip';
 import pinia from "./stores/index";
-// import {create} from '@/utils/created';
 import '@/assets/switch/css.css'
 import VueShortkey from 'vue-shortkey';
 import ElementPlus from 'element-plus'
