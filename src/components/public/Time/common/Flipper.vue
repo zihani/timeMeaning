@@ -77,7 +77,7 @@ function setFront(text) {
 }
 // 设置后牌文字
 function setBack(text) {
-    backTextFromData = text
+    backTextFromData.value = text
 }
 setFront(props.frontText)
 watch(() => props.timeStr,  

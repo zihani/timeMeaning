@@ -48,8 +48,8 @@ onMounted(() => {
     // 获取 query 参数  
     if (route.query.name) {
        title.value = route.query.name;
-       articleType.name = route.query.name;
-       articleType.fileName =  route.query.fileName;
+       articleType.value.name = route.query.name;
+       articleType.value.fileName =  route.query.fileName;
        initArticles();
     };  
 });
