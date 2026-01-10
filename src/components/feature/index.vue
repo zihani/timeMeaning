@@ -8,10 +8,6 @@ const router=useRouter()
 </script>
 <template>
     <div class="feature">
-        <!-- <router-link :to="`/article/${data.id}`">
-            <div ><span class="foverlay">{{data.title}}</span></div>
-            <img :src="data.img">
-        </router-link> -->
         <div>
             <span class="foverlay">{{data.title}}</span>
         </div>
