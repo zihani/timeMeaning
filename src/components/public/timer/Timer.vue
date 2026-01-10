@@ -31,6 +31,20 @@ import bginUrl from '@/assets/mp3/bgin.wav';
 import endUrl1 from '@/assets/mp3/end1.wav';
 import endUrl2 from '@/assets/mp3/end2.wav';
 import ding from '@/assets/mp3/ding.m4a';
+// 1. 提前创建音频实例
+const dingAudio = new Audio(ding);
+/**
+ * 播放提示音函数
+ */
+const playDing = () => {
+  // 如果当前正在播放，将其重置到开头，实现连续点击连续响
+  dingAudio.currentTime = 0;
+  
+  dingAudio.play().catch(val => {
+    // 处理浏览器禁止自动播放的问题
+    console.warn("由于浏览器策略，音频未能自动播放，需用户交互后触发", val);
+  });
+};
 // --- 常量定义 ---
 const RADIUS = 90;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
@@ -57,6 +71,7 @@ let isStoppingAudioIntentionally = false; // 标记是否是主动停止音频
 const formattedTime = computed(() => {
   const mins = Math.floor(totalSeconds.value / 60);
   const secs = totalSeconds.value % 60;
+  console.log(`${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`)
   return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 });
 
@@ -408,7 +423,7 @@ const startCountdown = async () => {
         timerInterval = null;
       }
       lastUpdatedSecond = -1;
-      alert('Time is up!');
+      playDing();
       return;
     }
     
