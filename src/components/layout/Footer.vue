@@ -51,11 +51,11 @@ const links2 = ref([{
 }])
 const links3 = ref([{
         title: "github",
-        href: "https://github.com/"
+        href: "https://github.com/zihani"
     }
     ,{
         title: "gitee",
-        href: "https://github.com/zihani"
+        href: "https://gitee.com/"
     },{
         title: "掘金",
         href: "https://juejin.cn/"
